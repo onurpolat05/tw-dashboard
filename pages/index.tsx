@@ -1,23 +1,45 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="container mx-auto p-8">
-        <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
-          TradeWizz Dashboard
-        </h1>
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <div className="container p-8 mx-auto space-y-12">
+        <div className="space-y-8 text-center">
+          <div className="flex justify-center">
+            <Image
+              src="/tw-logo.png"
+              alt="TradeWizz Logo"
+              width={120}
+              height={120}
+              className="mb-4"
+            />
+          </div>
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold text-gray-900">
+              TradeWizz Dashboard
+            </h1>
+            <div className="relative">
+              <div className="mx-auto mb-4 w-48 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+              <p className="text-xl italic font-medium text-purple-600">
+                One app to rule them all
+              </p>
+              <div className="mx-auto mt-4 w-48 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-8 mx-auto max-w-4xl md:grid-cols-2">
           {/* Current Status Card */}
-          <Link href="/mrr-dashboard" className="block">
-            <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer group">
+          <Link href="/mrr-dashboard" className="block h-full">
+            <Card className="p-6 h-[200px] bg-gradient-to-br from-purple-50 to-white border-purple-100 transition-all duration-300 cursor-pointer hover:shadow-lg group flex flex-col justify-between">
               <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 flex items-center justify-between">
+                <h2 className="flex justify-between items-center text-2xl font-semibold text-gray-900">
                   Current Status
-                  <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 text-purple-600 transition-transform transform group-hover:translate-x-1" />
                 </h2>
                 <p className="text-gray-600">
                   View current MRR analytics and performance metrics
@@ -27,12 +49,12 @@ const HomePage = () => {
           </Link>
 
           {/* Future Status Card */}
-          <Link href="/future-status" className="block">
-            <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer group">
+          <Link href="/future-status" className="block h-full">
+            <Card className="p-6 h-[200px] bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100 transition-all duration-300 cursor-pointer hover:shadow-lg group flex flex-col justify-between">
               <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 flex items-center justify-between">
+                <h2 className="flex justify-between items-center text-2xl font-semibold text-gray-900">
                   Future Status
-                  <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 text-fuchsia-600 transition-transform transform group-hover:translate-x-1" />
                 </h2>
                 <p className="text-gray-600">
                   Explore pre-seed valuation and future projections
