@@ -84,16 +84,16 @@ const RetentionTrends = ({ revenueData, subscriberData }: RetentionTrendsProps):
   } as const;
 
   return (
-    <div className="grid grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
       {/* Chart */}
-      <Card className="p-6">
+      <Card className="p-4 md:p-6">
         <CardHeader className="px-0 pt-0">
-          <div className="flex justify-between items-center">
-            <CardTitle>Retention Trends</CardTitle>
-            <div className="flex gap-2">
+          <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+            <CardTitle className="text-lg md:text-xl">Retention Trends</CardTitle>
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setActiveView('revenue')}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
+                className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
                   activeView === 'revenue'
                     ? 'bg-violet-100 text-violet-700'
                     : 'bg-gray-100 text-gray-600'
@@ -103,7 +103,7 @@ const RetentionTrends = ({ revenueData, subscriberData }: RetentionTrendsProps):
               </button>
               <button
                 onClick={() => setActiveView('subscribers')}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
+                className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
                   activeView === 'subscribers'
                     ? 'bg-violet-100 text-violet-700'
                     : 'bg-gray-100 text-gray-600'
@@ -115,27 +115,27 @@ const RetentionTrends = ({ revenueData, subscriberData }: RetentionTrendsProps):
           </div>
         </CardHeader>
         <CardContent className="p-0">
-          <div className="h-[400px]">
+          <div className="h-[240px] md:h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+              <LineChart margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
                 <XAxis
                   dataKey="month"
                   type="category"
                   allowDuplicatedCategory={false}
-                  tick={{ fontSize: 12, fill: '#666' }}
+                  tick={{ fontSize: 10, fill: '#666' }}
                   axisLine={{ stroke: '#E0E0E0' }}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fontSize: 12, fill: '#666' }}
+                  tick={{ fontSize: 10, fill: '#666' }}
                   axisLine={{ stroke: '#E0E0E0' }}
                   tickFormatter={(value) => `${value}%`}
                 />
                 <Tooltip
                   formatter={(value: any) => [`${value}%`, 'Retention']}
                   contentStyle={{
-                    fontSize: 12,
+                    fontSize: 11,
                     backgroundColor: 'rgba(255, 255, 255, 0.96)',
                     border: '1px solid #E0E0E0',
                     borderRadius: '4px',
@@ -162,9 +162,9 @@ const RetentionTrends = ({ revenueData, subscriberData }: RetentionTrendsProps):
                       strokeWidth={2}
                       dot={{ 
                         fill: cohortColors[cohort.month as keyof typeof cohortColors],
-                        r: 4 
+                        r: 3 
                       }}
-                      activeDot={{ r: 6, strokeWidth: 2 }}
+                      activeDot={{ r: 5, strokeWidth: 2 }}
                     />
                   ))}
               </LineChart>
@@ -176,7 +176,7 @@ const RetentionTrends = ({ revenueData, subscriberData }: RetentionTrendsProps):
               <button
                 key={cohort}
                 onClick={() => toggleCohort(cohort)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
+                className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
                   selectedCohorts.includes(cohort)
                     ? 'text-white'
                     : 'bg-gray-100 text-gray-600'
@@ -195,78 +195,78 @@ const RetentionTrends = ({ revenueData, subscriberData }: RetentionTrendsProps):
       </Card>
 
       {/* Stats */}
-      <div className="space-y-6">
-        <Card className="p-6">
-          <h3 className="mb-4 text-lg font-semibold text-gray-900">Retention Statistics</h3>
-          <div className="space-y-4">
-            <div className="p-4 bg-violet-50 rounded-lg">
+      <div className="space-y-4 md:space-y-6">
+        <Card className="p-4 md:p-6">
+          <h3 className="mb-3 md:mb-4 text-base md:text-lg font-semibold text-gray-900">Retention Statistics</h3>
+          <div className="space-y-3 md:space-y-4">
+            <div className="p-3 md:p-4 bg-violet-50 rounded-lg">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="text-sm font-medium text-violet-600">Average First Month</p>
-                  <p className="text-2xl font-semibold text-violet-900">
+                  <p className="text-xs md:text-sm font-medium text-violet-600">Average First Month</p>
+                  <p className="text-xl md:text-2xl font-semibold text-violet-900">
                     {activeView === 'revenue' ? '98%' : '95%'}
                   </p>
                 </div>
-                <Users className="w-8 h-8 text-violet-400 opacity-20" />
+                <Users className="w-6 h-6 md:w-8 md:h-8 text-violet-400 opacity-20" />
               </div>
             </div>
-            <div className="p-4 rounded-lg bg-violet-50/70">
+            <div className="p-3 md:p-4 rounded-lg bg-violet-50/70">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="text-sm font-medium text-violet-600">Average Third Month</p>
-                  <p className="text-2xl font-semibold text-violet-900">
+                  <p className="text-xs md:text-sm font-medium text-violet-600">Average Third Month</p>
+                  <p className="text-xl md:text-2xl font-semibold text-violet-900">
                     {activeView === 'revenue' ? '42%' : '45%'}
                   </p>
                 </div>
-                <Activity className="w-8 h-8 text-violet-400 opacity-20" />
+                <Activity className="w-6 h-6 md:w-8 md:h-8 text-violet-400 opacity-20" />
               </div>
             </div>
-            <div className="p-4 rounded-lg bg-violet-50/50">
+            <div className="p-3 md:p-4 rounded-lg bg-violet-50/50">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="text-sm font-medium text-violet-600">Average Sixth Month</p>
-                  <p className="text-2xl font-semibold text-violet-900">
+                  <p className="text-xs md:text-sm font-medium text-violet-600">Average Sixth Month</p>
+                  <p className="text-xl md:text-2xl font-semibold text-violet-900">
                     {activeView === 'revenue' ? '35%' : '39%'}
                   </p>
                 </div>
-                <Target className="w-8 h-8 text-violet-400 opacity-20" />
+                <Target className="w-6 h-6 md:w-8 md:h-8 text-violet-400 opacity-20" />
               </div>
             </div>
           </div>
         </Card>
 
-        <Card className="p-6">
-          <h3 className="mb-4 text-lg font-semibold text-gray-900">Quick Analysis</h3>
-          <div className="space-y-6">
+        <Card className="p-4 md:p-6">
+          <h3 className="mb-3 md:mb-4 text-base md:text-lg font-semibold text-gray-900">Quick Analysis</h3>
+          <div className="space-y-4 md:space-y-6">
             <div>
-              <h4 className="mb-2 text-sm font-medium text-gray-600">Best Performing</h4>
+              <h4 className="mb-2 text-xs md:text-sm font-medium text-gray-600">Best Performing</h4>
               <div className="flex gap-2 items-center">
-                <span className="px-2 py-1 text-sm font-medium text-violet-700 bg-violet-100 rounded-md">
+                <span className="px-2 py-1 text-xs md:text-sm font-medium text-violet-700 bg-violet-100 rounded-md">
                   Jan-Feb 2024
                 </span>
-                <span className="text-sm text-gray-600">
+                <span className="text-xs md:text-sm text-gray-600">
                   100% retention through first 6 months
                 </span>
               </div>
             </div>
             <div>
-              <h4 className="mb-2 text-sm font-medium text-gray-600">Critical Drop-off</h4>
+              <h4 className="mb-2 text-xs md:text-sm font-medium text-gray-600">Critical Drop-off</h4>
               <div className="flex gap-2 items-center">
-                <span className="px-2 py-1 text-sm font-medium text-violet-700 bg-violet-100 rounded-md">
+                <span className="px-2 py-1 text-xs md:text-sm font-medium text-violet-700 bg-violet-100 rounded-md">
                   Month 2-3
                 </span>
-                <span className="text-sm text-gray-600">
+                <span className="text-xs md:text-sm text-gray-600">
                   Average retention drops by 31%
                 </span>
               </div>
             </div>
             <div>
-              <h4 className="mb-2 text-sm font-medium text-gray-600">Recent Trend</h4>
+              <h4 className="mb-2 text-xs md:text-sm font-medium text-gray-600">Recent Trend</h4>
               <div className="flex gap-2 items-center">
-                <span className="px-2 py-1 text-sm font-medium text-violet-700 bg-violet-100 rounded-md">
+                <span className="px-2 py-1 text-xs md:text-sm font-medium text-violet-700 bg-violet-100 rounded-md">
                   Improving
                 </span>
-                <span className="text-sm text-gray-600">
+                <span className="text-xs md:text-sm text-gray-600">
                   Last 3 cohorts show better initial retention
                 </span>
               </div>
@@ -311,168 +311,172 @@ const CohortAnalysis: React.FC = () => {
   ];
 
   return (
-    <div className="mb-8 space-y-8">
-      {/* Title Section */}
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-900">Cohort Analysis</h2>
-      </div>
-
-      {/* Metric Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        <Card className="p-4 bg-gradient-to-br from-violet-50 to-white border-violet-100">
-          <div className="space-y-1">
-            <p className="text-sm font-medium text-violet-600">Average 1st Month Retention</p>
-            <p className="text-2xl font-semibold text-violet-900">78.5%</p>
-            <p className="text-xs text-gray-500">across all cohorts</p>
+    <div className="w-full overflow-x-auto pb-2">
+      <div className="min-w-[768px]">
+        <div className="space-y-4 md:space-y-8">
+          {/* Title Section */}
+          <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900">Cohort Analysis</h2>
           </div>
-        </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100">
-          <div className="space-y-1">
-            <p className="text-sm font-medium text-fuchsia-600">Average 3rd Month Retention</p>
-            <p className="text-2xl font-semibold text-fuchsia-900">55.3%</p>
-            <p className="text-xs text-gray-500">across all cohorts</p>
+          {/* Metric Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-violet-50 to-white border-violet-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-violet-600">Average 1st Month Retention</p>
+                <p className="text-xl md:text-2xl font-semibold text-violet-900">78.5%</p>
+                <p className="text-xs text-gray-500">across all cohorts</p>
+              </div>
+            </Card>
+
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-fuchsia-600">Average 3rd Month Retention</p>
+                <p className="text-xl md:text-2xl font-semibold text-fuchsia-900">55.3%</p>
+                <p className="text-xs text-gray-500">across all cohorts</p>
+              </div>
+            </Card>
+
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-purple-50 to-white border-purple-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-purple-600">Best Performing Cohort</p>
+                <p className="text-xl md:text-2xl font-semibold text-purple-900">Jan 2024</p>
+                <p className="text-xs text-gray-500">100% retention</p>
+              </div>
+            </Card>
+
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-indigo-50 to-white border-indigo-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-indigo-600">Largest Cohort Size</p>
+                <p className="text-xl md:text-2xl font-semibold text-indigo-900">19</p>
+                <p className="text-xs text-gray-500">Mar 2024 cohort</p>
+              </div>
+            </Card>
           </div>
-        </Card>
 
-        <Card className="p-4 bg-gradient-to-br from-purple-50 to-white border-purple-100">
-          <div className="space-y-1">
-            <p className="text-sm font-medium text-purple-600">Best Performing Cohort</p>
-            <p className="text-2xl font-semibold text-purple-900">Jan 2024</p>
-            <p className="text-xs text-gray-500">100% retention</p>
-          </div>
-        </Card>
+          {/* Retention Trends */}
+          <RetentionTrends revenueData={cohortRevenueData} subscriberData={cohortSubscribersData} />
 
-        <Card className="p-4 bg-gradient-to-br from-indigo-50 to-white border-indigo-100">
-          <div className="space-y-1">
-            <p className="text-sm font-medium text-indigo-600">Largest Cohort Size</p>
-            <p className="text-2xl font-semibold text-indigo-900">19</p>
-            <p className="text-xs text-gray-500">Mar 2024 cohort</p>
-          </div>
-        </Card>
-      </div>
-
-      {/* Retention Trends */}
-      <RetentionTrends revenueData={cohortRevenueData} subscriberData={cohortSubscribersData} />
-
-      {/* Cohort Table */}
-      <Card className="p-6">
-        <CardHeader className="px-0 pt-0">
-          <div className="flex justify-between items-center">
-            <CardTitle>Cohort Analysis</CardTitle>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setActiveView('revenue')}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                  activeView === 'revenue'
-                    ? 'bg-violet-100 text-violet-700'
-                    : 'bg-gray-100 text-gray-600'
-                }`}
-              >
-                Revenue
-              </button>
-              <button
-                onClick={() => setActiveView('subscribers')}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                  activeView === 'subscribers'
-                    ? 'bg-violet-100 text-violet-700'
-                    : 'bg-gray-100 text-gray-600'
-                }`}
-              >
-                Subscribers
-              </button>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent className="p-0">
-          <div className="h-[400px] relative overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr>
-                  <th className="sticky left-0 px-4 py-2 font-medium text-left text-gray-900 bg-white">Cohort</th>
-                  <th className="px-4 py-2 font-medium text-center text-gray-900">
-                    {activeView === 'revenue' ? 'Start MRR' : 'Start Value'}
-                  </th>
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <th key={i} className="px-4 py-2 font-medium text-center text-gray-900">
-                      M{i + 1}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {(activeView === 'revenue' ? cohortRevenueData : cohortSubscribersData).map((cohort, idx) => (
-                  <tr key={cohort.month} className={`${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'} ${cohort.month === 'Average' ? 'font-semibold' : ''}`}>
-                    <td className="sticky left-0 px-4 py-2 font-medium text-gray-900 bg-inherit">
-                      {cohort.month}
-                    </td>
-                    <td className="px-4 py-2 text-center text-gray-900">
-                      {activeView === 'revenue' 
-                        ? `$${getStartValue(cohort, 'revenue').toFixed(2)}`
-                        : getStartValue(cohort, 'subscribers')
-                      }
-                    </td>
-                    {Array.from({ length: 12 }, (_, i) => {
-                      const retention = cohort[`retention_${i + 1}` as keyof typeof cohort] as number;
-                      return (
-                        <td
-                          key={i}
-                          className="px-4 py-2 text-center"
-                          style={{
-                            background: retention
-                              ? `rgba(139, 92, 246, ${retention / 100})`
-                              : 'transparent',
-                            color: retention > 50 ? 'white' : 'black'
-                          }}
-                        >
-                          {retention ? `${retention}%` : '-'}
+          {/* Cohort Table */}
+          <Card className="p-4 md:p-6">
+            <CardHeader className="px-0 pt-0">
+              <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+                <CardTitle className="text-lg md:text-xl">Cohort Analysis</CardTitle>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setActiveView('revenue')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      activeView === 'revenue'
+                        ? 'bg-violet-100 text-violet-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    Revenue
+                  </button>
+                  <button
+                    onClick={() => setActiveView('subscribers')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      activeView === 'subscribers'
+                        ? 'bg-violet-100 text-violet-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    Subscribers
+                  </button>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="h-[300px] md:h-[400px] relative overflow-x-auto">
+                <table className="w-full text-xs md:text-sm">
+                  <thead>
+                    <tr>
+                      <th className="sticky left-0 px-3 md:px-4 py-2 font-medium text-left text-gray-900 bg-white">Cohort</th>
+                      <th className="px-3 md:px-4 py-2 font-medium text-center text-gray-900">
+                        {activeView === 'revenue' ? 'Start MRR' : 'Start Value'}
+                      </th>
+                      {Array.from({ length: 12 }, (_, i) => (
+                        <th key={i} className="px-3 md:px-4 py-2 font-medium text-center text-gray-900">
+                          M{i + 1}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(activeView === 'revenue' ? cohortRevenueData : cohortSubscribersData).map((cohort, idx) => (
+                      <tr key={cohort.month} className={`${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'} ${cohort.month === 'Average' ? 'font-semibold' : ''}`}>
+                        <td className="sticky left-0 px-3 md:px-4 py-2 font-medium text-gray-900 bg-inherit">
+                          {cohort.month}
                         </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
+                        <td className="px-3 md:px-4 py-2 text-center text-gray-900">
+                          {activeView === 'revenue' 
+                            ? `$${getStartValue(cohort, 'revenue').toFixed(2)}`
+                            : getStartValue(cohort, 'subscribers')
+                          }
+                        </td>
+                        {Array.from({ length: 12 }, (_, i) => {
+                          const retention = cohort[`retention_${i + 1}` as keyof typeof cohort] as number;
+                          return (
+                            <td
+                              key={i}
+                              className="px-3 md:px-4 py-2 text-center"
+                              style={{
+                                background: retention
+                                  ? `rgba(139, 92, 246, ${retention / 100})`
+                                  : 'transparent',
+                                color: retention > 50 ? 'white' : 'black'
+                              }}
+                            >
+                              {retention ? `${retention}%` : '-'}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
 
-      {/* Summary Card */}
-      <Card className="p-6 bg-gradient-to-br from-purple-50 via-white to-fuchsia-50">
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">Cohort Analysis Insights</h3>
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <h4 className="text-sm font-medium text-purple-900">Retention Patterns</h4>
-              <p className="text-sm text-gray-600">
-                Early cohorts (Dec 2023) show moderate retention with gradual decline.
-                Recent cohorts demonstrate higher initial retention but steeper drop-offs.
-              </p>
+          {/* Summary Card */}
+          <Card className="p-4 md:p-6 bg-gradient-to-br from-purple-50 via-white to-fuchsia-50">
+            <div className="space-y-3 md:space-y-4">
+              <h3 className="text-base md:text-lg font-semibold text-gray-900">Cohort Analysis Insights</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                <div className="space-y-2">
+                  <h4 className="text-xs md:text-sm font-medium text-purple-900">Retention Patterns</h4>
+                  <p className="text-xs md:text-sm text-gray-600">
+                    Early cohorts (Dec 2023) show moderate retention with gradual decline.
+                    Recent cohorts demonstrate higher initial retention but steeper drop-offs.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-xs md:text-sm font-medium text-purple-900">Revenue Impact</h4>
+                  <p className="text-xs md:text-sm text-gray-600">
+                    March 2024 cohort shows strong initial revenue but significant early churn.
+                    January and February 2024 cohorts maintain consistent revenue retention.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-xs md:text-sm font-medium text-purple-900">Cohort Performance</h4>
+                  <p className="text-xs md:text-sm text-gray-600">
+                    Best performing cohorts initiated in early 2024, maintaining 100% retention.
+                    Larger cohorts tend to experience more variable retention rates.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-xs md:text-sm font-medium text-purple-900">Recommendations</h4>
+                  <p className="text-xs md:text-sm text-gray-600">
+                    Focus on replicating success factors from Jan-Feb 2024 cohorts.
+                    Implement targeted retention strategies for months 2-3 where significant drops occur.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="space-y-2">
-              <h4 className="text-sm font-medium text-purple-900">Revenue Impact</h4>
-              <p className="text-sm text-gray-600">
-                March 2024 cohort shows strong initial revenue but significant early churn.
-                January and February 2024 cohorts maintain consistent revenue retention.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h4 className="text-sm font-medium text-purple-900">Cohort Performance</h4>
-              <p className="text-sm text-gray-600">
-                Best performing cohorts initiated in early 2024, maintaining 100% retention.
-                Larger cohorts tend to experience more variable retention rates.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h4 className="text-sm font-medium text-purple-900">Recommendations</h4>
-              <p className="text-sm text-gray-600">
-                Focus on replicating success factors from Jan-Feb 2024 cohorts.
-                Implement targeted retention strategies for months 2-3 where significant drops occur.
-              </p>
-            </div>
-          </div>
+          </Card>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

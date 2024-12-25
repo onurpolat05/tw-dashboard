@@ -90,297 +90,298 @@ const CustomerMetrics: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8">
-      {/* Title Section */}
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-900">Customer Growth & Trial Metrics</h2>
-      </div>
-        {/* Metrics Cards */}
-        <div className="grid grid-cols-4 gap-4">
-          {/* First Row - User Focused Metrics */}
-          <Card className="p-4 bg-gradient-to-br from-indigo-50 to-white border-indigo-100">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-indigo-600">Total Unique Customers</p>
-              <p className="text-2xl font-semibold text-indigo-900">41</p>
-              <div className="flex items-center space-x-1">
-                <span className={`text-sm font-medium text-emerald-600`}>
-                  ↑ Overall
-                </span>
-                <span className="text-xs text-gray-500">lifetime</span>
-              </div>
-            </div>
-          </Card>
+    <div className="w-full overflow-x-auto pb-2">
+      <div className="min-w-[768px]">
+        <div className="space-y-4 md:space-y-8">
+          {/* Title Section */}
+          <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900">Customer Growth & Trial Metrics</h2>
+          </div>
 
-          <Card className="p-4 bg-gradient-to-br from-violet-50 to-white border-violet-100">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-violet-600">Trial Users</p>
-              <p className="text-2xl font-semibold text-violet-900">26</p>
-              <p className="text-xs text-gray-500">total trial users</p>
-            </div>
-          </Card>
-
-          <Card className="p-4 bg-gradient-to-br from-purple-50 to-white border-purple-100">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-purple-600">Trial to Paid Conversion</p>
-              <p className="text-2xl font-semibold text-purple-900">19.51%</p>
-              <p className="text-xs text-gray-500">conversion rate</p>
-            </div>
-          </Card>
-
-          <Card className="p-4 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-fuchsia-600">Average Days to Convert</p>
-              <p className="text-2xl font-semibold text-fuchsia-900">97.88</p>
-              <p className="text-xs text-gray-500">days</p>
-            </div>
-          </Card>
-
-          {/* Second Row - Performance Metrics */}
-          <Card className="p-4 bg-gradient-to-br from-cyan-50 to-white border-cyan-100">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-cyan-600">Avg Trial Usage</p>
-              <p className="text-2xl font-semibold text-cyan-900">1.88</p>
-              <p className="text-xs text-gray-500">before conversion</p>
-            </div>
-          </Card>
-
-          <Card className="p-4 bg-gradient-to-br from-teal-50 to-white border-teal-100">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-teal-600">Revenue per Convert</p>
-              <p className="text-2xl font-semibold text-teal-900">${265.70}</p>
-              <p className="text-xs text-gray-500">average</p>
-            </div>
-          </Card>
-
-          <Card className="p-4 bg-gradient-to-br from-emerald-50 to-white border-emerald-100">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-emerald-600">Monthly Revenue</p>
-              <p className="text-2xl font-semibold text-emerald-900">
-                ${(formattedData[formattedData.length - 1].eko_revenue + 
-                   formattedData[formattedData.length - 1].premium_revenue + 
-                   formattedData[formattedData.length - 1].simple_revenue).toFixed(2)}
-              </p>
-              <div className="flex items-center space-x-1">
-                <span className={`text-sm font-medium ${revenueChange >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-                  {revenueChange >= 0 ? '↑' : '↓'} {Math.abs(revenueChange).toFixed(1)}%
-                </span>
-                <span className="text-xs text-gray-500">vs last month</span>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-4 bg-gradient-to-br from-sky-50 to-white border-sky-100">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-sky-600">Trial to Total Ratio</p>
-              <p className="text-2xl font-semibold text-sky-900">{formattedData[formattedData.length - 1].trial_to_total_ratio}%</p>
-              <p className="text-xs text-gray-500">current month</p>
-            </div>
-          </Card>
-        </div>
-      {/* Charts and Metrics Grid */}
-      <div className="space-y-8">
-        {/* Charts Row */}
-        <div className="grid grid-cols-2 gap-6">
-          {/* Monthly User Distribution */}
-          <Card className="p-6">
-            <CardHeader className="px-0 pt-0">
-              <div className="flex justify-between items-center">
-                <CardTitle>Monthly User Distribution</CardTitle>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => toggleUserFilter('trial_users')}
-                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                      userFilters.trial_users
-                        ? 'bg-indigo-100 text-indigo-700'
-                        : 'bg-gray-100 text-gray-600'
-                    }`}
-                  >
-                    Trial Users
-                  </button>
-                  <button
-                    onClick={() => toggleUserFilter('paid_users')}
-                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                      userFilters.paid_users
-                        ? 'bg-indigo-100 text-indigo-700'
-                        : 'bg-gray-100 text-gray-600'
-                    }`}
-                  >
-                    Paid Users
-                  </button>
+          {/* Metrics Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
+            {/* First Row - User Focused Metrics */}
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-indigo-50 to-white border-indigo-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-indigo-600">Total Unique Customers</p>
+                <p className="text-xl md:text-2xl font-semibold text-indigo-900">41</p>
+                <div className="flex items-center space-x-1">
+                  <span className="text-xs md:text-sm font-medium text-emerald-600">↑ Overall</span>
+                  <span className="text-xs text-gray-500">lifetime</span>
                 </div>
               </div>
-            </CardHeader>
-            <CardContent className="p-0">
-              <div className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={formattedData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
-                    <XAxis
-                      dataKey="month"
-                      angle={-45}
-                      textAnchor="end"
-                      height={60}
-                      tick={{ fontSize: 12, fill: '#666' }}
-                      tickMargin={20}
-                      axisLine={{ stroke: '#E0E0E0' }}
-                    />
-                    <YAxis
-                      tick={{ fontSize: 12, fill: '#666' }}
-                      axisLine={{ stroke: '#E0E0E0' }}
-                      label={{
-                        value: 'Number of Users',
-                        angle: -90,
-                        position: 'insideLeft',
-                        style: { textAnchor: 'middle', fill: '#666', fontSize: 12 }
-                      }}
-                    />
-                    <Tooltip
-                      formatter={(value: any, name: string) => [value, name === 'trial_users' ? 'Trial Users' : 'Paid Users']}
-                      contentStyle={{
-                        fontSize: 12,
-                        backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                        border: '1px solid #E0E0E0',
-                        borderRadius: '4px',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                      }}
-                    />
-                    {userFilters.trial_users && (
-                      <Bar
-                        dataKey="trial_users"
-                        name="Trial Users"
-                        stackId="a"
-                        fill="#4F46E5"
-                        opacity={0.2}
-                        radius={[4, 4, 0, 0]}
-                      />
-                    )}
-                    {userFilters.paid_users && (
-                      <Bar
-                        dataKey={(data) => data.total_users - data.trial_users}
-                        name="Paid Users"
-                        stackId="a"
-                        fill="#4F46E5"
-                        radius={[4, 4, 0, 0]}
-                      />
-                    )}
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
+            </Card>
 
-          {/* Monthly Package Revenue */}
-          <Card className="p-6">
-            <CardHeader className="px-0 pt-0">
-              <div className="flex justify-between items-center">
-                <CardTitle>Monthly Package Revenue</CardTitle>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => togglePackageFilter('eko')}
-                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                      packageFilters.eko
-                        ? 'bg-violet-100 text-violet-700'
-                        : 'bg-gray-100 text-gray-600'
-                    }`}
-                  >
-                    Eko Package
-                  </button>
-                  <button
-                    onClick={() => togglePackageFilter('premium')}
-                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                      packageFilters.premium
-                        ? 'bg-purple-100 text-purple-700'
-                        : 'bg-gray-100 text-gray-600'
-                    }`}
-                  >
-                    Premium Package
-                  </button>
-                  <button
-                    onClick={() => togglePackageFilter('simple')}
-                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                      packageFilters.simple
-                        ? 'bg-fuchsia-100 text-fuchsia-700'
-                        : 'bg-gray-100 text-gray-600'
-                    }`}
-                  >
-                    Simple Package
-                  </button>
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-violet-50 to-white border-violet-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-violet-600">Trial Users</p>
+                <p className="text-xl md:text-2xl font-semibold text-violet-900">26</p>
+                <p className="text-xs text-gray-500">total trial users</p>
+              </div>
+            </Card>
+
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-purple-50 to-white border-purple-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-purple-600">Trial to Paid Conversion</p>
+                <p className="text-xl md:text-2xl font-semibold text-purple-900">19.51%</p>
+                <p className="text-xs text-gray-500">conversion rate</p>
+              </div>
+            </Card>
+
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-fuchsia-600">Average Days to Convert</p>
+                <p className="text-xl md:text-2xl font-semibold text-fuchsia-900">97.88</p>
+                <p className="text-xs text-gray-500">days</p>
+              </div>
+            </Card>
+
+            {/* Second Row - Performance Metrics */}
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-cyan-50 to-white border-cyan-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-cyan-600">Avg Trial Usage</p>
+                <p className="text-xl md:text-2xl font-semibold text-cyan-900">1.88</p>
+                <p className="text-xs text-gray-500">before conversion</p>
+              </div>
+            </Card>
+
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-teal-50 to-white border-teal-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-teal-600">Revenue per Convert</p>
+                <p className="text-xl md:text-2xl font-semibold text-teal-900">${265.70}</p>
+                <p className="text-xs text-gray-500">average</p>
+              </div>
+            </Card>
+
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-emerald-50 to-white border-emerald-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-emerald-600">Monthly Revenue</p>
+                <p className="text-xl md:text-2xl font-semibold text-emerald-900">
+                  ${(formattedData[formattedData.length - 1].eko_revenue + 
+                     formattedData[formattedData.length - 1].premium_revenue + 
+                     formattedData[formattedData.length - 1].simple_revenue).toFixed(2)}
+                </p>
+                <div className="flex items-center space-x-1">
+                  <span className={`text-xs md:text-sm font-medium ${revenueChange >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                    {revenueChange >= 0 ? '↑' : '↓'} {Math.abs(revenueChange).toFixed(1)}%
+                  </span>
+                  <span className="text-xs text-gray-500">vs last month</span>
                 </div>
               </div>
-            </CardHeader>
-            <CardContent className="p-0">
-              <div className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={formattedData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
-                    <XAxis
-                      dataKey="month"
-                      angle={-45}
-                      textAnchor="end"
-                      height={60}
-                      tick={{ fontSize: 12, fill: '#666' }}
-                      tickMargin={20}
-                      axisLine={{ stroke: '#E0E0E0' }}
-                    />
-                    <YAxis
-                      tick={{ fontSize: 12, fill: '#666' }}
-                      tickFormatter={(value) => `$${value}`}
-                      axisLine={{ stroke: '#E0E0E0' }}
-                      label={{
-                        value: 'Revenue ($)',
-                        angle: -90,
-                        position: 'insideLeft',
-                        style: { textAnchor: 'middle', fill: '#666', fontSize: 12 }
-                      }}
-                    />
-                    <Tooltip
-                      formatter={(value: any, name: string) => [
-                        `$${Number(value).toFixed(2)}`,
-                        name.split('_')[0].charAt(0).toUpperCase() + name.split('_')[0].slice(1) + ' Package'
-                      ]}
-                      contentStyle={{
-                        fontSize: 12,
-                        backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                        border: '1px solid #E0E0E0',
-                        borderRadius: '4px',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                      }}
-                    />
-                    {packageFilters.eko && (
-                      <Line
-                        type="monotone"
-                        dataKey="eko_revenue"
-                        name="eko_revenue"
-                        stroke="#8B5CF6"
-                        strokeWidth={2}
-                        dot={{ fill: '#8B5CF6', r: 4 }}
-                      />
-                    )}
-                    {packageFilters.premium && (
-                      <Line
-                        type="monotone"
-                        dataKey="premium_revenue"
-                        name="premium_revenue"
-                        stroke="#D946EF"
-                        strokeWidth={2}
-                        dot={{ fill: '#D946EF', r: 4 }}
-                      />
-                    )}
-                    {packageFilters.simple && (
-                      <Line
-                        type="monotone"
-                        dataKey="simple_revenue"
-                        name="simple_revenue"
-                        stroke="#EC4899"
-                        strokeWidth={2}
-                        dot={{ fill: '#EC4899', r: 4 }}
-                      />
-                    )}
-                  </LineChart>
-                </ResponsiveContainer>
+            </Card>
+
+            <Card className="p-3 md:p-4 bg-gradient-to-br from-sky-50 to-white border-sky-100">
+              <div className="space-y-1">
+                <p className="text-xs md:text-sm font-medium text-sky-600">Trial to Total Ratio</p>
+                <p className="text-xl md:text-2xl font-semibold text-sky-900">{formattedData[formattedData.length - 1].trial_to_total_ratio}%</p>
+                <p className="text-xs text-gray-500">current month</p>
               </div>
-            </CardContent>
-          </Card>
+            </Card>
+          </div>
+
+          {/* Charts Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+            {/* Monthly User Distribution */}
+            <Card className="p-4 md:p-6">
+              <CardHeader className="px-0 pt-0">
+                <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+                  <CardTitle className="text-lg md:text-xl">Monthly User Distribution</CardTitle>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => toggleUserFilter('trial_users')}
+                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                        userFilters.trial_users
+                          ? 'bg-indigo-100 text-indigo-700'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}
+                    >
+                      Trial Users
+                    </button>
+                    <button
+                      onClick={() => toggleUserFilter('paid_users')}
+                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                        userFilters.paid_users
+                          ? 'bg-indigo-100 text-indigo-700'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}
+                    >
+                      Paid Users
+                    </button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="h-[240px] md:h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={formattedData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
+                      <XAxis
+                        dataKey="month"
+                        angle={-45}
+                        textAnchor="end"
+                        height={60}
+                        tick={{ fontSize: 10, fill: '#666' }}
+                        tickMargin={20}
+                        axisLine={{ stroke: '#E0E0E0' }}
+                      />
+                      <YAxis
+                        tick={{ fontSize: 10, fill: '#666' }}
+                        axisLine={{ stroke: '#E0E0E0' }}
+                        label={{
+                          value: 'Number of Users',
+                          angle: -90,
+                          position: 'insideLeft',
+                          style: { textAnchor: 'middle', fill: '#666', fontSize: 10 }
+                        }}
+                      />
+                      <Tooltip
+                        formatter={(value: any, name: string) => [value, name === 'trial_users' ? 'Trial Users' : 'Paid Users']}
+                        contentStyle={{
+                          fontSize: 11,
+                          backgroundColor: 'rgba(255, 255, 255, 0.96)',
+                          border: '1px solid #E0E0E0',
+                          borderRadius: '4px',
+                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                        }}
+                      />
+                      {userFilters.trial_users && (
+                        <Bar
+                          dataKey="trial_users"
+                          name="Trial Users"
+                          stackId="a"
+                          fill="#4F46E5"
+                          opacity={0.2}
+                          radius={[4, 4, 0, 0]}
+                        />
+                      )}
+                      {userFilters.paid_users && (
+                        <Bar
+                          dataKey={(data) => data.total_users - data.trial_users}
+                          name="Paid Users"
+                          stackId="a"
+                          fill="#4F46E5"
+                          radius={[4, 4, 0, 0]}
+                        />
+                      )}
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Monthly Package Revenue */}
+            <Card className="p-4 md:p-6">
+              <CardHeader className="px-0 pt-0">
+                <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+                  <CardTitle className="text-lg md:text-xl">Monthly Package Revenue</CardTitle>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => togglePackageFilter('eko')}
+                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                        packageFilters.eko
+                          ? 'bg-violet-100 text-violet-700'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}
+                    >
+                      Eko Package
+                    </button>
+                    <button
+                      onClick={() => togglePackageFilter('premium')}
+                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                        packageFilters.premium
+                          ? 'bg-purple-100 text-purple-700'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}
+                    >
+                      Premium Package
+                    </button>
+                    <button
+                      onClick={() => togglePackageFilter('simple')}
+                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                        packageFilters.simple
+                          ? 'bg-fuchsia-100 text-fuchsia-700'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}
+                    >
+                      Simple Package
+                    </button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="h-[240px] md:h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={formattedData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
+                      <XAxis
+                        dataKey="month"
+                        angle={-45}
+                        textAnchor="end"
+                        height={60}
+                        tick={{ fontSize: 10, fill: '#666' }}
+                        tickMargin={20}
+                        axisLine={{ stroke: '#E0E0E0' }}
+                      />
+                      <YAxis
+                        tick={{ fontSize: 10, fill: '#666' }}
+                        tickFormatter={(value) => `$${value}`}
+                        axisLine={{ stroke: '#E0E0E0' }}
+                        label={{
+                          value: 'Revenue ($)',
+                          angle: -90,
+                          position: 'insideLeft',
+                          style: { textAnchor: 'middle', fill: '#666', fontSize: 10 }
+                        }}
+                      />
+                      <Tooltip
+                        formatter={(value: any, name: string) => [
+                          `$${Number(value).toFixed(2)}`,
+                          name.split('_')[0].charAt(0).toUpperCase() + name.split('_')[0].slice(1) + ' Package'
+                        ]}
+                        contentStyle={{
+                          fontSize: 11,
+                          backgroundColor: 'rgba(255, 255, 255, 0.96)',
+                          border: '1px solid #E0E0E0',
+                          borderRadius: '4px',
+                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                        }}
+                      />
+                      {packageFilters.eko && (
+                        <Line
+                          type="monotone"
+                          dataKey="eko_revenue"
+                          name="eko_revenue"
+                          stroke="#8B5CF6"
+                          strokeWidth={2}
+                          dot={{ fill: '#8B5CF6', r: 3 }}
+                        />
+                      )}
+                      {packageFilters.premium && (
+                        <Line
+                          type="monotone"
+                          dataKey="premium_revenue"
+                          name="premium_revenue"
+                          stroke="#D946EF"
+                          strokeWidth={2}
+                          dot={{ fill: '#D946EF', r: 3 }}
+                        />
+                      )}
+                      {packageFilters.simple && (
+                        <Line
+                          type="monotone"
+                          dataKey="simple_revenue"
+                          name="simple_revenue"
+                          stroke="#EC4899"
+                          strokeWidth={2}
+                          dot={{ fill: '#EC4899', r: 3 }}
+                        />
+                      )}
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

@@ -54,12 +54,12 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
   ];
 
   const renderCustomLegend = () => (
-    <div className="flex flex-wrap justify-center gap-2 mt-4">
+    <div className="flex flex-wrap gap-2 justify-center mt-4">
       {filterConfig.map(({ key, label, color }) => (
         <button
           key={key}
           onClick={() => toggleFilter(key as keyof typeof filters)}
-          className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
+          className={`px-2 md:px-4 py-1 md:py-1.5 rounded-md text-xs md:text-sm font-medium transition-all ${
             filters[key as keyof typeof filters]
               ? 'text-white shadow-sm'
               : 'text-gray-600 bg-gray-100'
@@ -77,16 +77,21 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
   );
 
   return (
-    <Card className="p-6">
+    <Card className="p-4 md:p-6">
       <CardHeader className="px-0 pt-0">
-        <CardTitle>MRR and Growth Metrics Over Time</CardTitle>
+        <CardTitle className="text-lg md:text-xl lg:text-2xl">MRR and Growth Metrics Over Time</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="h-[400px]">
+        <div className="h-[300px] md:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart 
               data={data} 
-              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+              margin={{ 
+                top: 20, 
+                right: 10, 
+                left: 0, 
+                bottom: 20 
+              }}
             >
               <CartesianGrid 
                 strokeDasharray="3 3" 
@@ -98,31 +103,34 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
                 angle={-45} 
                 textAnchor="end" 
                 height={60}
-                tick={{ fontSize: 12, fill: '#666' }}
+                tick={{ fontSize: 10, fill: '#666' }}
                 tickMargin={20}
                 axisLine={{ stroke: '#E0E0E0' }}
+                interval={'preserveStartEnd'}
               />
               <YAxis 
                 yAxisId="left"
-                tick={{ fontSize: 12, fill: '#666' }}
+                tick={{ fontSize: 10, fill: '#666' }}
                 tickFormatter={(value) => `$${value}`}
                 axisLine={{ stroke: '#E0E0E0' }}
+                width={60}
               />
               <YAxis 
                 yAxisId="right" 
                 orientation="right"
-                tick={{ fontSize: 12, fill: '#666' }}
+                tick={{ fontSize: 10, fill: '#666' }}
                 tickFormatter={(value) => `${value}%`}
                 axisLine={{ stroke: '#E0E0E0' }}
+                width={40}
               />
               <Tooltip 
                 formatter={(value: number, name: string) => [
                   name === 'mrr' ? `$${value}` : `${value}%`,
                   name === 'mrr' ? 'MRR' : name === 'momGrowthRate' ? 'MoM Growth Rate' : 'CMGR'
                 ]}
-                labelStyle={{ fontSize: 12, fontWeight: 500 }}
+                labelStyle={{ fontSize: 11, fontWeight: 500 }}
                 contentStyle={{ 
-                  fontSize: 12,
+                  fontSize: 11,
                   backgroundColor: 'rgba(255, 255, 255, 0.96)',
                   border: '1px solid #E0E0E0',
                   borderRadius: '4px',
@@ -137,7 +145,7 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
                   name="MRR"
                   stroke="#663399" 
                   strokeWidth={2}
-                  dot={{ fill: '#663399', r: 4 }}
+                  dot={{ fill: '#663399', r: 3 }}
                 />
               )}
               {filters.momGrowthRate && (
@@ -148,7 +156,7 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
                   name="MoM Growth Rate (%)"
                   stroke="#DC143C" 
                   strokeWidth={2}
-                  dot={{ fill: '#DC143C', r: 4 }}
+                  dot={{ fill: '#DC143C', r: 3 }}
                 />
               )}
               {filters.cmgr && (
@@ -159,7 +167,7 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
                   name="CMGR (%)"
                   stroke="#2E8B57" 
                   strokeWidth={2}
-                  dot={{ fill: '#2E8B57', r: 4 }}
+                  dot={{ fill: '#2E8B57', r: 3 }}
                   strokeDasharray="5 5"
                 />
               )}
@@ -196,12 +204,12 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
   ];
 
   const renderCustomLegend = () => (
-    <div className="flex flex-wrap justify-center gap-2 mt-4">
+    <div className="flex flex-wrap gap-1 justify-center mt-4 md:gap-2">
       {filterConfig.map(({ key, label, color }) => (
         <button
           key={key}
           onClick={() => toggleFilter(key as keyof typeof filters)}
-          className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
+          className={`px-2 md:px-4 py-1 md:py-1.5 rounded-md text-xs md:text-sm font-medium transition-all ${
             filters[key as keyof typeof filters]
               ? 'text-white shadow-sm'
               : 'text-gray-600 bg-gray-100'
@@ -219,16 +227,21 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
   );
 
   return (
-    <Card className="p-6">
+    <Card className="p-4 md:p-6">
       <CardHeader className="px-0 pt-0">
-        <CardTitle>MRR Dynamics</CardTitle>
+        <CardTitle className="text-lg md:text-xl lg:text-2xl">MRR Dynamics</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="h-[400px]">
+        <div className="h-[300px] md:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart 
               data={data}
-              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+              margin={{ 
+                top: 20, 
+                right: 10, 
+                left: 0, 
+                bottom: 20 
+              }}
               barGap={0}
               barCategoryGap={8}
             >
@@ -242,8 +255,8 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
                 angle={-45} 
                 textAnchor="end" 
                 height={60}
-                interval={0}
-                tick={{ fontSize: 12, fill: '#666' }}
+                interval={'preserveStartEnd'}
+                tick={{ fontSize: 10, fill: '#666' }}
                 tickMargin={20}
                 axisLine={{ stroke: '#E0E0E0' }}
               />
@@ -252,18 +265,19 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
                   value: 'Amount ($)', 
                   angle: -90, 
                   position: 'insideLeft',
-                  style: { textAnchor: 'middle', fill: '#666', fontSize: 12 }
+                  style: { textAnchor: 'middle', fill: '#666', fontSize: 10 }
                 }}
                 domain={[-300, 400]}
-                tick={{ fontSize: 12, fill: '#666' }}
+                tick={{ fontSize: 10, fill: '#666' }}
                 tickFormatter={(value) => `$${value}`}
                 axisLine={{ stroke: '#E0E0E0' }}
+                width={60}
               />
               <Tooltip 
                 formatter={(value: number) => [`$${value.toFixed(2)}`, '']}
-                labelStyle={{ fontSize: 12, fontWeight: 500 }}
+                labelStyle={{ fontSize: 11, fontWeight: 500 }}
                 contentStyle={{ 
-                  fontSize: 12,
+                  fontSize: 11,
                   backgroundColor: 'rgba(255, 255, 255, 0.96)',
                   border: '1px solid #E0E0E0',
                   borderRadius: '4px',
@@ -292,9 +306,13 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
 
 const MrrCharts: React.FC = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <MRRAndGrowthChart data={mockMonthlyData} />
-      <MRRDynamics data={mockMonthlyDynamicsData} />
+    <div className="overflow-x-auto pb-2 w-full">
+      <div className="min-w-[768px]">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 md:gap-6 lg:gap-8">
+          <MRRAndGrowthChart data={mockMonthlyData} />
+          <MRRDynamics data={mockMonthlyDynamicsData} />
+        </div>
+      </div>
     </div>
   );
 };

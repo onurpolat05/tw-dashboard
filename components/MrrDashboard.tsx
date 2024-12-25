@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Megaphone, Calendar, Video, Users, DollarSign, TrendingUp, TrendingDown, Target, AlertCircle, Activity, UserPlus } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, BarChart, Bar, Cell, ComposedChart } from 'recharts';
-import { MetricCardProps, InsightCardProps, ChartProps, MarketingMetricsProps } from '@/types/types';
+import React from 'react';
 import KpiMetrics from './KpiMetrics';
 import KeyInsights from './KeyInsights';
 import MrrCharts from './MrrCharts';
