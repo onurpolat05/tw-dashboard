@@ -8,6 +8,7 @@ import TractionTab from '@/components/tabs-content/TractionTab';
 import FinancialProjectionsTab from '@/components/tabs-content/FinancialProjectionsTab';
 import TeamTab from '@/components/tabs-content/TeamTab';
 import CallToActionTab from '@/components/tabs-content/CallToActionTab';
+import TradewizzOverviewTab from '@/components/tabs-content/TradewizzOverviewTab';
 
 const FutureStatus = () => {
   return (
@@ -31,8 +32,9 @@ const FutureStatus = () => {
           </div>
 
           {/* Main Content */}
-          <Tabs defaultValue="overview" className="space-y-6">
+          <Tabs defaultValue="tradewizz-overview" className="space-y-6">
             <TabsList className="bg-white border shadow-sm">
+              <TabsTrigger value="tradewizz-overview">Tradewizz Overview</TabsTrigger>
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="problem-solution">Problem & Solution</TabsTrigger>
               <TabsTrigger value="market">Market Opportunity</TabsTrigger>
@@ -41,6 +43,11 @@ const FutureStatus = () => {
               <TabsTrigger value="team">Team</TabsTrigger>
               <TabsTrigger value="call-to-action">Call to Action</TabsTrigger>
             </TabsList>
+
+            {/* Tradewizz Overview Tab */}
+            <TabsContent value="tradewizz-overview">
+              <TradewizzOverviewTab />
+            </TabsContent>
 
             {/* Overview Tab */}
             <TabsContent value="overview">
