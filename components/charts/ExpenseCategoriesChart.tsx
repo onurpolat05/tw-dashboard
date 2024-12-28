@@ -6,17 +6,6 @@ interface DataItem {
   value: number;
 }
 
-interface CustomLabelProps {
-  cx: number;
-  cy: number;
-  midAngle: number;
-  innerRadius: number;
-  outerRadius: number;
-  percent: number;
-  name: string;
-  index: number;
-}
-
 const data: DataItem[] = [
   { name: 'R&D Expenses', value: 44.6 },
   { name: 'Core Team Payroll', value: 16.5 },
@@ -27,42 +16,6 @@ const data: DataItem[] = [
 
 const COLORS = ['#4338CA', '#8B5CF6', '#EC4899', '#9333EA', '#6366F1'];
 
-const CustomLabel: React.FC<CustomLabelProps> = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name, index }) => {
-  const RADIAN = Math.PI / 180;
-  const radius = outerRadius * 1.4;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  const lineEnd = {
-    x: cx + (outerRadius + 10) * Math.cos(-midAngle * RADIAN),
-    y: cy + (outerRadius + 10) * Math.sin(-midAngle * RADIAN),
-  };
-
-  const textAnchor = x > cx ? 'start' : 'end';
-  const xOffset = x > cx ? 5 : -5;
-
-  return (
-    <g>
-      <path
-        d={`M${lineEnd.x},${lineEnd.y}L${x},${y}`}
-        stroke="#9CA3AF"
-        strokeWidth={1}
-        fill="none"
-      />
-      <text
-        x={x + xOffset}
-        y={y}
-        fill="#6B7280"
-        textAnchor={textAnchor}
-        dominantBaseline="central"
-        style={{ fontSize: '12px', fontWeight: '500' }}
-      >
-        {`${name} (${(percent * 100).toFixed(1)}%)`}
-      </text>
-    </g>
-  );
-};
-
 const CustomLegend: React.FC<any> = ({ payload }) => {
   // İlk üç öğe için ilk satır
   const firstRow = payload.slice(0, 3);
@@ -70,28 +23,32 @@ const CustomLegend: React.FC<any> = ({ payload }) => {
   const secondRow = payload.slice(3);
 
   return (
-    <div className="flex flex-col items-center space-y-2">
+    <div className="flex flex-col items-center mt-8 space-y-4">
       {/* İlk satır */}
-      <div className="flex gap-8 justify-center">
+      <div className="flex gap-12 justify-center">
         {firstRow.map((entry: any, index: number) => (
           <div key={`legend-1-${index}`} className="flex gap-2 items-center">
             <div
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: entry.color }}
             />
-            <span className="text-sm text-gray-600">{entry.value}</span>
+            <span className="text-sm text-gray-600">
+              {entry.payload.name} ({entry.payload.value}%)
+            </span>
           </div>
         ))}
       </div>
       {/* İkinci satır */}
-      <div className="flex gap-8 justify-center">
+      <div className="flex gap-12 justify-center">
         {secondRow.map((entry: any, index: number) => (
           <div key={`legend-2-${index}`} className="flex gap-2 items-center">
             <div
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: entry.color }}
             />
-            <span className="text-sm text-gray-600">{entry.value}</span>
+            <span className="text-sm text-gray-600">
+              {entry.payload.name} ({entry.payload.value}%)
+            </span>
           </div>
         ))}
       </div>
@@ -111,9 +68,8 @@ const ExpenseCategoriesChart: React.FC = () => {
               cx="50%"
               cy="45%"
               labelLine={false}
-              label={(props) => <CustomLabel {...props} index={props.index} />}
-              outerRadius={140}
-              innerRadius={80}
+              outerRadius={120}
+              innerRadius={70}
               fill="#8884d8"
               dataKey="value"
               paddingAngle={3}
@@ -128,7 +84,7 @@ const ExpenseCategoriesChart: React.FC = () => {
               ))}
             </Pie>
             <Tooltip 
-              formatter={(value) => [`${value}%`, 'Percentage']}
+              formatter={(value, name) => [`${value}%`, name]}
               contentStyle={{
                 backgroundColor: 'white',
                 border: 'none',
@@ -140,9 +96,6 @@ const ExpenseCategoriesChart: React.FC = () => {
               content={CustomLegend}
               verticalAlign="bottom"
               align="center"
-              wrapperStyle={{
-                paddingTop: '20px'
-              }}
             />
           </PieChart>
         </ResponsiveContainer>
