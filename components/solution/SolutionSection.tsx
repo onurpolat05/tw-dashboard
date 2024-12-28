@@ -1,73 +1,85 @@
-import React from 'react';
-import { Search, Package2, Link, Globe2, BarChart3, Megaphone } from 'lucide-react';
+import React from "react";
+import {
+  Search,
+  Package2,
+  Link,
+  Globe2,
+  BarChart3,
+  Megaphone,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Solution, SolutionSectionProps } from "@/types/solution";
-import SolutionCard from './SolutionCard';
+import SolutionCard from "./SolutionCard";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const solutions: Solution[] = [
   {
-    id: "research",
-    title: "Automated Product Research",
-    subtitle: "Solves: Time-Consuming Product Research",
-    description: "TradeWizz's AI-powered tools analyze market trends, identify profitable niches, and suggest high-potential products, eliminating hours of manual research.",
+    id: "global-marketplace",
+    title: "Global Marketplace Access",
+    subtitle: "Solves: Limited Market Access for Local Producers",
+    description:
+      "TradeWizz offers a global online marketplace, connecting local producers to online seller for a worldwide audience, expanding their reach.",
     icon: Search,
-    painPointId: "research"
+    painPointId: "market-access",
   },
   {
-    id: "inventory",
-    title: "Streamlined Inventory Management",
-    subtitle: "Solves: Inventory Management Nightmares",
-    description: "TradeWizz provides real-time inventory tracking across multiple channels, automated reordering, and smart forecasting to prevent stockouts and overstocking.",
+    id: "ethical-sourcing-verification",
+    title: "Ethical Sourcing Verification",
+    subtitle: "Solves: Struggling to Source Ethically and Competitively",
+    description:
+      "TradeWizz's AI Agents streamline the process for online sellers, helping them to find ethical suppliers and optimize pricing for a competitive edge.",
     icon: Package2,
-    painPointId: "inventory"
+    painPointId: "ethical-sourcing",
   },
   {
-    id: "platform",
-    title: "Diversified Platform Strategy",
-    subtitle: "Solves: Platform Dependency and Account Risks",
-    description: "TradeWizz enables sellers to expand beyond a single platform, reducing platform dependency and mitigating account suspension risks.",
+    id: "sustainable-supplier-network",
+    title: "Sustainable Supplier Network",
+    subtitle: "Solves: Difficulty Finding Sustainable Suppliers",
+    description:
+      "TradeWizz aims to facilitate the creation of valuable, long-term partnerships between retailers and suppliers committed to sustainable practices.",
     icon: Link,
-    painPointId: "platform"
+    painPointId: "sustainable-suppliers",
   },
   {
-    id: "sourcing",
-    title: "Trusted Supplier Network",
-    subtitle: "Solves: Unreliable Sourcing and High MOQs",
-    description: "TradeWizz connects sellers with a vetted network of reliable suppliers and facilitates direct access to manufacturers, simplifying sourcing and ensuring quality.",
+    id: "ai-powered-agents",
+    title: "AI-Powered Automation",
+    subtitle: "Solves: Absence of AI-Powered Solutions",
+    description:
+      "TradeWizz's AI Vertical Agent Hub automates key processes like research, pricing, inventory, marketing, and logistics, boosting efficiency.",
     icon: Globe2,
-    painPointId: "sourcing"
+    painPointId: "ai-agents",
   },
   {
-    id: "data",
-    title: "Actionable Data Insights",
-    subtitle: "Solves: Data Overload",
-    description: "TradeWizz's AI-driven analytics provides clear, actionable insights into sales, marketing, and operational performance, empowering data-driven decision-making.",
+    id: "ngo-platform",
+    title: "NGO Empowerment Platform",
+    subtitle: "Solves: Limited Resources for NGOs",
+    description:
+      "TradeWizz provides NGOs a platform to connect with online sellers, boost their revenue with e-commerce, manage their network, and boost social impact effectively.",
     icon: BarChart3,
-    painPointId: "data"
+    painPointId: "ngo-resources",
   },
   {
-    id: "marketing",
-    title: "Optimized Marketing Campaigns",
-    subtitle: "Solves: Wasted Marketing Spend",
-    description: "TradeWizz helps sellers target the right audience and optimize ad spend across multiple platforms, maximizing ROI and eliminating wasted budgets.",
+    id: "artisan-digital-tools",
+    title: "Artisan Digital Enablement",
+    subtitle: "Solves: Insufficient Support for Local Artisans",
+    description:
+      "TradeWizz offers tools to help artisans build their online presence, market globally, and manage their businesses with cutting edge proccess management tools.",
     icon: Megaphone,
-    painPointId: "marketing"
-  }
+    painPointId: "artisan-support",
+  },
 ];
 
-const SolutionSection: React.FC<SolutionSectionProps> = ({
-  className
-}) => {
+const SolutionSection: React.FC<SolutionSectionProps> = ({ className }) => {
   return (
     <Card className={cn("p-6", className)}>
       <CardHeader className="px-0 pt-0">
         <div className="space-y-3">
           <CardTitle className="text-2xl font-bold text-gray-900">
-            TradeWizz: The AI-Powered E-commerce Growth Platform
+            AI-Powered Solutions for a Thriving E-commerce Ecosystem
           </CardTitle>
           <p className="text-lg text-gray-600">
-            Empowering e-commerce sellers to thrive through intelligent automation and actionable insights
+            TradeWizz uses AI to streamline e-commerce, boosting efficiency and
+            growth.
           </p>
         </div>
       </CardHeader>
@@ -75,10 +87,7 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({
       <CardContent className="px-0 pt-4">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {solutions.map((solution) => (
-            <SolutionCard
-              key={solution.id}
-              {...solution}
-            />
+            <SolutionCard key={solution.id} {...solution} />
           ))}
         </div>
       </CardContent>
@@ -86,4 +95,4 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({
   );
 };
 
-export default SolutionSection; 
+export default SolutionSection;
