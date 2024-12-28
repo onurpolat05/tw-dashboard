@@ -6,6 +6,8 @@ import OverviewBottomRightCard from '@/components/metrics/OverviewBottomRightCar
 import RevenueDistributionCard from '@/components/metrics/RevenueDistributionCard';
 import RevenueComposedChart from '@/components/charts/RevenueComposedChart';
 import RevenueMetricCards from '@/components/metrics/RevenueMetricCards';
+import ExpenseCategoriesChart from '@/components/charts/ExpenseCategoriesChart';
+import QuarterlyExpensesChart from '@/components/charts/QuarterlyExpensesChart';
 import { Card } from '@/components/ui/card';
 
 const TradewizzOverviewTab = () => {
@@ -41,6 +43,19 @@ const TradewizzOverviewTab = () => {
           <h3 className="mb-4 text-lg font-semibold">Revenue Distribution & Growth</h3>
           <RevenueMetricCards />
           <RevenueComposedChart />
+        </Card>
+      </div>
+
+      {/* Expense Charts Section */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* Expense Categories Chart */}
+        <Card className="p-6">
+          <ExpenseCategoriesChart />
+        </Card>
+
+        {/* Quarterly Expenses Chart */}
+        <Card className="p-6">
+          <QuarterlyExpensesChart />
         </Card>
       </div>
     </div>
