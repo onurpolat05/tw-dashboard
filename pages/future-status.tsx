@@ -9,6 +9,7 @@ import FinancialProjectionsTab from '@/components/tabs-content/FinancialProjecti
 import TeamTab from '@/components/tabs-content/TeamTab';
 import CallToActionTab from '@/components/tabs-content/CallToActionTab';
 import TradewizzOverviewTab from '@/components/tabs-content/TradewizzOverviewTab';
+import CustomerBehaviorTab from '../components/tabs-content/CustomerBehaviorTab';
 
 const FutureStatus = () => {
   return (
@@ -42,6 +43,7 @@ const FutureStatus = () => {
               <TabsTrigger value="financial">Financial Projections</TabsTrigger>
               <TabsTrigger value="team">Team</TabsTrigger>
               <TabsTrigger value="call-to-action">Call to Action</TabsTrigger>
+              <TabsTrigger value="customer-behavior">Customer Behavior</TabsTrigger>
             </TabsList>
 
             {/* Tradewizz Overview Tab */}
@@ -79,6 +81,10 @@ const FutureStatus = () => {
 
             <TabsContent value="call-to-action">
               <CallToActionTab />
+            </TabsContent>
+
+            <TabsContent value="customer-behavior">
+              <CustomerBehaviorTab />
             </TabsContent>
           </Tabs>
         </div>
