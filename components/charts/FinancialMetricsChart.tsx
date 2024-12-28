@@ -13,18 +13,18 @@ import {
 } from 'recharts';
 
 const data = [
-  { quarter: '25-Q1', revenueGrowth: null, costMargin: 991, ebitdaMargin: -891, rdSales: 663 },
-  { quarter: '25-Q2', revenueGrowth: 320, costMargin: 369, ebitdaMargin: -269, rdSales: 217 },
-  { quarter: '25-Q3', revenueGrowth: 103, costMargin: 259, ebitdaMargin: -159, rdSales: 165 },
-  { quarter: '25-Q4', revenueGrowth: 247, costMargin: 124, ebitdaMargin: -24, rdSales: 76 },
-  { quarter: '26-Q1', revenueGrowth: 102, costMargin: 62, ebitdaMargin: 38, rdSales: 34 },
-  { quarter: '26-Q2', revenueGrowth: 28, costMargin: 60, ebitdaMargin: 40, rdSales: 38 },
-  { quarter: '26-Q3', revenueGrowth: 34, costMargin: 49, ebitdaMargin: 51, rdSales: 31 },
-  { quarter: '26-Q4', revenueGrowth: 29, costMargin: 37, ebitdaMargin: 63, rdSales: 23 },
-  { quarter: '27-Q1', revenueGrowth: 29, costMargin: 63, ebitdaMargin: 37, rdSales: 42 },
-  { quarter: '27-Q2', revenueGrowth: 31, costMargin: 49, ebitdaMargin: 51, rdSales: 32 },
-  { quarter: '27-Q3', revenueGrowth: 19, costMargin: 41, ebitdaMargin: 59, rdSales: 27 },
-  { quarter: '27-Q4', revenueGrowth: 12, costMargin: 37, ebitdaMargin: 63, rdSales: 24 },
+  { quarter: '25-Q1', revenueGrowth: null, rdSales: 663 },
+  { quarter: '25-Q2', revenueGrowth: 320, rdSales: 217 },
+  { quarter: '25-Q3', revenueGrowth: 103, rdSales: 165 },
+  { quarter: '25-Q4', revenueGrowth: 247, rdSales: 76 },
+  { quarter: '26-Q1', revenueGrowth: 102, rdSales: 34 },
+  { quarter: '26-Q2', revenueGrowth: 28, rdSales: 38 },
+  { quarter: '26-Q3', revenueGrowth: 34, rdSales: 31 },
+  { quarter: '26-Q4', revenueGrowth: 29, rdSales: 23 },
+  { quarter: '27-Q1', revenueGrowth: 29, rdSales: 42 },
+  { quarter: '27-Q2', revenueGrowth: 31, rdSales: 32 },
+  { quarter: '27-Q3', revenueGrowth: 19, rdSales: 27 },
+  { quarter: '27-Q4', revenueGrowth: 12, rdSales: 24 },
 ];
 
 const ChartCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -92,52 +92,6 @@ const FinancialMetricsChart = () => {
               fillOpacity={0.2}
               strokeWidth={2}
               dot={{ fill: '#8B5CF6', r: 4 }}
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </ChartCard>
-
-      {/* Cost Margin Chart */}
-      <ChartCard title="Cost Margin %">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart {...commonChartProps}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
-            <XAxis {...commonXAxisProps} />
-            <YAxis {...commonAxisProps} tickFormatter={(value) => `${value}%`} />
-            <Tooltip 
-              formatter={(value: any) => [`${value}%`, 'Cost Margin']}
-              {...tooltipStyle}
-            />
-            <Line
-              type="monotone"
-              dataKey="costMargin"
-              stroke="#D946EF"
-              strokeWidth={2}
-              dot={{ fill: '#D946EF', r: 4 }}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </ChartCard>
-
-      {/* EBITDA Margin Chart */}
-      <ChartCard title="EBITDA Margin %">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart {...commonChartProps}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
-            <XAxis {...commonXAxisProps} />
-            <YAxis {...commonAxisProps} tickFormatter={(value) => `${value}%`} />
-            <Tooltip 
-              formatter={(value: any) => [`${value}%`, 'EBITDA Margin']}
-              {...tooltipStyle}
-            />
-            <Area
-              type="monotone"
-              dataKey="ebitdaMargin"
-              stroke="#4F46E5"
-              fill="#4F46E5"
-              fillOpacity={0.2}
-              strokeWidth={2}
-              dot={{ fill: '#4F46E5', r: 4 }}
             />
           </AreaChart>
         </ResponsiveContainer>

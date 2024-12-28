@@ -3,7 +3,6 @@ import { Card } from '@/components/ui/card';
 import CustomerMetricsChart from '@/components/charts/CustomerMetricsChart';
 import CustomerBehaviorChart from '@/components/charts/CustomerBehaviorChart';
 import CustomerSegmentationCharts from '@/components/charts/CustomerSegmentationCharts';
-import FinancialMetricsChart from '@/components/charts/FinancialMetricsChart';
 
 const CustomerBehaviorTab = () => {
   return (
@@ -22,8 +21,6 @@ const CustomerBehaviorTab = () => {
         <h2 className="mb-6 text-xl font-semibold">Business Model Distribution</h2>
         <CustomerSegmentationCharts />
       </Card>
-
-      <FinancialMetricsChart />
     </div>
   );
 };

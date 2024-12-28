@@ -8,6 +8,9 @@ import RevenueComposedChart from '@/components/charts/RevenueComposedChart';
 import RevenueMetricCards from '@/components/metrics/RevenueMetricCards';
 import ExpenseCategoriesChart from '@/components/charts/ExpenseCategoriesChart';
 import QuarterlyExpensesChart from '@/components/charts/QuarterlyExpensesChart';
+import BurnRateComposedChart from '@/components/charts/BurnRateComposedChart';
+import FinancialMetricsChart from '@/components/charts/FinancialMetricsChart';
+import ExpenseDistributionPieCharts from '@/components/charts/ExpenseDistributionPieCharts';
 import { Card } from '@/components/ui/card';
 
 const TradewizzOverviewTab = () => {
@@ -57,6 +60,24 @@ const TradewizzOverviewTab = () => {
         <Card className="p-6">
           <QuarterlyExpensesChart />
         </Card>
+      </div>
+
+      {/* Burn Rate and Distribution Analysis Section */}
+      <div className="grid grid-cols-5 gap-3">
+        {/* Left Card - 3/5 width - Burn Rate Chart */}
+        <div className="col-span-3">
+          <BurnRateComposedChart />
+        </div>
+
+        {/* Right Card - 2/5 width - Expense Distribution */}
+        <div className="col-span-2">
+          <ExpenseDistributionPieCharts />
+        </div>
+      </div>
+
+      {/* Financial Metrics Section */}
+      <div className="w-full">
+        <FinancialMetricsChart />
       </div>
     </div>
   );
