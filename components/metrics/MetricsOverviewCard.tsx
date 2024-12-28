@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import MetricCard from './MetricCard';
 
 const customerData = [
   { year: '2025', count: 1405 },
@@ -20,6 +21,41 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
+const metricsData = {
+  acr: {
+    title: 'ACR',
+    yearlyData: [
+      { year: '2025', value: '15%' },
+      { year: '2026', value: '10%' },
+      { year: '2027', value: '7%' },
+    ],
+    average: '10.67%',
+    colorScheme: 'purple' as const,
+  },
+  nrr: {
+    title: 'NRR',
+    yearlyData: [
+      { year: '2025', value: '3.23' },
+      { year: '2026', value: '1.48' },
+      { year: '2027', value: '1.23' },
+    ],
+    average: '1.87',
+    colorScheme: 'fuchsia' as const,
+    valueSuffix: 'x',
+  },
+  systemCost: {
+    title: 'System Cost',
+    yearlyData: [
+      { year: '2025', value: '5' },
+      { year: '2026', value: '5.12' },
+      { year: '2027', value: '5.12' },
+    ],
+    average: '5.08',
+    colorScheme: 'indigo' as const,
+    valuePrefix: '$',
+  },
+};
+
 const MetricsOverviewCard = () => {
   return (
     <Card className="bg-white shadow-sm">
@@ -30,98 +66,9 @@ const MetricsOverviewCard = () => {
         <div className="space-y-6">
           {/* Metrics Cards */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {/* First Metric Card - ACR */}
-            <Card className="overflow-hidden bg-gradient-to-br from-purple-50 to-white border border-purple-100 transition-all hover:shadow-md">
-              <CardHeader className="p-3 text-center border-b border-purple-100/30">
-                <CardTitle className="text-lg font-semibold text-purple-900">ACR</CardTitle>
-              </CardHeader>
-              <CardContent className="p-3">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-baseline px-2">
-                    <div className="text-center">
-                      <p className="text-base font-bold text-purple-700">15%</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2025</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-base font-bold text-purple-700">10%</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2026</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-base font-bold text-purple-700">7%</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2027</p>
-                    </div>
-                  </div>
-                  <div className="pt-3 border-t border-purple-100">
-                    <div className="text-center">
-                      <p className="text-xl font-bold text-purple-700">10.67%</p>
-                      <p className="mt-1 text-xs font-medium text-purple-600">3 Year Average</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Second Metric Card - NRR */}
-            <Card className="overflow-hidden bg-gradient-to-br from-fuchsia-50 to-white border border-fuchsia-100 transition-all hover:shadow-md">
-              <CardHeader className="p-3 text-center border-b border-fuchsia-100/30">
-                <CardTitle className="text-lg font-semibold text-fuchsia-900">NRR</CardTitle>
-              </CardHeader>
-              <CardContent className="p-3">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-baseline px-2">
-                    <div className="text-center">
-                      <p className="text-base font-bold text-fuchsia-700">3.23x</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2025</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-base font-bold text-fuchsia-700">1.48x</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2026</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-base font-bold text-fuchsia-700">1.23x</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2027</p>
-                    </div>
-                  </div>
-                  <div className="pt-3 border-t border-fuchsia-100">
-                    <div className="text-center">
-                      <p className="text-xl font-bold text-fuchsia-700">1.87x</p>
-                      <p className="mt-1 text-xs font-medium text-fuchsia-600">3 Year Average</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Third Metric Card - System Cost */}
-            <Card className="overflow-hidden bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 transition-all hover:shadow-md">
-              <CardHeader className="p-3 text-center border-b border-indigo-100/30">
-                <CardTitle className="text-lg font-semibold text-indigo-900">System Cost</CardTitle>
-              </CardHeader>
-              <CardContent className="p-3">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-baseline px-2">
-                    <div className="text-center">
-                      <p className="text-base font-bold text-indigo-700">$5</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2025</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-base font-bold text-indigo-700">$5.12</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2026</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-base font-bold text-indigo-700">$5.12</p>
-                      <p className="mt-1 text-xs font-medium text-gray-500">2027</p>
-                    </div>
-                  </div>
-                  <div className="pt-3 border-t border-indigo-100">
-                    <div className="text-center">
-                      <p className="text-xl font-bold text-indigo-700">$5.08</p>
-                      <p className="mt-1 text-xs font-medium text-indigo-600">3 Year Average</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <MetricCard {...metricsData.acr} />
+            <MetricCard {...metricsData.nrr} />
+            <MetricCard {...metricsData.systemCost} />
           </div>
 
           {/* Customer Count Chart */}
