@@ -39,8 +39,8 @@ const TradewizzOverviewTab = () => {
         {/* Right Card - 2/5 width */}
         <Card className="col-span-2 p-6">
           <h3 className="mb-4 text-lg font-semibold">Revenue Distribution & Growth</h3>
-          <RevenueComposedChart />
           <RevenueMetricCards />
+          <RevenueComposedChart />
         </Card>
       </div>
     </div>

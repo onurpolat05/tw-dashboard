@@ -4,7 +4,7 @@ import TwoSimplePieChart from '@/components/charts/TwoSimplePieChart';
 import StackedRevenueChart from '@/components/charts/StackedRevenueChart';
 
 // Updated colors to match the image
-const COLORS = ['#6366F1', '#22D3EE', '#10B981'];
+const COLORS = ['#8B5CF6', '#EC4899', '#10B981'];
 
 const data2025 = [
   { name: 'Subscriptions', value: 50.20 },

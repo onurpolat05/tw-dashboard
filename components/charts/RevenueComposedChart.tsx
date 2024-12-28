@@ -65,9 +65,9 @@ const RevenueComposedChart = () => {
           <Legend />
           
           {/* Percentage Bars */}
-          <Bar yAxisId="left" dataKey="subscriptionPercentage" name="Subscription %" fill="#8884d8" />
-          <Bar yAxisId="left" dataKey="warehousePercentage" name="Warehouse %" fill="#82ca9d" />
-          <Bar yAxisId="left" dataKey="shopPercentage" name="TW Shop %" fill="#ffc658" />
+          <Bar yAxisId="left" dataKey="subscriptionPercentage" name="Subscription %" fill="#8B5CF6" />
+          <Bar yAxisId="left" dataKey="warehousePercentage" name="Warehouse %" fill="#EC4899" />
+          <Bar yAxisId="left" dataKey="shopPercentage" name="TW Shop %" fill="#10B981" />
           
           {/* Total Value Line */}
           <Line
