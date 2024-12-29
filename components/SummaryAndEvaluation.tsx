@@ -127,12 +127,57 @@ const PerformanceEvaluation: React.FC = () => (
 );
 
 const SummaryAndEvaluation: React.FC = () => {
+
+  const strategicFocus = {
+    shortTerm: ['Platform diversification', 'Feature optimization', 'Churn reduction'],
+    midTerm: ['Market expansion', 'Product scaling', 'Team growth'],
+    longTerm: ['Market leadership', 'Global expansion', 'Platform ecosystem'],
+  };
   return (
     <div className="space-y-6">
       <div className="grid gap-6 lg:grid-cols-2">
         <SummaryReport />
         <PerformanceEvaluation />
       </div>
+              {/* Strategic Implications */}
+              <div className="p-6 bg-white rounded-lg border border-gray-100">
+          <h4 className="text-lg font-semibold text-[#20152E] mb-4">Strategic Implications</h4>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="space-y-2">
+              <h5 className="text-sm font-semibold text-[#20152E]">Short-term Focus</h5>
+              <ul className="space-y-2">
+                {strategicFocus.shortTerm.map((item, index) => (
+                  <li key={index} className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></div>
+                    <span className="text-sm text-gray-600">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-2">
+              <h5 className="text-sm font-semibold text-[#20152E]">Mid-term Goals</h5>
+              <ul className="space-y-2">
+                {strategicFocus.midTerm.map((item, index) => (
+                  <li key={index} className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></div>
+                    <span className="text-sm text-gray-600">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-2">
+              <h5 className="text-sm font-semibold text-[#20152E]">Long-term Vision</h5>
+              <ul className="space-y-2">
+                {strategicFocus.longTerm.map((item, index) => (
+                  <li key={index} className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></div>
+                    <span className="text-sm text-gray-600">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       <EvaluationCards />
     </div>
   );

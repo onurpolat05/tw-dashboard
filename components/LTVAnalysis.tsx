@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, ComposedChart } from 'recharts';
+import CustomerAcquisitionSection from './tabs-content/traction-sections/CustomerAcquisitionSection';
 
 interface LTVMetricsData {
   month: string;
@@ -29,12 +30,7 @@ const LTVAnalysis: React.FC = () => {
     { month: '24-11', ltv: 9.99, cac: 0.00, ltv_cac_ratio: 0.00, yearly_avg_cac: 6.33, ad_spend: 0.00 }
   ];
 
-  // Calculate key metrics
-  const averageLTV = mockLTVData.reduce((acc, curr) => acc + curr.ltv, 0) / mockLTVData.filter(d => d.ltv > 0).length;
-  const averageCAC = mockLTVData.reduce((acc, curr) => acc + curr.cac, 0) / mockLTVData.filter(d => d.cac > 0).length;
-  const averageRatio = mockLTVData.reduce((acc, curr) => acc + curr.ltv_cac_ratio, 0) / mockLTVData.filter(d => d.ltv_cac_ratio > 0).length;
-  const maxRatio = Math.max(...mockLTVData.map(d => d.ltv_cac_ratio));
-  
+
   const [filters, setFilters] = useState({
     ltv: true,
     cac: true,
@@ -55,40 +51,10 @@ const LTVAnalysis: React.FC = () => {
             <h2 className="text-lg font-semibold text-gray-900 md:text-xl lg:text-2xl">LTV & CAC Analysis</h2>
           </div>
 
-          {/* Metric Cards */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-6">
-            <Card className="p-3 bg-gradient-to-br from-violet-50 to-white border-violet-100 md:p-4">
-              <div className="space-y-1">
-                <p className="text-xs font-medium text-violet-600 md:text-sm">Average LTV</p>
-                <p className="text-xl font-semibold text-violet-900 md:text-2xl">${averageLTV.toFixed(2)}</p>
-                <p className="text-xs text-gray-500">per customer</p>
-              </div>
-            </Card>
+          <CustomerAcquisitionSection />
 
-            <Card className="p-3 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100 md:p-4">
-              <div className="space-y-1">
-                <p className="text-xs font-medium text-fuchsia-600 md:text-sm">Average CAC</p>
-                <p className="text-xl font-semibold text-fuchsia-900 md:text-2xl">${averageCAC.toFixed(2)}</p>
-                <p className="text-xs text-gray-500">per acquisition</p>
-              </div>
-            </Card>
 
-            <Card className="p-3 bg-gradient-to-br from-purple-50 to-white border-purple-100 md:p-4">
-              <div className="space-y-1">
-                <p className="text-xs font-medium text-purple-600 md:text-sm">Average LTV:CAC</p>
-                <p className="text-xl font-semibold text-purple-900 md:text-2xl">{averageRatio.toFixed(2)}x</p>
-                <p className="text-xs text-gray-500">ratio</p>
-              </div>
-            </Card>
 
-            <Card className="p-3 bg-gradient-to-br from-indigo-50 to-white border-indigo-100 md:p-4">
-              <div className="space-y-1">
-                <p className="text-xs font-medium text-indigo-600 md:text-sm">Best LTV:CAC</p>
-                <p className="text-xl font-semibold text-indigo-900 md:text-2xl">{maxRatio.toFixed(2)}x</p>
-                <p className="text-xs text-gray-500">peak ratio</p>
-              </div>
-            </Card>
-          </div>
 
           {/* Charts Grid */}
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 md:gap-6 lg:gap-8">

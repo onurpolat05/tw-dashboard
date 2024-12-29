@@ -4,7 +4,6 @@ import { Card } from '@/components/ui/card';
 import OverviewTab from '@/components/tabs-content/OverviewTab';
 import ProblemSolutionTab from '@/components/tabs-content/ProblemSolutionTab';
 import MarketTab from '@/components/tabs-content/MarketTab';
-import TractionTab from '@/components/tabs-content/TractionTab';
 import FinancialProjectionsTab from '@/components/tabs-content/FinancialProjectionsTab';
 import TeamTab from '@/components/tabs-content/TeamTab';
 import CallToActionTab from '@/components/tabs-content/CallToActionTab';
@@ -42,7 +41,6 @@ const FutureStatus = () => {
                   <TabsTrigger value="overview" className="whitespace-nowrap">Overview</TabsTrigger>
                   <TabsTrigger value="problem-solution" className="whitespace-nowrap">Problem & Solution</TabsTrigger>
                   <TabsTrigger value="market" className="whitespace-nowrap">Market Opportunity</TabsTrigger>
-                  <TabsTrigger value="traction" className="whitespace-nowrap">Traction & Validation</TabsTrigger>
                   <TabsTrigger value="financial" className="whitespace-nowrap">Financial Projections</TabsTrigger>
                   <TabsTrigger value="team" className="whitespace-nowrap">Team</TabsTrigger>
                   <TabsTrigger value="call-to-action" className="whitespace-nowrap">Call to Action</TabsTrigger>
@@ -70,10 +68,6 @@ const FutureStatus = () => {
 
             <TabsContent value="market">
               <MarketTab />
-            </TabsContent>
-
-            <TabsContent value="traction">
-              <TractionTab />
             </TabsContent>
 
             <TabsContent value="financial">

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
-
+import TotalCustomersSection from './tabs-content/traction-sections/TotalCustomersSection';
+import SubscriptionDistribution from './SubscriptionDistribution';
 interface CustomerMetricsData {
   month: string;
   total_users: number;
@@ -98,49 +99,13 @@ const CustomerMetrics: React.FC = () => {
             <h2 className="text-lg font-semibold text-gray-900 md:text-xl lg:text-2xl">Customer Behavior Analysis</h2>
           </div>
 
-          {/* Metrics Cards */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-6">
-            {/* First Row - User Focused Metrics */}
-            <Card className="p-3 bg-gradient-to-br from-indigo-50 to-white border-indigo-100 md:p-4">
-              <div className="space-y-1">
-                <p className="text-xs font-medium text-indigo-600 md:text-sm">Total Unique Customers</p>
-                <p className="text-xl font-semibold text-indigo-900 md:text-2xl">41</p>
-                <div className="flex items-center space-x-1">
-                  <span className="text-xs font-medium text-emerald-600 md:text-sm">↑ Overall</span>
-                  <span className="text-xs text-gray-500">lifetime</span>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-3 bg-gradient-to-br from-violet-50 to-white border-violet-100 md:p-4">
-              <div className="space-y-1">
-                <p className="text-xs font-medium text-violet-600 md:text-sm">Trial Users</p>
-                <p className="text-xl font-semibold text-violet-900 md:text-2xl">26</p>
-                <p className="text-xs text-gray-500">total trial users</p>
-              </div>
-            </Card>
-
-            <Card className="p-3 bg-gradient-to-br from-purple-50 to-white border-purple-100 md:p-4">
-              <div className="space-y-1">
-                <p className="text-xs font-medium text-purple-600 md:text-sm">Trial to Paid Conversion</p>
-                <p className="text-xl font-semibold text-purple-900 md:text-2xl">34.62%</p>
-                <p className="text-xs text-gray-500">conversion rate</p>
-              </div>
-            </Card>
+          <TotalCustomersSection />
 
 
 
-            <Card className="p-3 bg-gradient-to-br from-teal-50 to-white border-teal-100 md:p-4">
-              <div className="space-y-1">
-                <p className="text-xs font-medium text-teal-600 md:text-sm">Revenue per Convert</p>
-                <p className="text-xl font-semibold text-teal-900 md:text-2xl">${265.70}</p>
-                <p className="text-xs text-gray-500">average</p>
-              </div>
-            </Card>
 
-
-          </div>
-
+                {/* Subscription Distribution */}
+                <SubscriptionDistribution />
           {/* Charts Row */}
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 md:gap-6 lg:gap-8">
             {/* Monthly User Distribution */}

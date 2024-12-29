@@ -21,27 +21,6 @@ const TotalCustomersSection = () => {
     },
   ];
 
-  const metrics = [
-    { label: 'Average Revenue Per User', value: '$265.70' },
-    { label: 'Customer Acquisition Cost', value: '$7.32' },
-    { label: 'Trial to Paid Conversion', value: '34.62%' },
-    { label: 'Monthly Active Users', value: '37' },
-  ];
-
-  const timelineEvents = [
-    {
-      title: 'Campaign Launch',
-      description: 'Initial budget allocation and channel setup',
-    },
-    {
-      title: 'Mid-Campaign Optimization',
-      description: 'Channel performance analysis and budget reallocation',
-    },
-    {
-      title: 'Campaign Completion',
-      description: 'Final results: 41 customers at $7.32 CAC',
-    },
-  ];
 
   return (
     <Card className="p-6 bg-[#F8F8F8]">
@@ -80,34 +59,49 @@ const TotalCustomersSection = () => {
           ))}
         </div>
 
-        {/* Additional Metrics */}
-        <div className="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((metric, index) => (
-            <div key={index} className="p-4 bg-white rounded-lg border border-gray-100">
+          {/* Metrics Cards */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-6">
+            {/* First Row - User Focused Metrics */}
+            <Card className="p-3 bg-gradient-to-br from-indigo-50 to-white border-indigo-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-sm text-gray-600">{metric.label}</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">{metric.value}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Marketing Timeline */}
-        <div className="p-6 bg-white rounded-lg border border-gray-100">
-          <h4 className="text-lg font-semibold text-[#20152E] mb-4">Marketing Campaign Timeline</h4>
-          <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-[#4ADE80]/20"></div>
-            <div className="pl-8 space-y-6">
-              {timelineEvents.map((event, index) => (
-                <div key={index} className="relative">
-                  <div className="absolute left-[-2rem] top-1 w-4 h-4 rounded-full bg-[#4ADE80]"></div>
-                  <h5 className="text-sm font-semibold text-[#20152E]">{event.title}</h5>
-                  <p className="text-sm text-gray-600">{event.description}</p>
+                <p className="text-xs font-medium text-indigo-600 md:text-sm">Total Unique Customers</p>
+                <p className="text-xl font-semibold text-indigo-900 md:text-2xl">41</p>
+                <div className="flex items-center space-x-1">
+                  <span className="text-xs font-medium text-emerald-600 md:text-sm">↑ Overall</span>
+                  <span className="text-xs text-gray-500">lifetime</span>
                 </div>
-              ))}
-            </div>
+              </div>
+            </Card>
+
+            <Card className="p-3 bg-gradient-to-br from-violet-50 to-white border-violet-100 md:p-4">
+              <div className="space-y-1">
+                <p className="text-xs font-medium text-violet-600 md:text-sm">Trial Users</p>
+                <p className="text-xl font-semibold text-violet-900 md:text-2xl">26</p>
+                <p className="text-xs text-gray-500">total trial users</p>
+              </div>
+            </Card>
+
+            <Card className="p-3 bg-gradient-to-br from-purple-50 to-white border-purple-100 md:p-4">
+              <div className="space-y-1">
+                <p className="text-xs font-medium text-purple-600 md:text-sm">Trial to Paid Conversion</p>
+                <p className="text-xl font-semibold text-purple-900 md:text-2xl">34.62%</p>
+                <p className="text-xs text-gray-500">conversion rate</p>
+              </div>
+            </Card>
+
+
+
+            <Card className="p-3 bg-gradient-to-br from-teal-50 to-white border-teal-100 md:p-4">
+              <div className="space-y-1">
+                <p className="text-xs font-medium text-teal-600 md:text-sm">Revenue per Convert</p>
+                <p className="text-xl font-semibold text-teal-900 md:text-2xl">${265.70}</p>
+                <p className="text-xs text-gray-500">average</p>
+              </div>
+            </Card>
+
+
           </div>
-        </div>
+
       </div>
     </Card>
   );

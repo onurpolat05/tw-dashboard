@@ -7,12 +7,12 @@ const TestDurationSection = () => {
     {
       icon: Calendar,
       title: 'Test Period',
-      description: 'February 27, 2023 - February 26, 2024 (One Year)',
+      description: 'November 23 -  November 24',
     },
     {
       icon: Target,
       title: 'Market Focus',
-      description: 'Limited release targeting specific e-commerce sellers',
+      description: 'Limited release targeting specific Amazon arbitrage sellers',
     },
     {
       icon: Users,
@@ -32,7 +32,7 @@ const TestDurationSection = () => {
         {/* Header Section */}
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold text-[#20152E]">
-            IV. Traction & Validation (MVP Test Results)
+            One Year MVP Test Validation
           </h2>
           <p className="text-lg text-[#20152E]">
             Test Duration: One Year of Focused Market Validation
@@ -43,9 +43,9 @@ const TestDurationSection = () => {
         </div>
 
         {/* Test Duration Data Points */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {dataPoints.map((point, index) => (
-            <div key={index} className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+            <div key={index} className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm transition-shadow hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <point.icon className="w-8 h-8 text-[#4ADE80]" />

@@ -1,12 +1,12 @@
 import React from 'react';
 import KpiMetrics from './KpiMetrics';
 import MrrCharts from './MrrCharts';
-import SubscriptionDistribution from './SubscriptionDistribution';
 import CustomerMetrics from './CustomerMetrics';
 import LTVAnalysis from './LTVAnalysis';
 import CohortAnalysis from './CohortAnalysis';
 import PurchaseFunnel from './PurchaseFunnel';
 import SummaryAndEvaluation from './SummaryAndEvaluation';
+import TestDurationSection from './tabs-content/traction-sections/TestDurationSection';
 
 const Dashboard: React.FC = () => {
   return (
@@ -18,6 +18,9 @@ const Dashboard: React.FC = () => {
           <span className="text-sm text-gray-500">Last updated: Dec 20, 2024</span>
         </div>
 
+        {/* Test Duration Section */}
+        <TestDurationSection />
+
         {/* KPI Metrics */}
         <KpiMetrics />
 
@@ -26,11 +29,12 @@ const Dashboard: React.FC = () => {
         {/* MRR Charts Side by Side */}
         <MrrCharts />
 
-        {/* Subscription Distribution */}
-        <SubscriptionDistribution />
+
 
         {/* Customer Metrics Section */}
         <CustomerMetrics />
+
+
 
         {/* LTV Analysis Section */}
         <LTVAnalysis />
