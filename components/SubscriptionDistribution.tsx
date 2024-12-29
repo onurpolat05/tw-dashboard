@@ -49,36 +49,34 @@ const SubscriptionDistribution: React.FC = () => {
   const totalTransactions = mockSubscriptionData.reduce((acc, curr) => acc + curr.transactions, 0);
 
   return (
-    <div className="w-full overflow-x-auto pb-2">
+    <div className="overflow-x-auto pb-2 w-full">
       <div className="min-w-[768px]">
-        <Card className="p-4 md:p-6 mb-4 md:mb-8">
+        <Card className="p-4 mb-4 md:p-6 md:mb-8">
           <CardHeader className="px-0 pt-0 pb-4 md:pb-6">
-            <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+            <div className="flex flex-col gap-2 justify-between md:flex-row md:items-center md:gap-0">
               <CardTitle className="text-lg md:text-xl">Package Distribution & Metrics</CardTitle>
-              <div className="text-xs md:text-sm text-gray-500">
-                Total Revenue: <span className="font-medium">${totalRevenue.toFixed(2)}</span>
-              </div>
+             
             </div>
           </CardHeader>
           <CardContent className="p-0 space-y-4 md:space-y-8">
             {/* Package Overview Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 md:gap-4 lg:gap-6">
               {mockSubscriptionData.map((subscription) => (
                 <div
                   key={subscription.name}
-                  className="p-3 md:p-4 bg-white rounded-lg border border-gray-100 shadow-sm"
+                  className="p-3 bg-white rounded-lg border border-gray-100 shadow-sm md:p-4"
                   style={{ 
                     borderLeft: `4px solid ${subscription.color}`,
                     backgroundColor: `${subscription.color}08`
                   }}
                 >
-                  <h4 className="mb-2 md:mb-3 text-sm md:text-base font-medium text-gray-900">
+                  <h4 className="mb-2 text-sm font-medium text-gray-900 md:mb-3 md:text-base">
                     {subscription.name}
                   </h4>
                   <div className="grid grid-cols-2 gap-2 md:gap-3">
                     <div className="space-y-1">
                       <p className="text-xs text-gray-500">Users</p>
-                      <p className="text-xs md:text-sm font-medium text-gray-900">
+                      <p className="text-xs font-medium text-gray-900 md:text-sm">
                         {subscription.users}
                         <span className="ml-1 text-xs text-gray-500">
                           ({((subscription.users / totalUsers) * 100).toFixed(1)}%)
@@ -87,13 +85,13 @@ const SubscriptionDistribution: React.FC = () => {
                     </div>
                     <div className="space-y-1">
                       <p className="text-xs text-gray-500">Revenue</p>
-                      <p className="text-xs md:text-sm font-medium text-gray-900">
+                      <p className="text-xs font-medium text-gray-900 md:text-sm">
                         ${subscription.revenue.toFixed(2)}
                       </p>
                     </div>
                     <div className="space-y-1">
                       <p className="text-xs text-gray-500">Transactions</p>
-                      <p className="text-xs md:text-sm font-medium text-gray-900">
+                      <p className="text-xs font-medium text-gray-900 md:text-sm">
                         {subscription.transactions}
                         <span className="ml-1 text-xs text-gray-500">
                           ({((subscription.transactions / totalTransactions) * 100).toFixed(1)}%)
@@ -102,7 +100,7 @@ const SubscriptionDistribution: React.FC = () => {
                     </div>
                     <div className="space-y-1">
                       <p className="text-xs text-gray-500">Avg. Value</p>
-                      <p className="text-xs md:text-sm font-medium text-gray-900">
+                      <p className="text-xs font-medium text-gray-900 md:text-sm">
                         ${subscription.avgTransactionValue.toFixed(2)}
                       </p>
                     </div>
@@ -111,10 +109,10 @@ const SubscriptionDistribution: React.FC = () => {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 pb-2 md:pb-4">
+            <div className="grid grid-cols-1 gap-4 pb-2 lg:grid-cols-2 md:gap-6 lg:gap-8 md:pb-4">
               {/* Revenue Share Distribution */}
               <div className="h-[240px] md:h-[280px]">
-                <p className="mb-2 md:mb-4 text-xs md:text-sm font-medium text-gray-900">Revenue Share Distribution</p>
+                <p className="mb-2 text-xs font-medium text-gray-900 md:mb-4 md:text-sm">Revenue Share Distribution</p>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={mockSubscriptionData}
@@ -158,7 +156,7 @@ const SubscriptionDistribution: React.FC = () => {
 
               {/* Transaction Value Distribution */}
               <div className="h-[240px] md:h-[280px]">
-                <p className="mb-2 md:mb-4 text-xs md:text-sm font-medium text-gray-900">Transaction Distribution</p>
+                <p className="mb-2 text-xs font-medium text-gray-900 md:mb-4 md:text-sm">Transaction Distribution</p>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={mockSubscriptionData}
