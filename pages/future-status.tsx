@@ -10,6 +10,7 @@ import CallToActionTab from '@/components/tabs-content/CallToActionTab';
 import TradewizzOverviewTab from '@/components/tabs-content/TradewizzOverviewTab';
 import CustomerBehaviorTab from '../components/tabs-content/CustomerBehaviorTab';
 import ValuationTab from '@/components/tabs-content/ValuationTab';
+import MarketingAndHRStrategyTab from '@/components/tabs-content/MarketingAndHRStrategyTab';
 
 const FutureStatus = () => {
   return (
@@ -46,6 +47,7 @@ const FutureStatus = () => {
                   <TabsTrigger value="call-to-action" className="whitespace-nowrap">Call to Action</TabsTrigger>
                   <TabsTrigger value="customer-behavior" className="whitespace-nowrap">Customer Behavior</TabsTrigger>
                   <TabsTrigger value="valuation" className="whitespace-nowrap">Valuation</TabsTrigger>
+                  <TabsTrigger value="marketing-hr" className="whitespace-nowrap">Marketing & HR Strategy</TabsTrigger>
                 </TabsList>
               </div>
               {/* Scroll indicators */}
@@ -88,6 +90,10 @@ const FutureStatus = () => {
 
             <TabsContent value="valuation">
               <ValuationTab />
+            </TabsContent>
+
+            <TabsContent value="marketing-hr">
+              <MarketingAndHRStrategyTab />
             </TabsContent>
           </Tabs>
         </div>
