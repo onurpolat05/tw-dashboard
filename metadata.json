@@ -1,0 +1,283 @@
+{
+    "Raw Data": {
+      "customer_id": {
+        "description": "Unique identifier for each customer.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Must be unique for each customer."
+        ]
+      },
+      "customer_mail": {
+        "description": "Customer's email address.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a valid email format."
+        ]
+      },
+      "customer_name": {
+        "description": "Customer's full name.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [],
+        "notes": "Inconsistencies in capitalization and formatting exist in the original data."
+      },
+      "discount_applied": {
+        "description": "Percentage discount applied to the invoice (e.g., \"25,00%\").",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a valid percentage format (e.g., \"0,00%\", \"25,00%\")."
+        ],
+        "notes": "Comma (,) is used as the decimal separator."
+      },
+      "subtotal": {
+        "description": "Invoice subtotal before discounts.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a non-negative number."
+        ],
+        "notes": "Comma (,) is used as the decimal separator."
+      },
+      "total_discount_applied": {
+        "description": "Total discount amount applied to the invoice.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a non-negative number."
+        ],
+        "notes": "Comma (,) is used as the decimal separator."
+      },
+      "amount_due": {
+        "description": "Amount due after discounts.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a non-negative number."
+        ],
+        "notes": "Comma (,) is used as the decimal separator."
+      },
+      "amount_paid": {
+        "description": "Amount paid by the customer.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a non-negative number."
+        ],
+        "notes": "Comma (,) is used as the decimal separator. This is the primary source for MRR calculation."
+      },
+      "total": {
+        "description": "Total amount of the invoice (likely `amount_due` in most cases).",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a non-negative number."
+        ],
+        "notes": "Comma (,) is used as the decimal separator."
+      },
+      "currency": {
+        "description": "Currency of the transaction (e.g., \"usd\").",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a valid currency code (e.g., \"USD\", \"EUR\")."
+        ],
+        "notes": "Currently, only \"usd\" is present."
+      },
+      "FTU": {
+        "description": "Free Trial Usage: 0 = not used, 1 = used, 2 = used in the past.",
+        "data_type": "Number",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be 0, 1, or 2."
+        ]
+      },
+      "ATU": {
+        "description": "After Trial Usage: 0 = not used, 1 = used, 2 = used in the past.",
+        "data_type": "Number",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be 0, 1, or 2."
+        ]
+      },
+      "subscription_type": {
+        "description": "Type of subscription (e.g., \"Eko Package\", \"Premium Package\", \"Free Trial\").",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be one of the predefined subscription types."
+        ],
+        "notes": "Used for initial customer segmentation."
+      },
+      "Date": {
+        "description": "Date of the transaction (originally \"date_UTC\").",
+        "data_type": "Date",
+        "source": "`date_UTC` (converted using `DATEVALUE`)",
+        "validation_rules": [
+          "Must be a valid date."
+        ],
+        "notes": "Represents the date when the invoice is finalized."
+      },
+      "paid_bool": {
+        "description": "TRUE if invoice paid, FALSE if not.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be TRUE or FALSE."
+        ]
+      },
+      "paid_at_UTC": {
+        "description": "Date when invoice paid.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a valid date format."
+        ]
+      },
+      "finalized_at_UTC": {
+        "description": "Date when the invoice is finalized.",
+        "data_type": "Text",
+        "source": "Original data",
+        "validation_rules": [
+          "Should be a valid date format."
+        ]
+      },
+      "Year": {
+        "description": "Year extracted from the `Date` column.",
+        "data_type": "Number",
+        "source": "`Date` (using `YEAR` function)",
+        "validation_rules": [
+          "Should be a valid year."
+        ],
+        "notes": "Useful for aggregations and filtering."
+      },
+      "Month": {
+        "description": "Month extracted from the `Date` column.",
+        "data_type": "Number",
+        "source": "`Date` (using `MONTH` function)",
+        "validation_rules": [
+          "Should be a number between 1 and 12."
+        ],
+        "notes": "Useful for aggregations and filtering."
+      },
+      "Day": {
+        "description": "Day extracted from the `Date` column.",
+        "data_type": "Number",
+        "source": "`Date` (using `DAY` function)",
+        "validation_rules": [
+          "Should be a number between 1 and 31 (depending on the month)."
+        ],
+        "notes": "Useful for aggregations and filtering."
+      },
+      "MRR": {
+        "description": "Monthly Recurring Revenue.",
+        "data_type": "Number",
+        "source": "Calculated: `amount_paid` (if not \"Free Trial\")",
+        "validation_rules": [
+          "Should be a non-negative number."
+        ],
+        "notes": "Calculated as `amount_paid` for non-\"Free Trial\" subscriptions, 0 otherwise. Represents the recognized monthly revenue."
+      },
+      "Discount Amount": {
+        "description": "Calculated discount amount.",
+        "data_type": "Number",
+        "source": "Calculated: `subtotal` - `amount_paid`",
+        "validation_rules": [
+          "Should be a non-negative number."
+        ],
+        "notes": "Represents the actual monetary discount applied."
+      },
+      "Discount Percentage": {
+        "description": "Discount percentage in decimal format (e.g., 0.25 for 25%).",
+        "data_type": "Number",
+        "source": "Calculated: `discount_applied` (converted)",
+        "validation_rules": [
+          "Should be between 0 and 1."
+        ],
+        "notes": "Represents the discount percentage as a decimal."
+      },
+      "Customer Name (Standardized)": {
+        "description": "Standardized customer name using the `PROPER` function.",
+        "data_type": "Text",
+        "source": "`customer_name` (using `PROPER` function)",
+        "validation_rules": [
+          "Should be in Title Case (e.g., \"John Doe\")."
+        ],
+        "notes": "Improves consistency for reporting and analysis."
+      },
+      "Free Trial End Date": {
+        "description": "Calculated end date of the free trial period.",
+        "data_type": "Date",
+        "source": "Calculated: First `Date` + trial duration",
+        "validation_rules": [
+          "Should be a valid date and greater than or equal to the first transaction date for customers who used the free trial (`FTU` = 1)."
+        ],
+        "notes": "Assumes a fixed free trial duration (e.g., 14 days). Adjust the formula if the trial length varies."
+      },
+      "Churn": {
+        "description": "Indicates if a customer has churned. Initial determination based on single \"Free Trial\" record.",
+        "data_type": "Text",
+        "source": "Calculated: Based on customer history",
+        "validation_rules": [
+          "Can be \"Churned\" or blank."
+        ],
+        "notes": "A preliminary churn indicator. Further analysis is needed for a more accurate churn assessment based on payment history over multiple months."
+      }
+    },
+    "SaaS Metrics": {
+      "customer_id": {
+        "description": "Unique identifier for each customer.",
+        "data_type": "Text",
+        "source": "Unique list extracted from 'Raw Data'!$A$2:$A$1000 using `INDEX` and `MATCH`",
+        "validation_rules": [
+          "Must be unique and present in the \"Raw Data\" sheet."
+        ]
+      },
+      "First Purchase Date": {
+        "description": "The date of the customer's first purchase.",
+        "data_type": "Date",
+        "source": "Calculated: `MIN` of `Date` for each customer in \"Raw Data\" using an array formula.",
+        "validation_rules": [
+          "Should be a valid date."
+        ]
+      },
+      "Signup Month": {
+        "description": "The month and year when the customer signed up (based on the first purchase date).",
+        "data_type": "Date",
+        "source": "Calculated: `EOMONTH` of `First Purchase Date`.",
+        "validation_rules": [
+          "Should be a valid date formatted as \"mmm-yyyy\"."
+        ],
+        "notes": "Used for cohort analysis."
+      },
+      "Months Since Signup": {
+        "description": "The number of months that have passed since the customer signed up.",
+        "data_type": "Number",
+        "source": "Calculated: `12*(YEAR(TODAY())-YEAR(First Purchase Date)) + (MONTH(TODAY())-MONTH(First Purchase Date))`",
+        "validation_rules": [
+          "Should be a non-negative integer."
+        ],
+        "notes": "Adjust `TODAY()` if calculating for a specific date."
+      },
+      "Nov-2023": {
+        "description": "MRR for November 2023, broken down by customer.",
+        "data_type": "Number",
+        "source": "Calculated: `SUMIFS` from \"Raw Data\" based on `customer_id`, `Year`, and `Month`.",
+        "validation_rules": [
+          "Should be a non-negative number or 0 (for churned)."
+        ],
+        "notes": "Calculated monthly MRR for each customer. Allows for tracking MRR trends and identifying churn."
+      },
+      "Dec-2023": {
+          "description": "MRR for December 2023, broken down by customer.",
+          "data_type": "Number",
+          "source": "Calculated: `SUMIFS` from \"Raw Data\" based on `customer_id`, `Year`, and `Month`.",
+          "validation_rules": [
+            "Should be a non-negative number or 0 (for churned)."
+          ],
+          "notes": "Calculated monthly MRR for each customer. Allows for tracking MRR trends and identifying churn."
+        }
+    }
+  }
