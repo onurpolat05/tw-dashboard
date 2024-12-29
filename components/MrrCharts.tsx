@@ -195,7 +195,6 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
   const filterConfig = [
     { key: 'newMrr', label: 'New MRR', color: '#663399' },
     { key: 'reactivation', label: 'Reactivation', color: '#4B0082' },
-    { key: 'expansion', label: 'Expansion', color: '#800080' },
     { key: 'churn', label: 'Churn', color: '#DC143C' }
   ];
 
