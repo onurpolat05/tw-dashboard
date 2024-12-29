@@ -21,19 +21,19 @@ const mockMonthlyData = [
 ];
 
 const mockMonthlyDynamicsData = [
-  { month: 'Nov-23', newMrr: 219.70, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -79.90 },
-  { month: 'Dec-23', newMrr: 339.60, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: 0.00 },
-  { month: 'Jan-24', newMrr: 59.90, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -239.70 },
-  { month: 'Feb-24', newMrr: 59.90, reactivation: 99.90, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -239.70 },
-  { month: 'Mar-24', newMrr: 389.00, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: -39.91, churn: -79.88 },
-  { month: 'Apr-24', newMrr: 49.95, reactivation: 9.99, expansion: 0.00, fxAdjustment: 0.00, contraction: -109.10, churn: -29.97 },
-  { month: 'May-24', newMrr: 39.96, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -209.85 },
-  { month: 'Jun-24', newMrr: 19.98, reactivation: 9.99, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -59.97 },
-  { month: 'Jul-24', newMrr: 19.98, reactivation: 9.99, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -29.97 },
-  { month: 'Aug-24', newMrr: 0.00, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -19.98 },
-  { month: 'Sep-24', newMrr: 0.00, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -69.98 },
-  { month: 'Oct-24', newMrr: 0.00, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: -79.97 },
-  { month: 'Nov-24', newMrr: 0.00, reactivation: 0.00, expansion: 0.00, fxAdjustment: 0.00, contraction: 0.00, churn: 0.00 }
+  { month: 'Nov-23', newMrr: 219.70, reactivation: 0.00, expansion: 0.00, churn: -79.90 },
+  { month: 'Dec-23', newMrr: 339.60, reactivation: 0.00, expansion: 0.00, churn: 0.00 },
+  { month: 'Jan-24', newMrr: 59.90, reactivation: 0.00, expansion: 0.00, churn: -239.70 },
+  { month: 'Feb-24', newMrr: 59.90, reactivation: 99.90, expansion: 0.00, churn: -239.70 },
+  { month: 'Mar-24', newMrr: 389.00, reactivation: 0.00, expansion: 0.00, churn: -79.88 },
+  { month: 'Apr-24', newMrr: 49.95, reactivation: 9.99, expansion: 0.00, churn: -29.97 },
+  { month: 'May-24', newMrr: 39.96, reactivation: 0.00, expansion: 0.00, churn: -209.85 },
+  { month: 'Jun-24', newMrr: 19.98, reactivation: 9.99, expansion: 0.00, churn: -59.97 },
+  { month: 'Jul-24', newMrr: 19.98, reactivation: 9.99, expansion: 0.00, churn: -29.97 },
+  { month: 'Aug-24', newMrr: 0.00, reactivation: 0.00, expansion: 0.00, churn: -19.98 },
+  { month: 'Sep-24', newMrr: 0.00, reactivation: 0.00, expansion: 0.00, churn: -69.98 },
+  { month: 'Oct-24', newMrr: 0.00, reactivation: 0.00, expansion: 0.00, churn: -79.97 },
+  { month: 'Nov-24', newMrr: 0.00, reactivation: 0.00, expansion: 0.00, churn: 0.00 }
 ];
 
 const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
@@ -185,8 +185,6 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
     newMrr: true,
     reactivation: true,
     expansion: true,
-    fxAdjustment: true,
-    contraction: true,
     churn: true
   });
 
@@ -198,8 +196,6 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
     { key: 'newMrr', label: 'New MRR', color: '#663399' },
     { key: 'reactivation', label: 'Reactivation', color: '#4B0082' },
     { key: 'expansion', label: 'Expansion', color: '#800080' },
-    { key: 'fxAdjustment', label: 'FX Adjustment', color: '#9370DB' },
-    { key: 'contraction', label: 'Contraction', color: '#D87093' },
     { key: 'churn', label: 'Churn', color: '#DC143C' }
   ];
 

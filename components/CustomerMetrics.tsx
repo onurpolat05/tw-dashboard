@@ -65,7 +65,7 @@ const CustomerMetrics: React.FC = () => {
   // Format dates to be more concise
   const formattedData = packageRevenueData.map(item => ({
     ...item,
-    month: item.month.replace('2023-', '2023-').replace('2024-', '24-')
+    month: item.month.replace('2023-', '23-').replace('2024-', '24-')
   }));
 
   // State for chart filters
@@ -90,124 +90,64 @@ const CustomerMetrics: React.FC = () => {
   };
 
   return (
-    <div className="w-full overflow-x-auto pb-2">
+    <div className="overflow-x-auto pb-2 w-full">
       <div className="min-w-[768px]">
         <div className="space-y-4 md:space-y-8">
           {/* Title Section */}
-          <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
-            <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900">Customer Growth & Trial Metrics</h2>
+          <div className="flex flex-col gap-2 justify-between md:flex-row md:items-center md:gap-0">
+            <h2 className="text-lg font-semibold text-gray-900 md:text-xl lg:text-2xl">Customer Growth & Trial Metrics</h2>
           </div>
 
           {/* Metrics Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-6">
             {/* First Row - User Focused Metrics */}
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-indigo-50 to-white border-indigo-100">
+            <Card className="p-3 bg-gradient-to-br from-indigo-50 to-white border-indigo-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-indigo-600">Total Unique Customers</p>
-                <p className="text-xl md:text-2xl font-semibold text-indigo-900">41</p>
+                <p className="text-xs font-medium text-indigo-600 md:text-sm">Total Unique Customers</p>
+                <p className="text-xl font-semibold text-indigo-900 md:text-2xl">41</p>
                 <div className="flex items-center space-x-1">
-                  <span className="text-xs md:text-sm font-medium text-emerald-600">↑ Overall</span>
+                  <span className="text-xs font-medium text-emerald-600 md:text-sm">↑ Overall</span>
                   <span className="text-xs text-gray-500">lifetime</span>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-violet-50 to-white border-violet-100">
+            <Card className="p-3 bg-gradient-to-br from-violet-50 to-white border-violet-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-violet-600">Trial Users</p>
-                <p className="text-xl md:text-2xl font-semibold text-violet-900">26</p>
+                <p className="text-xs font-medium text-violet-600 md:text-sm">Trial Users</p>
+                <p className="text-xl font-semibold text-violet-900 md:text-2xl">26</p>
                 <p className="text-xs text-gray-500">total trial users</p>
               </div>
             </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-purple-50 to-white border-purple-100">
+            <Card className="p-3 bg-gradient-to-br from-purple-50 to-white border-purple-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-purple-600">Trial to Paid Conversion</p>
-                <p className="text-xl md:text-2xl font-semibold text-purple-900">19.51%</p>
+                <p className="text-xs font-medium text-purple-600 md:text-sm">Trial to Paid Conversion</p>
+                <p className="text-xl font-semibold text-purple-900 md:text-2xl">19.51%</p>
                 <p className="text-xs text-gray-500">conversion rate</p>
               </div>
             </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100">
-              <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-fuchsia-600">Average Days to Convert</p>
-                <p className="text-xl md:text-2xl font-semibold text-fuchsia-900">97.88</p>
-                <p className="text-xs text-gray-500">days</p>
-              </div>
-            </Card>
 
-            {/* Second Row - Performance Metrics */}
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-cyan-50 to-white border-cyan-100">
-              <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-cyan-600">Avg Trial Usage</p>
-                <p className="text-xl md:text-2xl font-semibold text-cyan-900">1.88</p>
-                <p className="text-xs text-gray-500">before conversion</p>
-              </div>
-            </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-teal-50 to-white border-teal-100">
+            <Card className="p-3 bg-gradient-to-br from-teal-50 to-white border-teal-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-teal-600">Revenue per Convert</p>
-                <p className="text-xl md:text-2xl font-semibold text-teal-900">${265.70}</p>
+                <p className="text-xs font-medium text-teal-600 md:text-sm">Revenue per Convert</p>
+                <p className="text-xl font-semibold text-teal-900 md:text-2xl">${265.70}</p>
                 <p className="text-xs text-gray-500">average</p>
               </div>
             </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-emerald-50 to-white border-emerald-100">
-              <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-emerald-600">Monthly Revenue</p>
-                <p className="text-xl md:text-2xl font-semibold text-emerald-900">
-                  ${(formattedData[formattedData.length - 1].eko_revenue + 
-                     formattedData[formattedData.length - 1].premium_revenue + 
-                     formattedData[formattedData.length - 1].simple_revenue).toFixed(2)}
-                </p>
-                <div className="flex items-center space-x-1">
-                  <span className={`text-xs md:text-sm font-medium ${revenueChange >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-                    {revenueChange >= 0 ? '↑' : '↓'} {Math.abs(revenueChange).toFixed(1)}%
-                  </span>
-                  <span className="text-xs text-gray-500">vs last month</span>
-                </div>
-              </div>
-            </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-sky-50 to-white border-sky-100">
-              <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-sky-600">Trial to Total Ratio</p>
-                <p className="text-xl md:text-2xl font-semibold text-sky-900">{formattedData[formattedData.length - 1].trial_to_total_ratio}%</p>
-                <p className="text-xs text-gray-500">current month</p>
-              </div>
-            </Card>
           </div>
 
           {/* Charts Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 md:gap-6 lg:gap-8">
             {/* Monthly User Distribution */}
             <Card className="p-4 md:p-6">
               <CardHeader className="px-0 pt-0">
-                <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+                <div className="flex flex-col gap-2">
                   <CardTitle className="text-lg md:text-xl">Monthly User Distribution</CardTitle>
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={() => toggleUserFilter('trial_users')}
-                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
-                        userFilters.trial_users
-                          ? 'bg-indigo-100 text-indigo-700'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}
-                    >
-                      Trial Users
-                    </button>
-                    <button
-                      onClick={() => toggleUserFilter('paid_users')}
-                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
-                        userFilters.paid_users
-                          ? 'bg-indigo-100 text-indigo-700'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}
-                    >
-                      Paid Users
-                    </button>
-                  </div>
                 </div>
               </CardHeader>
               <CardContent className="p-0">
@@ -266,46 +206,36 @@ const CustomerMetrics: React.FC = () => {
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
+                <div className="flex flex-wrap gap-2 justify-center mt-4">
+                  <button
+                    onClick={() => toggleUserFilter('trial_users')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      userFilters.trial_users
+                        ? 'bg-indigo-100 text-indigo-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    Trial Users
+                  </button>
+                  <button
+                    onClick={() => toggleUserFilter('paid_users')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      userFilters.paid_users
+                        ? 'bg-indigo-100 text-indigo-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    Paid Users
+                  </button>
+                </div>
               </CardContent>
             </Card>
 
             {/* Monthly Package Revenue */}
             <Card className="p-4 md:p-6">
               <CardHeader className="px-0 pt-0">
-                <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+                <div className="flex flex-col gap-2">
                   <CardTitle className="text-lg md:text-xl">Monthly Package Revenue</CardTitle>
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={() => togglePackageFilter('eko')}
-                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
-                        packageFilters.eko
-                          ? 'bg-violet-100 text-violet-700'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}
-                    >
-                      Eko Package
-                    </button>
-                    <button
-                      onClick={() => togglePackageFilter('premium')}
-                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
-                        packageFilters.premium
-                          ? 'bg-purple-100 text-purple-700'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}
-                    >
-                      Premium Package
-                    </button>
-                    <button
-                      onClick={() => togglePackageFilter('simple')}
-                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
-                        packageFilters.simple
-                          ? 'bg-fuchsia-100 text-fuchsia-700'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}
-                    >
-                      Simple Package
-                    </button>
-                  </div>
                 </div>
               </CardHeader>
               <CardContent className="p-0">
@@ -378,6 +308,38 @@ const CustomerMetrics: React.FC = () => {
                       )}
                     </LineChart>
                   </ResponsiveContainer>
+                </div>
+                <div className="flex justify-center mt-4 flex-wrap gap-2">
+                  <button
+                    onClick={() => togglePackageFilter('eko')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      packageFilters.eko
+                        ? 'bg-violet-100 text-violet-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    Eko Package
+                  </button>
+                  <button
+                    onClick={() => togglePackageFilter('premium')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      packageFilters.premium
+                        ? 'bg-purple-100 text-purple-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    Premium Package
+                  </button>
+                  <button
+                    onClick={() => togglePackageFilter('simple')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      packageFilters.simple
+                        ? 'bg-fuchsia-100 text-fuchsia-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    Simple Package
+                  </button>
                 </div>
               </CardContent>
             </Card>

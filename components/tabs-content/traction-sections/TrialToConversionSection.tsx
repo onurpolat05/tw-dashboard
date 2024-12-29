@@ -64,7 +64,7 @@ const TrialToConversionSection = () => {
         </div>
 
         {/* Conversion Insights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {insights.map((insight, index) => (
             <div key={index} className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm transition-shadow hover:shadow-md">
               <div className="flex items-start space-x-4">
@@ -81,7 +81,7 @@ const TrialToConversionSection = () => {
         </div>
 
         {/* Additional Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+        <div className="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((metric, index) => (
             <div key={index} className="p-4 bg-white rounded-lg border border-gray-100">
               <div className="space-y-1">

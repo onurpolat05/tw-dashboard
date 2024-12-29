@@ -3,8 +3,6 @@ import { LucideIcon } from 'lucide-react';
 export interface MetricCardProps {
   title: string;
   value: string | number;
-  trend: 'up' | 'down';
-  change: string;
   icon: LucideIcon;
 }
 
