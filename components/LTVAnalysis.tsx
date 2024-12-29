@@ -47,88 +47,56 @@ const LTVAnalysis: React.FC = () => {
   };
 
   return (
-    <div className="w-full overflow-x-auto pb-2">
+    <div className="overflow-x-auto pb-2 w-full">
       <div className="min-w-[768px]">
         <div className="space-y-4 md:space-y-8">
           {/* Title Section */}
-          <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
-            <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900">LTV & CAC Analysis</h2>
+          <div className="flex flex-col gap-2 justify-between md:flex-row md:items-center md:gap-0">
+            <h2 className="text-lg font-semibold text-gray-900 md:text-xl lg:text-2xl">LTV & CAC Analysis</h2>
           </div>
 
           {/* Metric Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-violet-50 to-white border-violet-100">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-6">
+            <Card className="p-3 bg-gradient-to-br from-violet-50 to-white border-violet-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-violet-600">Average LTV</p>
-                <p className="text-xl md:text-2xl font-semibold text-violet-900">${averageLTV.toFixed(2)}</p>
+                <p className="text-xs font-medium text-violet-600 md:text-sm">Average LTV</p>
+                <p className="text-xl font-semibold text-violet-900 md:text-2xl">${averageLTV.toFixed(2)}</p>
                 <p className="text-xs text-gray-500">per customer</p>
               </div>
             </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100">
+            <Card className="p-3 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-fuchsia-600">Average CAC</p>
-                <p className="text-xl md:text-2xl font-semibold text-fuchsia-900">${averageCAC.toFixed(2)}</p>
+                <p className="text-xs font-medium text-fuchsia-600 md:text-sm">Average CAC</p>
+                <p className="text-xl font-semibold text-fuchsia-900 md:text-2xl">${averageCAC.toFixed(2)}</p>
                 <p className="text-xs text-gray-500">per acquisition</p>
               </div>
             </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-purple-50 to-white border-purple-100">
+            <Card className="p-3 bg-gradient-to-br from-purple-50 to-white border-purple-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-purple-600">Average LTV:CAC</p>
-                <p className="text-xl md:text-2xl font-semibold text-purple-900">{averageRatio.toFixed(2)}x</p>
+                <p className="text-xs font-medium text-purple-600 md:text-sm">Average LTV:CAC</p>
+                <p className="text-xl font-semibold text-purple-900 md:text-2xl">{averageRatio.toFixed(2)}x</p>
                 <p className="text-xs text-gray-500">ratio</p>
               </div>
             </Card>
 
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-indigo-50 to-white border-indigo-100">
+            <Card className="p-3 bg-gradient-to-br from-indigo-50 to-white border-indigo-100 md:p-4">
               <div className="space-y-1">
-                <p className="text-xs md:text-sm font-medium text-indigo-600">Best LTV:CAC</p>
-                <p className="text-xl md:text-2xl font-semibold text-indigo-900">{maxRatio.toFixed(2)}x</p>
+                <p className="text-xs font-medium text-indigo-600 md:text-sm">Best LTV:CAC</p>
+                <p className="text-xl font-semibold text-indigo-900 md:text-2xl">{maxRatio.toFixed(2)}x</p>
                 <p className="text-xs text-gray-500">peak ratio</p>
               </div>
             </Card>
           </div>
 
           {/* Charts Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 md:gap-6 lg:gap-8">
             {/* LTV Trends */}
             <Card className="p-4 md:p-6">
               <CardHeader className="px-0 pt-0">
-                <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+                <div className="flex flex-col gap-2 justify-between md:flex-row md:items-center md:gap-0">
                   <CardTitle className="text-lg md:text-xl">LTV, CAC & Ad Spend Analysis</CardTitle>
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={() => toggleFilter('ltv')}
-                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
-                        filters.ltv
-                          ? 'bg-violet-100 text-violet-700'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}
-                    >
-                      LTV
-                    </button>
-                    <button
-                      onClick={() => toggleFilter('cac')}
-                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
-                        filters.cac
-                          ? 'bg-fuchsia-100 text-fuchsia-700'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}
-                    >
-                      CAC
-                    </button>
-                    <button
-                      onClick={() => toggleFilter('adSpend')}
-                      className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
-                        filters.adSpend
-                          ? 'bg-pink-100 text-pink-700'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}
-                    >
-                      Ad Spend
-                    </button>
-                  </div>
                 </div>
               </CardHeader>
               <CardContent className="p-0">
@@ -211,13 +179,45 @@ const LTVAnalysis: React.FC = () => {
                     </ComposedChart>
                   </ResponsiveContainer>
                 </div>
+                <div className="flex gap-2 justify-center mt-4">
+                  <button
+                    onClick={() => toggleFilter('ltv')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      filters.ltv
+                        ? 'bg-violet-100 text-violet-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    LTV
+                  </button>
+                  <button
+                    onClick={() => toggleFilter('cac')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      filters.cac
+                        ? 'bg-fuchsia-100 text-fuchsia-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    CAC
+                  </button>
+                  <button
+                    onClick={() => toggleFilter('adSpend')}
+                    className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${
+                      filters.adSpend
+                        ? 'bg-pink-100 text-pink-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}
+                  >
+                    Ad Spend
+                  </button>
+                </div>
               </CardContent>
             </Card>
 
             {/* CAC Analysis */}
             <Card className="p-4 md:p-6">
               <CardHeader className="px-0 pt-0">
-                <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0">
+                <div className="flex flex-col gap-2 justify-between md:flex-row md:items-center md:gap-0">
                   <CardTitle className="text-lg md:text-xl">CAC Efficiency & LTV:CAC Ratio</CardTitle>
                 </div>
               </CardHeader>
@@ -276,8 +276,11 @@ const LTVAnalysis: React.FC = () => {
                         labelFormatter={(label) => `Month: ${label}`}
                       />
                       <Legend 
-                        verticalAlign="top" 
+                        verticalAlign="bottom"
                         height={36}
+                        wrapperStyle={{
+                          paddingTop: "20px"
+                        }}
                         formatter={(value) => value === 'cac' ? 'CAC' : 'LTV:CAC Ratio'}
                       />
                       <Bar
@@ -304,34 +307,34 @@ const LTVAnalysis: React.FC = () => {
           </div>
 
           {/* Summary Card */}
-          <Card className="p-4 md:p-6 bg-gradient-to-br from-purple-50 via-white to-fuchsia-50">
+          <Card className="p-4 bg-gradient-to-br from-purple-50 via-white to-fuchsia-50 md:p-6">
             <div className="space-y-3 md:space-y-4">
-              <h3 className="text-base md:text-lg font-semibold text-gray-900">Key Findings</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+              <h3 className="text-base font-semibold text-gray-900 md:text-lg">Key Findings</h3>
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6">
                 <div className="space-y-2">
-                  <h4 className="text-xs md:text-sm font-medium text-purple-900">LTV Trends</h4>
-                  <p className="text-xs md:text-sm text-gray-600">
+                  <h4 className="text-xs font-medium text-purple-900 md:text-sm">LTV Trends</h4>
+                  <p className="text-xs text-gray-600 md:text-sm">
                     Started strong at ~$40 in late 2023, experienced a decrease to $12-17 range in early 2024,
                     stabilized around $17-20 mid-year, and ended at ~$10 by late 2024.
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-xs md:text-sm font-medium text-purple-900">CAC Efficiency</h4>
-                  <p className="text-xs md:text-sm text-gray-600">
+                  <h4 className="text-xs font-medium text-purple-900 md:text-sm">CAC Efficiency</h4>
+                  <p className="text-xs text-gray-600 md:text-sm">
                     Most efficient month showed $1.99 CAC (March 2024), while the least efficient was $14.57 (February 2024).
                     Overall trend shows improving efficiency with strategic marketing optimization.
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-xs md:text-sm font-medium text-purple-900">LTV:CAC Performance</h4>
-                  <p className="text-xs md:text-sm text-gray-600">
+                  <h4 className="text-xs font-medium text-purple-900 md:text-sm">LTV:CAC Performance</h4>
+                  <p className="text-xs text-gray-600 md:text-sm">
                     Maintained healthy ratios with best performing at 8.73x and averaging 4.73x,
                     consistently above the healthy threshold of 3:1.
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-xs md:text-sm font-medium text-purple-900">Growth Potential</h4>
-                  <p className="text-xs md:text-sm text-gray-600">
+                  <h4 className="text-xs font-medium text-purple-900 md:text-sm">Growth Potential</h4>
+                  <p className="text-xs text-gray-600 md:text-sm">
                     Strong ratios indicate room for increased marketing investment,
                     while declining LTV trend suggests need for customer value optimization.
                   </p>

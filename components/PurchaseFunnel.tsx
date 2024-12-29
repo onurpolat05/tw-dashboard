@@ -42,7 +42,7 @@ const PurchaseFunnel: React.FC = () => {
     },
     {
       title: 'Webinars Delivered',
-      value: '6',
+      value: '16',
       icon: Video,
       description: 'Educational sessions',
       gradient: 'from-purple-50 to-white',
@@ -61,25 +61,24 @@ const PurchaseFunnel: React.FC = () => {
   ];
 
   return (
-    <div className="w-full overflow-x-auto pb-2">
+    <div className="overflow-x-auto pb-2 w-full">
       <div className="min-w-[768px]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 md:gap-6 lg:gap-8">
           {/* Funnel Chart */}
-          <Card className="p-4 md:p-6">
-            <CardHeader className="px-0 pt-0">
-              <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 md:gap-0 mb-4 md:mb-6">
+          <Card className="flex flex-col p-4 h-full md:p-6">
+            <CardHeader className="flex-none px-0 pt-0">
+              <div className="flex flex-col gap-2 justify-between mb-4 md:flex-row md:items-center md:gap-0 md:mb-6">
                 <div>
-                  <CardTitle className="mb-1 text-lg md:text-xl">Conversion Funnel</CardTitle>
-                  <p className="text-xs md:text-sm text-gray-500">Overall conversion journey</p>
+                  <CardTitle className="mb-1 text-lg md:text-xl">Customer Conversion Funnel</CardTitle>
                 </div>
-                <span className="text-xs md:text-sm font-medium text-purple-600">Total Spend: $300.31</span>
+                <span className="text-xs font-medium text-purple-600 md:text-sm">Total Spend: $300.31</span>
               </div>
             </CardHeader>
-            <CardContent className="p-0">
-              <div className="mb-6 md:mb-8 space-y-3 md:space-y-4">
+            <CardContent className="flex flex-col flex-1 justify-center p-0">
+              <div className="space-y-3 md:space-y-4">
                 {mockPurchaseFunnelData.map((item, index) => {
-                  const scaleWidth = 1 - (index * 0.12);
-                  const heightPx = 48;
+                  const scaleWidth = 1 - (index * 0.15);
+                  const heightPx = 52;
                   
                   return (
                     <div 
@@ -88,21 +87,23 @@ const PurchaseFunnel: React.FC = () => {
                       style={{
                         width: `${scaleWidth * 100}%`,
                         height: `${heightPx}px`,
-                        marginTop: index === 0 ? '0' : '-8px'
+                        marginTop: index === 0 ? '0' : '-12px',
+                        maxWidth: '900px'
                       }}
                     >
                       <div
-                        className="flex absolute inset-0 justify-between items-center px-3 md:px-6"
+                        className="flex absolute inset-0 justify-between items-center px-4 transition-all duration-300 md:px-8 hover:opacity-90"
                         style={{
                           backgroundColor: item.color,
-                          clipPath: 'polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%)',
-                          height: '100%'
+                          clipPath: 'polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%)',
+                          height: '100%',
+                          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                         }}
                       >
-                        <span className="text-sm md:text-lg font-medium text-white">
+                        <span className="text-sm font-medium text-white md:text-base lg:text-lg">
                           {item.stage}
                         </span>
-                        <span className="text-sm md:text-lg font-bold text-white">
+                        <span className="text-sm font-bold text-white md:text-base lg:text-lg">
                           {formatNumber(item.count)}
                         </span>
                       </div>
@@ -112,15 +113,15 @@ const PurchaseFunnel: React.FC = () => {
               </div>
 
               {/* Calculated Metrics */}
-              <div className="pt-4 md:pt-6 mt-6 md:mt-8 border-t border-gray-200">
+              <div className="pt-4 mt-6 border-t border-gray-200 md:pt-6 md:mt-8">
                 <div className="grid grid-cols-2 gap-4 md:gap-8">
                   <div className="text-center">
-                    <p className="mb-1 text-sm md:text-base text-gray-600">Conversion Rate</p>
-                    <p className="text-xl md:text-2xl font-bold text-purple-600">0.02%</p>
+                    <p className="mb-1 text-sm text-gray-600 md:text-base">Conversion Rate</p>
+                    <p className="text-xl font-bold text-purple-600 md:text-2xl">0.02%</p>
                   </div>
                   <div className="text-center">
-                    <p className="mb-1 text-sm md:text-base text-gray-600">Cost per Customer</p>
-                    <p className="text-xl md:text-2xl font-bold text-purple-600">$7.32</p>
+                    <p className="mb-1 text-sm text-gray-600 md:text-base">Cost per Customer</p>
+                    <p className="text-xl font-bold text-purple-600 md:text-2xl">$7.32</p>
                   </div>
                 </div>
               </div>
@@ -141,8 +142,8 @@ const PurchaseFunnel: React.FC = () => {
                   <div className="flex-1">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="text-base md:text-lg font-semibold text-gray-900">{metric.value}</h3>
-                        <p className="text-xs md:text-sm text-gray-600">{metric.title}</p>
+                        <h3 className="text-base font-semibold text-gray-900 md:text-lg">{metric.value}</h3>
+                        <p className="text-xs text-gray-600 md:text-sm">{metric.title}</p>
                       </div>
                     </div>
                     <p className="mt-1 text-xs text-gray-500">{metric.description}</p>
@@ -152,15 +153,15 @@ const PurchaseFunnel: React.FC = () => {
             ))}
 
             {/* Additional Performance Metrics */}
-            <Card className="p-3 md:p-4 bg-gradient-to-br from-indigo-50 to-white border-indigo-100">
+            <Card className="p-3 bg-gradient-to-br from-indigo-50 to-white border-indigo-100 md:p-4">
               <div className="grid grid-cols-2 gap-3 md:gap-4">
-                <div className="p-2 md:p-3 text-center bg-white rounded-lg shadow-sm">
-                  <p className="text-xs md:text-sm text-gray-600">Visitor to Registration</p>
-                  <p className="text-lg md:text-xl font-bold text-indigo-600">1.8%</p>
+                <div className="p-2 text-center bg-white rounded-lg shadow-sm md:p-3">
+                  <p className="text-xs text-gray-600 md:text-sm">Visitor to Registration</p>
+                  <p className="text-lg font-bold text-indigo-600 md:text-xl">1.8%</p>
                 </div>
-                <div className="p-2 md:p-3 text-center bg-white rounded-lg shadow-sm">
-                  <p className="text-xs md:text-sm text-gray-600">Registration to Customer</p>
-                  <p className="text-lg md:text-xl font-bold text-indigo-600">19.5%</p>
+                <div className="p-2 text-center bg-white rounded-lg shadow-sm md:p-3">
+                  <p className="text-xs text-gray-600 md:text-sm">Registration to Customer</p>
+                  <p className="text-lg font-bold text-indigo-600 md:text-xl">19.5%</p>
                 </div>
               </div>
             </Card>
