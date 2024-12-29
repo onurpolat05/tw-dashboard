@@ -35,42 +35,44 @@ const TradewizzOverviewTab = () => {
       </div>
 
       {/* New Section with 3:2 Ratio */}
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-5 md:gap-4 lg:gap-6">
         {/* Left Card - 3/5 width */}
-        <div className="col-span-3">
+        <div className="md:col-span-2 lg:col-span-3">
           <RevenueDistributionCard />
         </div>
 
         {/* Right Card - 2/5 width */}
-        <Card className="col-span-2 p-6">
-          <h3 className="mb-4 text-lg font-semibold">Revenue Distribution & Growth</h3>
+        <Card className="p-4 md:col-span-1 lg:col-span-2 md:p-6">
+          <h3 className="mb-4 text-base font-semibold md:text-lg">Revenue Distribution & Growth</h3>
           <RevenueMetricCards />
-          <RevenueComposedChart />
+          <div className="mt-4 md:mt-6">
+            <RevenueComposedChart />
+          </div>
         </Card>
       </div>
 
       {/* Expense Charts Section */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Expense Categories Chart */}
-        <Card className="p-6">
+        <Card className="p-4 md:p-6">
           <ExpenseCategoriesChart />
         </Card>
 
         {/* Quarterly Expenses Chart */}
-        <Card className="p-6">
+        <Card className="p-4 md:p-6">
           <QuarterlyExpensesChart />
         </Card>
       </div>
 
       {/* Burn Rate and Distribution Analysis Section */}
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-5 md:gap-4 lg:gap-6">
         {/* Left Card - 3/5 width - Burn Rate Chart */}
-        <div className="col-span-3">
+        <div className="md:col-span-2 lg:col-span-3">
           <BurnRateComposedChart />
         </div>
 
         {/* Right Card - 2/5 width - Expense Distribution */}
-        <div className="col-span-2">
+        <div className="md:col-span-1 lg:col-span-2">
           <ExpenseDistributionPieCharts />
         </div>
       </div>

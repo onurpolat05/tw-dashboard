@@ -46,28 +46,82 @@ const data = [
 
 const RevenueComposedChart = () => {
   return (
-    <div className="h-[400px] w-full">
+    <div className="h-[300px] md:h-[400px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           data={data}
           margin={{
             top: 20,
-            right: 20,
+            right: 10,
             bottom: 20,
-            left: 20,
+            left: 10,
           }}
         >
-          <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="year" scale="band" />
-          <YAxis yAxisId="left" orientation="left" />
-          <YAxis yAxisId="right" orientation="right" />
-          <Tooltip />
-          <Legend />
+          <CartesianGrid stroke="#f5f5f5" strokeDasharray="3 3" vertical={false} />
+          <XAxis 
+            dataKey="year" 
+            scale="band"
+            tick={{ fontSize: 12 }}
+            tickLine={false}
+            axisLine={{ stroke: '#E5E7EB' }}
+          />
+          <YAxis 
+            yAxisId="left" 
+            orientation="left"
+            tick={{ fontSize: 12 }}
+            tickLine={false}
+            axisLine={{ stroke: '#E5E7EB' }}
+            tickFormatter={(value) => `${value}%`}
+          />
+          <YAxis 
+            yAxisId="right" 
+            orientation="right"
+            tick={{ fontSize: 12 }}
+            tickLine={false}
+            axisLine={{ stroke: '#E5E7EB' }}
+            tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+          />
+          <Tooltip 
+            contentStyle={{ 
+              backgroundColor: 'white',
+              border: '1px solid #E5E7EB',
+              borderRadius: '0.375rem',
+              fontSize: '0.875rem'
+            }}
+          />
+          <Legend 
+            verticalAlign="top"
+            height={36}
+            iconSize={8}
+            iconType="circle"
+            wrapperStyle={{ fontSize: '0.875rem' }}
+          />
           
           {/* Percentage Bars */}
-          <Bar yAxisId="left" dataKey="subscriptionPercentage" name="Subscription %" fill="#8B5CF6" />
-          <Bar yAxisId="left" dataKey="warehousePercentage" name="Warehouse %" fill="#EC4899" />
-          <Bar yAxisId="left" dataKey="shopPercentage" name="TW Shop %" fill="#10B981" />
+          <Bar 
+            yAxisId="left" 
+            dataKey="subscriptionPercentage" 
+            name="Subscription %" 
+            fill="#8B5CF6"
+            radius={[4, 4, 0, 0]}
+            maxBarSize={48}
+          />
+          <Bar 
+            yAxisId="left" 
+            dataKey="warehousePercentage" 
+            name="Warehouse %" 
+            fill="#EC4899"
+            radius={[4, 4, 0, 0]}
+            maxBarSize={48}
+          />
+          <Bar 
+            yAxisId="left" 
+            dataKey="shopPercentage" 
+            name="TW Shop %" 
+            fill="#10B981"
+            radius={[4, 4, 0, 0]}
+            maxBarSize={48}
+          />
           
           {/* Total Value Line */}
           <Line
@@ -77,6 +131,8 @@ const RevenueComposedChart = () => {
             name="Total Revenue"
             stroke="#ff7300"
             strokeWidth={2}
+            dot={{ r: 4, strokeWidth: 2 }}
+            activeDot={{ r: 6, strokeWidth: 2 }}
           />
         </ComposedChart>
       </ResponsiveContainer>

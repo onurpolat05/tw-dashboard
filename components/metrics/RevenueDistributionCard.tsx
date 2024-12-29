@@ -26,20 +26,26 @@ const data2027 = [
 
 const RevenueDistributionCard = () => {
   return (
-    <Card className="p-3">
-      <CardHeader className="px-0 pt-0 pb-6">
-        <CardTitle className="text-2xl font-semibold text-gray-900">Revenue Distribution</CardTitle>
+    <Card className="p-3 md:p-4 lg:p-6">
+      <CardHeader className="px-0 pt-0 pb-4 md:pb-6">
+        <CardTitle className="text-xl md:text-2xl font-semibold text-gray-900">Revenue Distribution</CardTitle>
       </CardHeader>
-      <div className="space-y-8">
+      <div className="space-y-6 md:space-y-8">
         <div>
-          <div className="grid grid-cols-3 gap-2">
-            <TwoSimplePieChart data={data2025} colors={COLORS} title="2025" />
-            <TwoSimplePieChart data={data2026} colors={COLORS} title="2026" />
-            <TwoSimplePieChart data={data2027} colors={COLORS} title="2027" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="w-full h-[200px] md:h-[250px]">
+              <TwoSimplePieChart data={data2025} colors={COLORS} title="2025" />
+            </div>
+            <div className="w-full h-[200px] md:h-[250px]">
+              <TwoSimplePieChart data={data2026} colors={COLORS} title="2026" />
+            </div>
+            <div className="w-full h-[200px] md:h-[250px] sm:col-span-2 lg:col-span-1">
+              <TwoSimplePieChart data={data2027} colors={COLORS} title="2027" />
+            </div>
           </div>
 
           {/* Single Legend for all charts */}
-          <div className="flex gap-5 justify-center mt-4">
+          <div className="flex flex-wrap gap-3 md:gap-5 justify-center mt-4 md:mt-6">
             {data2025.map((entry, index) => (
               <div key={`legend-${index}`} className="flex gap-2 items-center">
                 <div
@@ -53,7 +59,9 @@ const RevenueDistributionCard = () => {
         </div>
 
         {/* Revenue Sources Stacked Area Chart */}
-        <StackedRevenueChart />
+        <div className="h-[300px] md:h-[400px] w-full">
+          <StackedRevenueChart />
+        </div>
       </div>
     </Card>
   );

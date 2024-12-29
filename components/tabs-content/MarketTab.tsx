@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   LineChart,
   Target,
@@ -25,48 +25,47 @@ import {
 
 const MarketTab = () => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 min-h-screen">
       {/* TAM Section */}
-      <Card className="p-6">
-        {/* Header Section */}
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-[#20152E]">
-              Total Addressable Market (TAM): $1 Trillion
-            </h2>
-            <p className="text-lg text-[#20152E]">
-              Capturing a Share of the Global E-commerce Market
-            </p>
-            <p className="text-gray-600">
-              The Total Addressable Market (TAM) for TradeWizz represents the
-              entire global e-commerce market, reflecting the vast opportunity
-              for e-commerce enablement solutions.
-            </p>
-          </div>
+      <Card className="bg-gradient-to-br from-gray-50 to-white">
+        <CardHeader className="space-y-2">
+          <CardTitle className="text-2xl font-semibold text-[#20152E]">
+            Total Addressable Market (TAM): $1 Trillion
+          </CardTitle>
+          <p className="text-lg text-[#20152E]">
+            Capturing a Share of the Global E-commerce Market
+          </p>
+          <p className="text-gray-600">
+            The Total Addressable Market (TAM) for TradeWizz represents the
+            entire global e-commerce market, reflecting the vast opportunity
+            for e-commerce enablement solutions.
+          </p>
+        </CardHeader>
 
+        <CardContent className="space-y-8">
           {/* Market Size Metrics */}
-          <div className="grid grid-cols-3 gap-6">
-            <div className="p-4 bg-gradient-to-br from-violet-50 to-white rounded-lg border border-violet-100">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Card className="p-4 bg-gradient-to-br from-violet-50 to-white border-violet-100 transition-all hover:shadow-md">
               <p className="text-sm font-medium text-violet-600">TAM</p>
               <p className="text-2xl font-bold text-[#20152E]">$1T</p>
               <p className="text-sm text-gray-600">Global E-commerce</p>
-            </div>
-            <div className="p-4 bg-gradient-to-br from-fuchsia-50 to-white rounded-lg border border-fuchsia-100">
+            </Card>
+            <Card className="p-4 bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100 transition-all hover:shadow-md">
               <p className="text-sm font-medium text-fuchsia-600">SAM</p>
               <p className="text-2xl font-bold text-[#20152E]">$600B</p>
               <p className="text-sm text-gray-600">Serviceable Market</p>
-            </div>
-            <div className="p-4 bg-gradient-to-br from-purple-50 to-white rounded-lg border border-purple-100">
+            </Card>
+            <Card className="p-4 bg-gradient-to-br from-purple-50 to-white border-purple-100 transition-all hover:shadow-md">
               <p className="text-sm font-medium text-purple-600">SOM</p>
               <p className="text-2xl font-bold text-[#20152E]">$6B</p>
               <p className="text-sm text-gray-600">Obtainable Market</p>
-            </div>
+            </Card>
           </div>
 
           {/* Market Opportunity Data Points */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Data Point 1 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <LineChart className="w-8 h-8 text-[#4ADE80]" />
@@ -82,10 +81,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 2 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Target className="w-8 h-8 text-[#4ADE80]" />
@@ -102,10 +101,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 3 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Puzzle className="w-8 h-8 text-[#4ADE80]" />
@@ -123,10 +122,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 4 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <TrendingUp className="w-8 h-8 text-[#4ADE80]" />
@@ -143,34 +142,32 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
-        </div>
+        </CardContent>
       </Card>
 
       {/* SAM Section */}
-      <Card className="p-6 bg-[#F8F8F8]">
-        {/* Header Section */}
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-[#20152E]">
-              Serviceable Available Market (SAM): $600 Billion
-            </h2>
-            <p className="text-lg text-[#20152E]">
-              Focusing on the Reachable Segment of the Global E-commerce Market
-            </p>
-            <p className="text-gray-600">
-              The Serviceable Available Market (SAM) represents the portion of
-              the Total Addressable Market (TAM) that TradeWizz can
-              realistically serve with its current product offerings and
-              geographic focus.
-            </p>
-          </div>
+      <Card className="bg-gradient-to-br from-gray-50 to-white">
+        <CardHeader className="space-y-2">
+          <CardTitle className="text-2xl font-semibold text-[#20152E]">
+            Serviceable Available Market (SAM): $600 Billion
+          </CardTitle>
+          <p className="text-lg text-[#20152E]">
+            Focusing on the Reachable Segment of the Global E-commerce Market
+          </p>
+          <p className="text-gray-600">
+            The Serviceable Available Market (SAM) represents the portion of
+            the Total Addressable Market (TAM) that TradeWizz can
+            realistically serve with its current product offerings and
+            geographic focus.
+          </p>
+        </CardHeader>
 
-          {/* SAM Data Points */}
-          <div className="grid grid-cols-2 gap-6">
+        <CardContent>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Data Point 1 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <BarChart className="w-8 h-8 text-[#4ADE80]" />
@@ -185,10 +182,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 2 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Store className="w-8 h-8 text-[#4ADE80]" />
@@ -205,10 +202,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 3 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Layers className="w-8 h-8 text-[#4ADE80]" />
@@ -225,10 +222,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 4 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Settings className="w-8 h-8 text-[#4ADE80]" />
@@ -245,34 +242,32 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
-        </div>
+        </CardContent>
       </Card>
 
       {/* SOM Section */}
-      <Card className="p-6 bg-[#F8F8F8]">
-        {/* Header Section */}
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-[#20152E]">
-              Serviceable Obtainable Market (SOM): $6 Billion
-            </h2>
-            <p className="text-lg text-[#20152E]">
-              Realistically Capturing a Portion of the E-commerce SaaS Market
-            </p>
-            <p className="text-gray-600">
-              The Serviceable Obtainable Market (SOM) represents the portion of
-              the SAM that TradeWizz can realistically capture within the next
-              3-5 years, considering its current resources, competitive
-              landscape, and go-to-market strategy.
-            </p>
-          </div>
+      <Card className="bg-gradient-to-br from-gray-50 to-white">
+        <CardHeader className="space-y-2">
+          <CardTitle className="text-2xl font-semibold text-[#20152E]">
+            Serviceable Obtainable Market (SOM): $6 Billion
+          </CardTitle>
+          <p className="text-lg text-[#20152E]">
+            Realistically Capturing a Portion of the E-commerce SaaS Market
+          </p>
+          <p className="text-gray-600">
+            The Serviceable Obtainable Market (SOM) represents the portion of
+            the SAM that TradeWizz can realistically capture within the next
+            3-5 years, considering its current resources, competitive
+            landscape, and go-to-market strategy.
+          </p>
+        </CardHeader>
 
-          {/* SOM Data Points */}
-          <div className="grid grid-cols-2 gap-6">
+        <CardContent>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Data Point 1 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <PieChart className="w-8 h-8 text-[#4ADE80]" />
@@ -287,10 +282,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 2 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Target className="w-8 h-8 text-[#4ADE80]" />
@@ -307,10 +302,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 3 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Scale className="w-8 h-8 text-[#4ADE80]" />
@@ -326,10 +321,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 4 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Trophy className="w-8 h-8 text-[#4ADE80]" />
@@ -345,35 +340,33 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
-        </div>
+        </CardContent>
       </Card>
 
       {/* E-commerce SaaS Market Size Section */}
-      <Card className="p-6 bg-[#F8F8F8]">
-        {/* Header Section */}
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-[#20152E]">
-              E-commerce SaaS Market Size: High Growth and Expanding Opportunity
-            </h2>
-            <p className="text-lg text-[#20152E]">
-              Demonstrating the Rapidly Growing Market for TradeWizz's Solution
-            </p>
-            <p className="text-gray-600">
-              The E-commerce SaaS market is experiencing substantial growth,
-              driven by the increasing adoption of digital solutions by
-              businesses of all sizes. This section highlights the current
-              market size, growth projections, and key trends shaping the
-              industry.
-            </p>
-          </div>
+      <Card className="bg-gradient-to-br from-gray-50 to-white">
+        <CardHeader className="space-y-2">
+          <CardTitle className="text-2xl font-semibold text-[#20152E]">
+            E-commerce SaaS Market Size: High Growth and Expanding Opportunity
+          </CardTitle>
+          <p className="text-lg text-[#20152E]">
+            Demonstrating the Rapidly Growing Market for TradeWizz's Solution
+          </p>
+          <p className="text-gray-600">
+            The E-commerce SaaS market is experiencing substantial growth,
+            driven by the increasing adoption of digital solutions by
+            businesses of all sizes. This section highlights the current
+            market size, growth projections, and key trends shaping the
+            industry.
+          </p>
+        </CardHeader>
 
-          {/* Market Size Data Points */}
-          <div className="grid grid-cols-2 gap-6">
+        <CardContent>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Data Point 1 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <DollarSign className="w-8 h-8 text-[#4ADE80]" />
@@ -388,10 +381,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 2 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <TrendingUp className="w-8 h-8 text-[#4ADE80]" />
@@ -406,10 +399,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 3 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Brain className="w-8 h-8 text-[#4ADE80]" />
@@ -424,10 +417,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Data Point 4 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Rocket className="w-8 h-8 text-[#4ADE80]" />
@@ -443,34 +436,32 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
-        </div>
+        </CardContent>
       </Card>
 
       {/* Market Growth Rate Section */}
-      <Card className="p-6 bg-[#F8F8F8]">
-        {/* Header Section */}
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-[#20152E]">
-              Market Growth Rate: Sustained Expansion in E-commerce SaaS
-            </h2>
-            <p className="text-lg text-[#20152E]">
-              Highlighting the Strong Momentum of E-commerce and SaaS Adoption
-            </p>
-            <p className="text-gray-600">
-              The E-commerce SaaS market is experiencing a period of rapid
-              growth, fueled by increasing digitalization and the adoption of
-              cloud-based solutions. This section highlights the impressive
-              growth rates driving the market forward.
-            </p>
-          </div>
+      <Card className="bg-gradient-to-br from-gray-50 to-white">
+        <CardHeader className="space-y-2">
+          <CardTitle className="text-2xl font-semibold text-[#20152E]">
+            Market Growth Rate: Sustained Expansion in E-commerce SaaS
+          </CardTitle>
+          <p className="text-lg text-[#20152E]">
+            Highlighting the Strong Momentum of E-commerce and SaaS Adoption
+          </p>
+          <p className="text-gray-600">
+            The E-commerce SaaS market is experiencing a period of rapid
+            growth, fueled by increasing digitalization and the adoption of
+            cloud-based solutions. This section highlights the impressive
+            growth rates driving the market forward.
+          </p>
+        </CardHeader>
 
-          {/* Growth Rate Data Points */}
-          <div className="grid grid-cols-2 gap-6">
-            {/* Data Point 1 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+        <CardContent>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {/* Growth Rate Data Points */}
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <TrendingUp className="w-8 h-8 text-[#4ADE80]" />
@@ -486,10 +477,9 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
-            {/* Data Point 2 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <LineChart className="w-8 h-8 text-[#4ADE80]" />
@@ -504,10 +494,9 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
-            {/* Data Point 3 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <BarChart className="w-8 h-8 text-[#4ADE80]" />
@@ -522,10 +511,9 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
-            {/* Data Point 4 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Brain className="w-8 h-8 text-[#4ADE80]" />
@@ -540,35 +528,33 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
-        </div>
+        </CardContent>
       </Card>
 
       {/* Key Trends Section */}
-      <Card className="p-6 bg-[#F8F8F8]">
-        {/* Header Section */}
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-[#20152E]">
-              Key Trends: Shaping the Future of E-commerce SaaS
-            </h2>
-            <p className="text-lg text-[#20152E]">
-              Highlighting the Major Trends Driving Growth and Innovation in the
-              Market
-            </p>
-            <p className="text-gray-600">
-              The e-commerce SaaS market is constantly evolving, driven by
-              emerging technologies and shifting consumer behavior. This section
-              outlines key trends that present both opportunities and challenges
-              for businesses in this sector.
-            </p>
-          </div>
+      <Card className="bg-gradient-to-br from-gray-50 to-white">
+        <CardHeader className="space-y-2">
+          <CardTitle className="text-2xl font-semibold text-[#20152E]">
+            Key Trends: Shaping the Future of E-commerce SaaS
+          </CardTitle>
+          <p className="text-lg text-[#20152E]">
+            Highlighting the Major Trends Driving Growth and Innovation in the
+            Market
+          </p>
+          <p className="text-gray-600">
+            The e-commerce SaaS market is constantly evolving, driven by
+            emerging technologies and shifting consumer behavior. This section
+            outlines key trends that present both opportunities and challenges
+            for businesses in this sector.
+          </p>
+        </CardHeader>
 
-          {/* Trends Data Points */}
-          <div className="grid grid-cols-2 gap-6">
+        <CardContent>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Trend 1 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Brain className="w-8 h-8 text-[#4ADE80]" />
@@ -583,10 +569,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Trend 2 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Network className="w-8 h-8 text-[#4ADE80]" />
@@ -601,10 +587,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Trend 3 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Building2 className="w-8 h-8 text-[#4ADE80]" />
@@ -618,10 +604,10 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Trend 4 */}
-            <div className="p-6 bg-white rounded-lg border border-gray-100 shadow-sm">
+            <Card className="p-6 transition-all hover:shadow-md">
               <div className="flex items-start space-x-4">
                 <div className="p-2 bg-[#4ADE80]/10 rounded-lg">
                   <Blocks className="w-8 h-8 text-[#4ADE80]" />
@@ -635,9 +621,9 @@ const MarketTab = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
-        </div>
+        </CardContent>
       </Card>
     </div>
   );

@@ -26,17 +26,17 @@ const TeamTab = () => {
           <div className="space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-[#20152E]">
-                The Core Team Driving Innovation
+                Key Team Members: Experienced Leadership Driving Growth
               </h2>
               <p className="text-lg text-[#20152E]">
-                A Diverse Team of Experts in E-commerce, AI, and Tech
+                Highlighting the Expertise and Commitment of the TradeWizz Team
               </p>
             </div>
             <p className="mx-auto max-w-3xl text-gray-600">
-              TradeWizz is powered by a dedicated team with deep expertise in
-              e-commerce, AI, and software development. They are committed to
-              building a revolutionary super app that transforms the e-commerce
-              ecosystem.
+              The TradeWizz team comprises experienced professionals with a
+              diverse range of skills in e-commerce, technology, and business
+              development. This section introduces the core team members driving
+              the company's vision and execution.
             </p>
           </div>
 
@@ -47,7 +47,7 @@ const TeamTab = () => {
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative w-[150px] h-[150px]">
                   <Image
-                    src="/profile-photos/onur-profile-photo.png"
+                    src="/tw-profile-photo-Onur.jpg"
                     alt="Onur POLAT"
                     width={150}
                     height={150}
@@ -58,24 +58,25 @@ const TeamTab = () => {
                   <h3 className="text-lg font-semibold text-[#20152E]">
                     Onur POLAT
                   </h3>
-                  <p className="text-[#4ADE80] font-medium">
-                    Co-Founder & Tech Lead
-                  </p>
+                  <p className="text-[#4ADE80] font-medium">Co-Founder</p>
                   <p className="text-sm text-gray-600">
-                    Onur directs TradeWizz's technology roadmap, leveraging 5
-                    years of software development experience. He prioritizes
-                    features and integrations, ensuring a scalable and robust
-                    platform for users.
+                    A seasoned software engineer and technology leader with
+                    expertise in AI, machine learning, and cloud computing. Onur
+                    is responsible for the development and implementation of the
+                    TradeWizz platform. 15 years of experience in software
+                    development, specializing in creating scalable and efficient
+                    systems.
                   </p>
                 </div>
               </div>
             </div>
+
             {/* Team Member 2 */}
             <div className="p-4 bg-white rounded-lg border border-gray-100 shadow-sm transition-shadow hover:shadow-md">
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative w-[150px] h-[150px]">
                   <Image
-                    src="/profile-photos/kaze-profile-photo.png"
+                    src="/tw-profile-photo-Kadir.png"
                     alt="Kadir ZEYREK"
                     width={150}
                     height={150}
@@ -86,15 +87,14 @@ const TeamTab = () => {
                   <h3 className="text-lg font-semibold text-[#20152E]">
                     Kadir ZEYREK
                   </h3>
-                  <p className="text-[#4ADE80] font-medium">
-                    Co-Founder & Strategy Lead
-                  </p>
+                  <p className="text-[#4ADE80] font-medium">Co-Founder</p>
                   <p className="text-sm text-gray-600">
-                    A Google AI & Tech Academy scholar and certified Agile
-                    Master with 7 years of business experience. Kadir expertly
-                    manages TradeWizz's operations, driving efficiency. His 3
-                    years in an international trade tech startup shaped his
-                    expertise.
+                    A seasoned software engineer and technology leader with
+                    expertise in AI, machine learning, and cloud computing. Kadir
+                    is responsible for the development and implementation of the
+                    TradeWizz platform. 15 years of experience in software
+                    development, specializing in creating scalable and efficient
+                    systems.
                   </p>
                 </div>
               </div>
@@ -105,7 +105,7 @@ const TeamTab = () => {
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative w-[150px] h-[150px]">
                   <Image
-                    src="/profile-photos/burak-profile-photo.png"
+                    src="/tw-profile-photo-Burak.png"
                     alt="Burak Can POLAT"
                     width={150}
                     height={150}
@@ -116,14 +116,14 @@ const TeamTab = () => {
                   <h3 className="text-lg font-semibold text-[#20152E]">
                     Burak Can POLAT
                   </h3>
-                  <p className="text-[#4ADE80] font-medium">
-                    Co-Founder & Product Visionary
-                  </p>
+                  <p className="text-[#4ADE80] font-medium">Co-Founder</p>
                   <p className="text-sm text-gray-600">
-                    Burak oversees TradeWizz's financial strategy and guides AI
-                    implementation, leveraging his Master's degree in AI. He
-                    ensures the platform's financial health and technological
-                    advancement.
+                    A seasoned software engineer and technology leader with
+                    expertise in AI, machine learning, and cloud computing. Burak
+                    is responsible for the development and implementation of the
+                    TradeWizz platform. 15 years of experience in software
+                    development, specializing in creating scalable and efficient
+                    systems.
                   </p>
                 </div>
               </div>
@@ -134,7 +134,7 @@ const TeamTab = () => {
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative w-[150px] h-[150px]">
                   <Image
-                    src="/profile-photos/kaze-profile-photo.png"
+                    src="/tw-profile-photo-Ramazan.png"
                     alt="Ramazan SEYHAN"
                     width={150}
                     height={150}
@@ -145,14 +145,14 @@ const TeamTab = () => {
                   <h3 className="text-lg font-semibold text-[#20152E]">
                     Ramazan SEYHAN
                   </h3>
-                  <p className="text-[#4ADE80] font-medium">
-                    Co-Founder & Engineering Lead
-                  </p>
+                  <p className="text-[#4ADE80] font-medium">Co-Founder</p>
                   <p className="text-sm text-gray-600">
-                    Ramazan, a 10-year software veteran, leads TradeWizz's
-                    platform development. His experience from top Turkish
-                    companies ensures a user-friendly, high-performance
-                    e-commerce platform.
+                    A seasoned software engineer and technology leader with
+                    expertise in AI, machine learning, and cloud computing. Ramazan
+                    is responsible for the development and implementation of the
+                    TradeWizz platform. 15 years of experience in software
+                    development, specializing in creating scalable and efficient
+                    systems.
                   </p>
                 </div>
               </div>
@@ -163,30 +163,26 @@ const TeamTab = () => {
           <div className="grid grid-cols-2 gap-4 mt-6 lg:grid-cols-4">
             <div className="p-4 bg-white rounded-lg border border-gray-100">
               <div className="space-y-1">
+                <p className="text-sm text-gray-600">Combined Experience</p>
+                <p className="text-2xl font-bold text-[#4ADE80]">31+ Years</p>
+              </div>
+            </div>
+            <div className="p-4 bg-white rounded-lg border border-gray-100">
+              <div className="space-y-1">
+                <p className="text-sm text-gray-600">Industry Expertise</p>
+                <p className="text-2xl font-bold text-[#4ADE80]">E-commerce</p>
+              </div>
+            </div>
+            <div className="p-4 bg-white rounded-lg border border-gray-100">
+              <div className="space-y-1">
                 <p className="text-sm text-gray-600">Team Growth</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">%400</p>
+                <p className="text-2xl font-bold text-[#4ADE80]">300%</p>
               </div>
             </div>
             <div className="p-4 bg-white rounded-lg border border-gray-100">
               <div className="space-y-1">
-                <p className="text-sm text-gray-600">Avg. Experience</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">5+ Years</p>
-              </div>
-            </div>
-            <div className="p-4 bg-white rounded-lg border border-gray-100">
-              <div className="space-y-1">
-                <p className="text-sm text-gray-600">Experience</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">
-                  Tech & E-commerce
-                </p>
-              </div>
-            </div>
-            <div className="p-4 bg-white rounded-lg border border-gray-100">
-              <div className="space-y-1">
-                <p className="text-sm text-gray-600">Vision</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">
-                  Global Impact
-                </p>
+                <p className="text-sm text-gray-600">Projects Completed</p>
+                <p className="text-2xl font-bold text-[#4ADE80]">50+</p>
               </div>
             </div>
           </div>
@@ -200,17 +196,18 @@ const TeamTab = () => {
           <div className="space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-[#20152E]">
-                TradeWizz: A Fusion of E-commerce, AI, and Tech Expertise
+                Expertise: A Powerful Blend of E-commerce, AI, and SaaS
+                Experience
               </h2>
               <p className="text-lg text-[#20152E]">
-                Leveraging Deep Industry Knowledge to Drive E-commerce
-                Innovation
+                Leveraging Deep Industry Knowledge to Drive TradeWizz's Success
               </p>
             </div>
             <p className="mx-auto max-w-3xl text-gray-600">
-              The TradeWizz team combines a unique blend of e-commerce, AI, and
-              software development expertise. This multidisciplinary approach
-              positions TradeWizz to revolutionize the e-commerce ecosystem.
+              The TradeWizz team possesses a unique combination of expertise in
+              e-commerce, artificial intelligence, and SaaS development,
+              perfectly positioning the company to capitalize on the growing
+              market opportunity and deliver exceptional value to its customers.
             </p>
           </div>
 
@@ -224,12 +221,15 @@ const TeamTab = () => {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-[#20152E]">
-                    AI-Driven E-commerce Solutions
+                    E-commerce Mastery
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Developing and implementing cutting-edge AI solutions to
-                    automate, optimize, and personalize the e-commerce
-                    experience for all stakeholders.
+                    Extensive experience in online retail, marketplace
+                    management, and digital marketing, with a proven track
+                    record of building and scaling successful e-commerce
+                    businesses. Ilhan has managed a $10 million turnover on
+                    Amazon, demonstrating expertise in scaling e-commerce
+                    operations.
                   </p>
                 </div>
               </div>
@@ -243,12 +243,14 @@ const TeamTab = () => {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-[#20152E]">
-                    Partnership Building
+                    AI and Technology Leadership
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Proven ability to forge strong partnerships that enhance
-                    platform capabilities, expand market reach, and create a
-                    thriving ecosystem.
+                    Deep technical expertise in artificial intelligence, machine
+                    learning, and cloud computing, enabling the development of
+                    cutting-edge solutions for e-commerce optimization. Ozan has
+                    15 years of experience in software development, specializing
+                    in creating scalable and efficient systems.
                   </p>
                 </div>
               </div>
@@ -262,12 +264,12 @@ const TeamTab = () => {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-[#20152E]">
-                    Scalable Platform Development
+                    SaaS Development and Growth
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Expertise in building robust, scalable, and user-friendly
-                    SaaS platforms designed for rapid growth and seamless
-                    integration.
+                    Proven ability to build, launch, and scale SaaS products,
+                    with a focus on user experience, customer success, and
+                    recurring revenue models.
                   </p>
                 </div>
               </div>
@@ -281,12 +283,14 @@ const TeamTab = () => {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-[#20152E]">
-                    Social Impact & Empowerment
+                    Marketing and Brand Building
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Dedicated to empowering local producers and NGOs, fostering
-                    fair trade practices, and creating more sustainable
-                    e-commerce ecosystem.
+                    Strong expertise in digital marketing, brand development,
+                    and customer acquisition, with a focus on driving growth and
+                    building brand awareness in the e-commerce space. Aydin has
+                    6 years of experience in digital marketing, with a focus on
+                    customer acquisition and brand development.
                   </p>
                 </div>
               </div>
@@ -297,26 +301,26 @@ const TeamTab = () => {
           <div className="grid grid-cols-2 gap-4 mt-6 lg:grid-cols-4">
             <div className="p-4 bg-white rounded-lg border border-gray-100">
               <div className="space-y-1">
-                <p className="text-sm text-gray-600">E-commerce Experience</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">4+ Years</p>
+                <p className="text-sm text-gray-600">E-commerce Revenue</p>
+                <p className="text-2xl font-bold text-[#4ADE80]">$10M+</p>
               </div>
             </div>
             <div className="p-4 bg-white rounded-lg border border-gray-100">
               <div className="space-y-1">
-                <p className="text-sm text-gray-600">Tech Experience Avg</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">5+ Years</p>
+                <p className="text-sm text-gray-600">Tech Experience</p>
+                <p className="text-2xl font-bold text-[#4ADE80]">15 Years</p>
               </div>
             </div>
             <div className="p-4 bg-white rounded-lg border border-gray-100">
               <div className="space-y-1">
-                <p className="text-sm text-gray-600">Total Reach</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">179.368 Ind</p>
+                <p className="text-sm text-gray-600">Marketing ROI</p>
+                <p className="text-2xl font-bold text-[#4ADE80]">473%</p>
               </div>
             </div>
             <div className="p-4 bg-white rounded-lg border border-gray-100">
               <div className="space-y-1">
-                <p className="text-sm text-gray-600">MVP Tester</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">91 User</p>
+                <p className="text-sm text-gray-600">Projects Delivered</p>
+                <p className="text-2xl font-bold text-[#4ADE80]">50+</p>
               </div>
             </div>
           </div>
