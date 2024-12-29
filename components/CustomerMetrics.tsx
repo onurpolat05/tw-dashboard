@@ -95,7 +95,7 @@ const CustomerMetrics: React.FC = () => {
         <div className="space-y-4 md:space-y-8">
           {/* Title Section */}
           <div className="flex flex-col gap-2 justify-between md:flex-row md:items-center md:gap-0">
-            <h2 className="text-lg font-semibold text-gray-900 md:text-xl lg:text-2xl">Customer Growth & Trial Metrics</h2>
+            <h2 className="text-lg font-semibold text-gray-900 md:text-xl lg:text-2xl">Customer Behavior Analysis</h2>
           </div>
 
           {/* Metrics Cards */}
@@ -123,7 +123,7 @@ const CustomerMetrics: React.FC = () => {
             <Card className="p-3 bg-gradient-to-br from-purple-50 to-white border-purple-100 md:p-4">
               <div className="space-y-1">
                 <p className="text-xs font-medium text-purple-600 md:text-sm">Trial to Paid Conversion</p>
-                <p className="text-xl font-semibold text-purple-900 md:text-2xl">19.51%</p>
+                <p className="text-xl font-semibold text-purple-900 md:text-2xl">34.62%</p>
                 <p className="text-xs text-gray-500">conversion rate</p>
               </div>
             </Card>
@@ -309,7 +309,7 @@ const CustomerMetrics: React.FC = () => {
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
-                <div className="flex justify-center mt-4 flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center mt-4">
                   <button
                     onClick={() => togglePackageFilter('eko')}
                     className={`px-2 md:px-3 py-1 md:py-1.5 text-xs font-medium rounded-md transition-all ${

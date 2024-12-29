@@ -79,7 +79,7 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
   return (
     <Card className="p-4 md:p-6">
       <CardHeader className="px-0 pt-0">
-        <CardTitle className="text-lg md:text-xl lg:text-2xl">MRR and Growth Metrics Over Time</CardTitle>
+        <CardTitle className="text-lg md:text-xl lg:text-2xl">Growth Metrics</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         <div className="h-[300px] md:h-[400px]">

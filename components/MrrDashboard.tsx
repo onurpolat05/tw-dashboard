@@ -24,7 +24,8 @@ const Dashboard: React.FC = () => {
 
         {/* Key Insights */}
         <KeyInsights />
-
+        {/* Summary and Evaluation */}
+        <SummaryAndEvaluation />
         {/* MRR Charts Side by Side */}
         <MrrCharts />
 
@@ -43,8 +44,7 @@ const Dashboard: React.FC = () => {
         {/* Purchase Funnel and Instagram Campaign Performance */}
         <PurchaseFunnel />
 
-        {/* Summary and Evaluation */}
-        <SummaryAndEvaluation />
+
       </div>
     </div>
   );

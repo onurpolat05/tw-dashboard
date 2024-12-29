@@ -51,7 +51,7 @@ const TrialToConversionSection = () => {
           <div className="space-y-2">
             <div className="flex justify-center items-center space-x-3">
               <ArrowUpRight className="w-10 h-10 text-[#4ADE80]" />
-              <h2 className="text-4xl font-bold text-[#4ADE80]">19.51%</h2>
+              <h2 className="text-4xl font-bold text-[#4ADE80]">34.62%</h2>
             </div>
             <h3 className="text-2xl font-semibold text-[#20152E]">Trial to Paid Conversion</h3>
             <p className="text-lg text-[#20152E]">
