@@ -1,6 +1,5 @@
 import React from 'react';
 import KpiMetrics from './KpiMetrics';
-import KeyInsights from './KeyInsights';
 import MrrCharts from './MrrCharts';
 import SubscriptionDistribution from './SubscriptionDistribution';
 import CustomerMetrics from './CustomerMetrics';
@@ -22,8 +21,6 @@ const Dashboard: React.FC = () => {
         {/* KPI Metrics */}
         <KpiMetrics />
 
-        {/* Key Insights */}
-        <KeyInsights />
         {/* Summary and Evaluation */}
         <SummaryAndEvaluation />
         {/* MRR Charts Side by Side */}
