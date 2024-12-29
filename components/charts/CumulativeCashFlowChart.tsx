@@ -12,19 +12,19 @@ import {
 } from 'recharts';
 
 const data = [
-  { quarter: 'Q0', bestCase: -150000, optimalCase: -150000, worstCase: -150000 },
-  { quarter: 'Q1', bestCase: -120000, optimalCase: -130000, worstCase: -140000 },
-  { quarter: 'Q2', bestCase: -80000, optimalCase: -100000, worstCase: -120000 },
-  { quarter: 'Q3', bestCase: -40000, optimalCase: -60000, worstCase: -90000 },
-  { quarter: 'Q4', bestCase: -10000, optimalCase: -30000, worstCase: -50000 },
-  { quarter: 'Q5', bestCase: 100000, optimalCase: 50000, worstCase: -20000 },
-  { quarter: 'Q6', bestCase: 400000, optimalCase: 300000, worstCase: 100000 },
-  { quarter: 'Q7', bestCase: 800000, optimalCase: 600000, worstCase: 300000 },
-  { quarter: 'Q8', bestCase: 1400000, optimalCase: 1000000, worstCase: 600000 },
-  { quarter: 'Q9', bestCase: 2100000, optimalCase: 1400000, worstCase: 1000000 },
-  { quarter: 'Q10', bestCase: 3100000, optimalCase: 2000000, worstCase: 1500000 },
-  { quarter: 'Q11', bestCase: 4300000, optimalCase: 3000000, worstCase: 1600000 },
-  { quarter: 'Q12', bestCase: 5800000, optimalCase: 4000000, worstCase: 2300000 },
+  { quarter: 'Q1', bestCase: -150000, optimalCase: -150000, worstCase: -150000 },
+  { quarter: 'Q2', bestCase: -31070.03279, optimalCase: -31669.83607, worstCase: -32669.5082 },
+  { quarter: 'Q3', bestCase: -31330.61749, optimalCase: -35092.0765, worstCase: -41361.17486 },
+  { quarter: 'Q4', bestCase: -19235.35519, optimalCase: -31722.40437, worstCase: -49467.15847 },
+  { quarter: 'Q5', bestCase: 88107.439, optimalCase: 35750.0319, worstCase: -26409.9271 },
+  { quarter: 'Q6', bestCase: 246777.9208, optimalCase: 169876.6393, worstCase: 82568.7409 },
+  { quarter: 'Q7', bestCase: 310184.3884, optimalCase: 215608.0778, worstCase: 110677.217 },
+  { quarter: 'Q8', bestCase: 439766.7711, optimalCase: 321072.9634, worstCase: 190165.4453 },
+  { quarter: 'Q9', bestCase: 618157.015, optimalCase: 467972.3269, worstCase: 302394.6368 },
+  { quarter: 'Q10', bestCase: 651776.3129, optimalCase: 444216.7482, worstCase: 230822.1999 },
+  { quarter: 'Q11', bestCase: 944146.9824, optimalCase: 677232.3644, worstCase: 414998.1445 },
+  { quarter: 'Q12', bestCase: 1225464.238, optimalCase: 889207.3881, worstCase: 570341.321 },
+  { quarter: 'Q13', bestCase: 1482153.293, optimalCase: 1069265.313, worstCase: 690048.1271 },
 ];
 
 const formatCurrency = (value: number) => {
@@ -41,8 +41,8 @@ const CumulativeCashFlowChart = () => {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white p-4 border border-gray-200 shadow-sm rounded-lg">
-          <p className="text-sm font-medium text-gray-900 mb-2">{label}</p>
+        <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+          <p className="mb-2 text-sm font-medium text-gray-900">{label}</p>
           {payload.map((entry: any, index: number) => (
             <p
               key={index}
@@ -61,9 +61,9 @@ const CumulativeCashFlowChart = () => {
   const CustomLegend = (props: any) => {
     const { payload } = props;
     return (
-      <div className="flex justify-end gap-6 mb-4">
+      <div className="flex gap-6 justify-end mb-4">
         {payload.map((entry: any, index: number) => (
-          <div key={index} className="flex items-center gap-2">
+          <div key={index} className="flex gap-2 items-center">
             <div
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: entry.color }}

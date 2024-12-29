@@ -15,10 +15,10 @@ import ValuationTab from '@/components/tabs-content/ValuationTab';
 const FutureStatus = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="p-8">
+      <div className="p-4 sm:p-8">
         <div className="mx-auto space-y-8 max-w-7xl">
           {/* Header */}
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col gap-4 justify-between items-start sm:flex-row sm:items-center sm:gap-0">
             <div className="space-y-1">
               <h1 className="text-2xl font-semibold text-gray-900">
                 TradeWizz Pre-Seed Valuation
@@ -35,40 +35,43 @@ const FutureStatus = () => {
 
           {/* Main Content */}
           <Tabs defaultValue="tradewizz-overview" className="space-y-6">
-            <TabsList className="bg-white border shadow-sm">
-              <TabsTrigger value="tradewizz-overview">Tradewizz Overview</TabsTrigger>
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="problem-solution">Problem & Solution</TabsTrigger>
-              <TabsTrigger value="market">Market Opportunity</TabsTrigger>
-              <TabsTrigger value="traction">Traction & Validation</TabsTrigger>
-              <TabsTrigger value="financial">Financial Projections</TabsTrigger>
-              <TabsTrigger value="team">Team</TabsTrigger>
-              <TabsTrigger value="call-to-action">Call to Action</TabsTrigger>
-              <TabsTrigger value="customer-behavior">Customer Behavior</TabsTrigger>
-              <TabsTrigger value="valuation">Valuation</TabsTrigger>
-            </TabsList>
+            <div className="relative">
+              <div className="overflow-x-auto pb-2 sm:overflow-x-visible">
+                <TabsList className="inline-flex min-w-full bg-white border shadow-sm sm:w-auto">
+                  <TabsTrigger value="tradewizz-overview" className="whitespace-nowrap">Tradewizz Overview</TabsTrigger>
+                  <TabsTrigger value="overview" className="whitespace-nowrap">Overview</TabsTrigger>
+                  <TabsTrigger value="problem-solution" className="whitespace-nowrap">Problem & Solution</TabsTrigger>
+                  <TabsTrigger value="market" className="whitespace-nowrap">Market Opportunity</TabsTrigger>
+                  <TabsTrigger value="traction" className="whitespace-nowrap">Traction & Validation</TabsTrigger>
+                  <TabsTrigger value="financial" className="whitespace-nowrap">Financial Projections</TabsTrigger>
+                  <TabsTrigger value="team" className="whitespace-nowrap">Team</TabsTrigger>
+                  <TabsTrigger value="call-to-action" className="whitespace-nowrap">Call to Action</TabsTrigger>
+                  <TabsTrigger value="customer-behavior" className="whitespace-nowrap">Customer Behavior</TabsTrigger>
+                  <TabsTrigger value="valuation" className="whitespace-nowrap">Valuation</TabsTrigger>
+                </TabsList>
+              </div>
+              {/* Scroll indicators */}
+              <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none sm:hidden" />
+              <div className="absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none sm:hidden" />
+            </div>
 
-            {/* Tradewizz Overview Tab */}
+            {/* Tab Contents */}
             <TabsContent value="tradewizz-overview">
               <TradewizzOverviewTab />
             </TabsContent>
 
-            {/* Overview Tab */}
             <TabsContent value="overview">
               <OverviewTab />
             </TabsContent>
 
-            {/* Problem & Solution Tab */}
             <TabsContent value="problem-solution">
               <ProblemSolutionTab />
             </TabsContent>
 
-            {/* Market Tab */}
             <TabsContent value="market">
               <MarketTab />
             </TabsContent>
 
-            {/* Traction Tab */}
             <TabsContent value="traction">
               <TractionTab />
             </TabsContent>
