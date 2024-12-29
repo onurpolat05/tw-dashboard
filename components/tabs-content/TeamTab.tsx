@@ -310,9 +310,7 @@ const TeamTab = () => {
             <div className="p-4 bg-white rounded-lg border border-gray-100">
               <div className="space-y-1">
                 <p className="text-sm text-gray-600">Total Reach</p>
-                <p className="text-2xl font-bold text-[#4ADE80]">
-                  179.368 Individuals
-                </p>
+                <p className="text-2xl font-bold text-[#4ADE80]">179.368 Ind</p>
               </div>
             </div>
             <div className="p-4 bg-white rounded-lg border border-gray-100">
