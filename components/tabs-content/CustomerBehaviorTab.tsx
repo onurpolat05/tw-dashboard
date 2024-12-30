@@ -8,7 +8,7 @@ const CustomerBehaviorTab = () => {
   return (
     <div className="space-y-6">
       <Card className="p-6">
-        <h2 className="mb-6 text-xl font-semibold">Customer Metrics - Optimal Scenario</h2>
+        <h2 className="mb-6 text-xl font-semibold">Customer Metrics</h2>
         <CustomerMetricsChart />
       </Card>
 
