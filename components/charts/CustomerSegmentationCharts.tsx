@@ -1,5 +1,40 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
 
 interface DataItem {
   name: string;
@@ -38,13 +73,25 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 interface PieChartProps {
   data: DataItem[];
   title: string;
+  onExport: () => void;
 }
 
-const CustomPieChart: React.FC<PieChartProps> = ({ data, title }) => {
+const CustomPieChart = ({ data, title, onExport }: PieChartProps) => {
   return (
-    <div className="space-y-3">
-      <h4 className="text-lg font-semibold text-center text-gray-900">{title}</h4>
-      <div className="h-[200px] bg-gradient-to-br from-indigo-50 to-white rounded-lg p-4">
+    <div className="bg-white rounded-lg p-4 shadow-sm">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onExport}
+          className="flex gap-2 items-center"
+        >
+          <Download className="w-4 h-4" />
+          <span className="hidden sm:inline">SVG</span>
+        </Button>
+      </div>
+      <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -53,47 +100,69 @@ const CustomPieChart: React.FC<PieChartProps> = ({ data, title }) => {
               cy="50%"
               labelLine={false}
               label={renderCustomizedLabel}
-              outerRadius={80}
+              outerRadius={100}
               fill="#8884d8"
               dataKey="value"
-              nameKey="name"
             >
-              {data.map((entry) => (
+              {data.map((entry, index) => (
                 <Cell 
-                  key={`cell-${entry.name}`} 
-                  fill={BUSINESS_MODEL_COLORS[entry.name as keyof typeof BUSINESS_MODEL_COLORS]}
-                  className="transition-opacity hover:opacity-80"
+                  key={`cell-${index}`} 
+                  fill={BUSINESS_MODEL_COLORS[entry.name as keyof typeof BUSINESS_MODEL_COLORS]} 
                 />
               ))}
             </Pie>
             <Tooltip 
-              formatter={(value: any, name: string) => [`${(value * 100).toFixed(1)}%`, name]}
+              formatter={(value: number) => `${(value * 100).toFixed(1)}%`}
               contentStyle={{
-                backgroundColor: '#fff',
+                backgroundColor: 'white',
                 border: '1px solid #E0E0E0',
-                borderRadius: '6px',
+                borderRadius: '4px',
                 fontSize: '12px'
               }}
             />
           </PieChart>
         </ResponsiveContainer>
       </div>
-      <div className="flex flex-wrap gap-4 justify-center">
-        {data.map((item) => (
-          <div key={item.name} className="flex gap-2 items-center">
-            <div 
-              className="w-3 h-3 rounded-full" 
-              style={{ backgroundColor: BUSINESS_MODEL_COLORS[item.name as keyof typeof BUSINESS_MODEL_COLORS] }}
-            />
-            <span className="text-sm text-gray-600">{item.name}</span>
-          </div>
-        ))}
+      <div className="mt-4">
+        <div className="grid grid-cols-2 gap-2">
+          {data.map((item, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <div 
+                className="w-3 h-3 rounded-full" 
+                style={{ backgroundColor: BUSINESS_MODEL_COLORS[item.name as keyof typeof BUSINESS_MODEL_COLORS] }}
+              />
+              <span className="text-xs text-gray-600">{item.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 const CustomerSegmentationCharts = () => {
+  const chart2025Ref = useRef<HTMLDivElement>(null);
+  const chart2026Ref = useRef<HTMLDivElement>(null);
+  const chart2027Ref = useRef<HTMLDivElement>(null);
+
+  const handleExport2025 = () => {
+    if (chart2025Ref.current) {
+      exportToSVG(chart2025Ref.current, 'customer-segmentation-2025');
+    }
+  };
+
+  const handleExport2026 = () => {
+    if (chart2026Ref.current) {
+      exportToSVG(chart2026Ref.current, 'customer-segmentation-2026');
+    }
+  };
+
+  const handleExport2027 = () => {
+    if (chart2027Ref.current) {
+      exportToSVG(chart2027Ref.current, 'customer-segmentation-2027');
+    }
+  };
+
   // Data from CSV converted to proper format for each year
   const year2025Data = [
     { name: 'Drop (PL, Manual)', value: 0.0375 },
@@ -118,18 +187,27 @@ const CustomerSegmentationCharts = () => {
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-      <CustomPieChart
-        data={year2025Data}
-        title="2025"
-      />
-      <CustomPieChart
-        data={year2026Data}
-        title="2026"
-      />
-      <CustomPieChart
-        data={year2027Data}
-        title="2027"
-      />
+      <div ref={chart2025Ref}>
+        <CustomPieChart
+          data={year2025Data}
+          title="2025"
+          onExport={handleExport2025}
+        />
+      </div>
+      <div ref={chart2026Ref}>
+        <CustomPieChart
+          data={year2026Data}
+          title="2026"
+          onExport={handleExport2026}
+        />
+      </div>
+      <div ref={chart2027Ref}>
+        <CustomPieChart
+          data={year2027Data}
+          title="2027"
+          onExport={handleExport2027}
+        />
+      </div>
     </div>
   );
 };

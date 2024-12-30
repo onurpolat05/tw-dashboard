@@ -1,7 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { ChartProps } from '@/types/types';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+import html2canvas from 'html2canvas';
+
+// Utility function to download chart as PNG using html2canvas
+const downloadChartAsPNG = async (element: HTMLDivElement, fileName: string) => {
+  try {
+    const canvas = await html2canvas(element, {
+      backgroundColor: '#ffffff',
+      scale: 2, // Increase quality
+      logging: false,
+      useCORS: true,
+      allowTaint: true,
+    });
+
+    // Create download link
+    const link = document.createElement('a');
+    link.download = `${fileName}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch (error) {
+    console.error('Error generating PNG:', error);
+  }
+};
+
+// Utility function to download chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
 
 // Add mock data at the top of the file
 const mockMonthlyData = [
@@ -37,6 +94,7 @@ const mockMonthlyDynamicsData = [
 ];
 
 const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
+  const chartRef = useRef<HTMLDivElement>(null);
   const [filters, setFilters] = useState({
     mrr: true,
     momGrowthRate: true,
@@ -76,13 +134,33 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
     </div>
   );
 
+  const handleDownloadSVG = () => {
+    if (chartRef.current) {
+      exportToSVG(chartRef.current, 'mrr-growth-chart');
+    }
+  };
+
   return (
     <Card className="p-4 md:p-6">
       <CardHeader className="px-0 pt-0">
-        <CardTitle className="text-lg md:text-xl lg:text-2xl">Growth Metrics</CardTitle>
+        <div className="flex justify-between items-center">
+          <CardTitle className="text-lg md:text-xl lg:text-2xl">Growth Metrics</CardTitle>
+          <div className="flex gap-2">
+            
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleDownloadSVG}
+              className="flex gap-2 items-center"
+            >
+              <Download className="w-4 h-4" />
+              <span className="hidden sm:inline">SVG</span>
+            </Button>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="h-[300px] md:h-[400px]">
+        <div ref={chartRef} className="h-[300px] md:h-[400px] bg-white">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart 
               data={data} 
@@ -181,6 +259,7 @@ const MRRAndGrowthChart: React.FC<ChartProps> = ({ data }) => {
 };
 
 const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
+  const chartRef = useRef<HTMLDivElement>(null);
   const [filters, setFilters] = useState({
     newMrr: true,
     reactivation: true,
@@ -221,13 +300,33 @@ const MRRDynamics: React.FC<ChartProps> = ({ data }) => {
     </div>
   );
 
+
+  const handleDownloadSVG = () => {
+    if (chartRef.current) {
+      exportToSVG(chartRef.current, 'mrr-dynamics-chart');
+    }
+  };
+
   return (
     <Card className="p-4 md:p-6">
       <CardHeader className="px-0 pt-0">
-        <CardTitle className="text-lg md:text-xl lg:text-2xl">MRR Dynamics</CardTitle>
+        <div className="flex justify-between items-center">
+          <CardTitle className="text-lg md:text-xl lg:text-2xl">MRR Dynamics</CardTitle>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleDownloadSVG}
+              className="flex gap-2 items-center"
+            >
+              <Download className="w-4 h-4" />
+              <span className="hidden sm:inline">SVG</span>
+            </Button>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="h-[300px] md:h-[400px]">
+        <div ref={chartRef} className="h-[300px] md:h-[400px] bg-white">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart 
               data={data}

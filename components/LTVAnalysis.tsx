@@ -1,7 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, ComposedChart } from 'recharts';
 import CustomerAcquisitionSection from './tabs-content/traction-sections/CustomerAcquisitionSection';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
 
 interface LTVMetricsData {
   month: string;
@@ -30,7 +65,6 @@ const LTVAnalysis: React.FC = () => {
     { month: '24-11', ltv: 9.99, cac: 0.00, ltv_cac_ratio: 0.00, yearly_avg_cac: 6.33, ad_spend: 0.00 }
   ];
 
-
   const [filters, setFilters] = useState({
     ltv: true,
     cac: true,
@@ -38,8 +72,25 @@ const LTVAnalysis: React.FC = () => {
     ratio: true
   });
 
+  // Refs for chart containers
+  const ltvChartRef = useRef<HTMLDivElement>(null);
+  const cacChartRef = useRef<HTMLDivElement>(null);
+
   const toggleFilter = (key: keyof typeof filters) => {
     setFilters(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  // Export handlers
+  const handleExportLTVChart = () => {
+    if (ltvChartRef.current) {
+      exportToSVG(ltvChartRef.current, 'ltv-cac-analysis-chart');
+    }
+  };
+
+  const handleExportCACChart = () => {
+    if (cacChartRef.current) {
+      exportToSVG(cacChartRef.current, 'cac-efficiency-chart');
+    }
   };
 
   return (
@@ -53,20 +104,26 @@ const LTVAnalysis: React.FC = () => {
 
           <CustomerAcquisitionSection />
 
-
-
-
           {/* Charts Grid */}
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 md:gap-6 lg:gap-8">
             {/* LTV Trends */}
             <Card className="p-4 md:p-6">
               <CardHeader className="px-0 pt-0">
-                <div className="flex flex-col gap-2 justify-between md:flex-row md:items-center md:gap-0">
+                <div className="flex justify-between items-center">
                   <CardTitle className="text-lg md:text-xl">LTV, CAC & Ad Spend Analysis</CardTitle>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleExportLTVChart}
+                    className="flex gap-2 items-center"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span className="hidden sm:inline">SVG</span>
+                  </Button>
                 </div>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="h-[240px] md:h-[300px]">
+                <div ref={ltvChartRef} className="h-[240px] md:h-[300px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={mockLTVData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
@@ -183,12 +240,21 @@ const LTVAnalysis: React.FC = () => {
             {/* CAC Analysis */}
             <Card className="p-4 md:p-6">
               <CardHeader className="px-0 pt-0">
-                <div className="flex flex-col gap-2 justify-between md:flex-row md:items-center md:gap-0">
+                <div className="flex justify-between items-center">
                   <CardTitle className="text-lg md:text-xl">CAC Efficiency & LTV:CAC Ratio</CardTitle>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleExportCACChart}
+                    className="flex gap-2 items-center"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span className="hidden sm:inline">SVG</span>
+                  </Button>
                 </div>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="h-[240px] md:h-[300px]">
+                <div ref={cacChartRef} className="h-[240px] md:h-[300px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={mockLTVData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />

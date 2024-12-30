@@ -1,5 +1,38 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import IRRSensitivityHeatmap from './IRRSensitivityHeatmap';
+
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
 
 // Generate data points for the heatmap
 const generateHeatmapData = (values: number[][]) => {
@@ -50,31 +83,56 @@ const worstCaseValues = [
 ];
 
 const IRRSensitivityContainer = () => {
+  const bestCaseRef = useRef<HTMLDivElement>(null);
+  const optimalCaseRef = useRef<HTMLDivElement>(null);
+  const worstCaseRef = useRef<HTMLDivElement>(null);
+
+  const handleExportBestCase = () => {
+    if (bestCaseRef.current) {
+      exportToSVG(bestCaseRef.current, 'irr-sensitivity-best-case');
+    }
+  };
+
+  const handleExportOptimalCase = () => {
+    if (optimalCaseRef.current) {
+      exportToSVG(optimalCaseRef.current, 'irr-sensitivity-optimal-case');
+    }
+  };
+
+  const handleExportWorstCase = () => {
+    if (worstCaseRef.current) {
+      exportToSVG(worstCaseRef.current, 'irr-sensitivity-worst-case');
+    }
+  };
+
   const bestCaseData = generateHeatmapData(bestCaseValues);
   const optimalCaseData = generateHeatmapData(optimalCaseValues);
   const worstCaseData = generateHeatmapData(worstCaseValues);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+      <div ref={bestCaseRef} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
         <IRRSensitivityHeatmap
           data={bestCaseData}
           title="Best Case - IRR Sensitivity (%)"
           maxValue={65}
+          onExport={handleExportBestCase}
         />
       </div>
-      <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+      <div ref={optimalCaseRef} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
         <IRRSensitivityHeatmap
           data={optimalCaseData}
           title="Optimal Case - IRR Sensitivity (%)"
           maxValue={57}
+          onExport={handleExportOptimalCase}
         />
       </div>
-      <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+      <div ref={worstCaseRef} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
         <IRRSensitivityHeatmap
           data={worstCaseData}
           title="Worst Case - IRR Sensitivity (%)"
           maxValue={46}
+          onExport={handleExportWorstCase}
         />
       </div>
     </div>

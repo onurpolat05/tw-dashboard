@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   BarChart,
   Bar,
@@ -7,7 +7,10 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from 'recharts';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
 
 interface DataItem {
   quarter: string;
@@ -94,11 +97,63 @@ const CustomXAxisTick: React.FC<any> = ({ x, y, payload }) => {
   );
 };
 
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
+
 const QuarterlyExpensesChart: React.FC = () => {
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const handleExportSVG = () => {
+    if (chartRef.current) {
+      exportToSVG(chartRef.current, 'quarterly-expenses-chart');
+    }
+  };
+
   return (
-    <div className="h-[550px] w-full p-4">
-      <h3 className="mb-8 text-2xl font-semibold text-gray-900">Quarterly Expenses</h3>
-      <div className="h-[450px]">
+    <div className="h-[550px] w-full">
+      <div className="flex justify-between items-center mb-8">
+        <h3 className="text-2xl font-semibold text-gray-900">Quarterly Expenses</h3>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleExportSVG}
+          className="flex gap-2 items-center"
+        >
+          <Download className="w-4 h-4" />
+          <span className="hidden sm:inline">SVG</span>
+        </Button>
+      </div>
+      <div ref={chartRef} className="h-[450px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart 
             data={data}

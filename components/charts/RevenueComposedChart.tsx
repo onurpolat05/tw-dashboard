@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   ComposedChart,
   Line,
@@ -10,6 +10,41 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
 
 const data = [
   {
@@ -45,97 +80,118 @@ const data = [
 ];
 
 const RevenueComposedChart = () => {
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const handleExportSVG = () => {
+    if (chartRef.current) {
+      exportToSVG(chartRef.current, 'revenue-distribution-chart');
+    }
+  };
+
   return (
-    <div className="h-[300px] md:h-[400px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <ComposedChart
-          data={data}
-          margin={{
-            top: 20,
-            right: 10,
-            bottom: 20,
-            left: 10,
-          }}
+    <div className="space-y-4">
+      <div className="flex justify-end">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleExportSVG}
+          className="flex gap-2 items-center"
         >
-          <CartesianGrid stroke="#f5f5f5" strokeDasharray="3 3" vertical={false} />
-          <XAxis 
-            dataKey="year" 
-            scale="band"
-            tick={{ fontSize: 12 }}
-            tickLine={false}
-            axisLine={{ stroke: '#E5E7EB' }}
-          />
-          <YAxis 
-            yAxisId="left" 
-            orientation="left"
-            tick={{ fontSize: 12 }}
-            tickLine={false}
-            axisLine={{ stroke: '#E5E7EB' }}
-            tickFormatter={(value) => `${value}%`}
-          />
-          <YAxis 
-            yAxisId="right" 
-            orientation="right"
-            tick={{ fontSize: 12 }}
-            tickLine={false}
-            axisLine={{ stroke: '#E5E7EB' }}
-            tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
-          />
-          <Tooltip 
-            contentStyle={{ 
-              backgroundColor: 'white',
-              border: '1px solid #E5E7EB',
-              borderRadius: '0.375rem',
-              fontSize: '0.875rem'
+          <Download className="w-4 h-4" />
+          <span className="hidden sm:inline">SVG</span>
+        </Button>
+      </div>
+      <div ref={chartRef} className="h-[300px] md:h-[400px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <ComposedChart
+            data={data}
+            margin={{
+              top: 20,
+              right: 10,
+              bottom: 20,
+              left: 10,
             }}
-          />
-          <Legend 
-            verticalAlign="top"
-            height={36}
-            iconSize={8}
-            iconType="circle"
-            wrapperStyle={{ fontSize: '0.875rem' }}
-          />
-          
-          {/* Percentage Bars */}
-          <Bar 
-            yAxisId="left" 
-            dataKey="subscriptionPercentage" 
-            name="Subscription %" 
-            fill="#8B5CF6"
-            radius={[4, 4, 0, 0]}
-            maxBarSize={48}
-          />
-          <Bar 
-            yAxisId="left" 
-            dataKey="warehousePercentage" 
-            name="Warehouse %" 
-            fill="#EC4899"
-            radius={[4, 4, 0, 0]}
-            maxBarSize={48}
-          />
-          <Bar 
-            yAxisId="left" 
-            dataKey="shopPercentage" 
-            name="TW Shop %" 
-            fill="#10B981"
-            radius={[4, 4, 0, 0]}
-            maxBarSize={48}
-          />
-          
-          {/* Total Value Line */}
-          <Line
-            yAxisId="right"
-            type="monotone"
-            dataKey="total"
-            name="Total Revenue"
-            stroke="#ff7300"
-            strokeWidth={2}
-            dot={{ r: 4, strokeWidth: 2 }}
-            activeDot={{ r: 6, strokeWidth: 2 }}
-          />
-        </ComposedChart>
-      </ResponsiveContainer>
+          >
+            <CartesianGrid stroke="#f5f5f5" strokeDasharray="3 3" vertical={false} />
+            <XAxis 
+              dataKey="year" 
+              scale="band"
+              tick={{ fontSize: 12 }}
+              tickLine={false}
+              axisLine={{ stroke: '#E5E7EB' }}
+            />
+            <YAxis 
+              yAxisId="left" 
+              orientation="left"
+              tick={{ fontSize: 12 }}
+              tickLine={false}
+              axisLine={{ stroke: '#E5E7EB' }}
+              tickFormatter={(value) => `${value}%`}
+            />
+            <YAxis 
+              yAxisId="right" 
+              orientation="right"
+              tick={{ fontSize: 12 }}
+              tickLine={false}
+              axisLine={{ stroke: '#E5E7EB' }}
+              tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+            />
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: 'white',
+                border: '1px solid #E5E7EB',
+                borderRadius: '0.375rem',
+                fontSize: '0.875rem'
+              }}
+            />
+            <Legend 
+              verticalAlign="top"
+              height={36}
+              iconSize={8}
+              iconType="circle"
+              wrapperStyle={{ fontSize: '0.875rem' }}
+            />
+            
+            {/* Percentage Bars */}
+            <Bar 
+              yAxisId="left" 
+              dataKey="subscriptionPercentage" 
+              name="Subscription %" 
+              fill="#8B5CF6"
+              radius={[4, 4, 0, 0]}
+              maxBarSize={48}
+            />
+            <Bar 
+              yAxisId="left" 
+              dataKey="warehousePercentage" 
+              name="Warehouse %" 
+              fill="#EC4899"
+              radius={[4, 4, 0, 0]}
+              maxBarSize={48}
+            />
+            <Bar 
+              yAxisId="left" 
+              dataKey="shopPercentage" 
+              name="TW Shop %" 
+              fill="#10B981"
+              radius={[4, 4, 0, 0]}
+              maxBarSize={48}
+            />
+            
+            {/* Total Value Line */}
+            <Line
+              yAxisId="right"
+              type="monotone"
+              dataKey="total"
+              name="Total Revenue"
+              stroke="#ff7300"
+              strokeWidth={2}
+              dot={{ r: 4, strokeWidth: 2 }}
+              activeDot={{ r: 6, strokeWidth: 2 }}
+            />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };

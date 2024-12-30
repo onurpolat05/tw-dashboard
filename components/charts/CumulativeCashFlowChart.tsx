@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   LineChart,
   Line,
@@ -10,6 +10,41 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from 'recharts';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
 
 const data = [
   { quarter: 'Q1', bestCase: -150000, optimalCase: -150000, worstCase: -150000 },
@@ -38,6 +73,14 @@ const formatCurrency = (value: number) => {
 };
 
 const CumulativeCashFlowChart = () => {
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const handleExportSVG = () => {
+    if (chartRef.current) {
+      exportToSVG(chartRef.current, 'cumulative-cash-flow-chart');
+    }
+  };
+
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
@@ -61,7 +104,7 @@ const CumulativeCashFlowChart = () => {
   const CustomLegend = (props: any) => {
     const { payload } = props;
     return (
-      <div className="flex gap-6 justify-end mb-4">
+      <div className="flex gap-6 justify-center">
         {payload.map((entry: any, index: number) => (
           <div key={index} className="flex gap-2 items-center">
             <div
@@ -78,57 +121,70 @@ const CumulativeCashFlowChart = () => {
   };
 
   return (
-    <div className="h-[400px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+    <>
+      <div className="flex justify-end mb-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleExportSVG}
+          className="flex gap-2 items-center"
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#E0E0E0" />
-          <XAxis
-            dataKey="quarter"
-            tick={{ fill: '#4B5563', fontSize: 12 }}
-            tickLine={{ stroke: '#E0E0E0' }}
-          />
-          <YAxis
-            tick={{ fill: '#4B5563', fontSize: 12 }}
-            tickLine={{ stroke: '#E0E0E0' }}
-            tickFormatter={formatCurrency}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend content={<CustomLegend />} />
-          <ReferenceLine y={0} stroke="#E0E0E0" strokeWidth={2} />
-          
-          <Line
-            type="monotone"
-            dataKey="bestCase"
-            name="Best Case"
-            stroke="#4F46E5"
-            strokeWidth={2}
-            dot={{ fill: '#4F46E5', r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-          <Line
-            type="monotone"
-            dataKey="optimalCase"
-            name="Optimal Case"
-            stroke="#F59E0B"
-            strokeWidth={2}
-            dot={{ fill: '#F59E0B', r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-          <Line
-            type="monotone"
-            dataKey="worstCase"
-            name="Worst Case"
-            stroke="#10B981"
-            strokeWidth={2}
-            dot={{ fill: '#10B981', r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+          <Download className="w-4 h-4" />
+          <span className="hidden sm:inline">SVG</span>
+        </Button>
+      </div>
+      <div ref={chartRef} className="h-[400px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={data}
+            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" stroke="#E0E0E0" />
+            <XAxis
+              dataKey="quarter"
+              tick={{ fill: '#4B5563', fontSize: 12 }}
+              tickLine={{ stroke: '#E0E0E0' }}
+            />
+            <YAxis
+              tick={{ fill: '#4B5563', fontSize: 12 }}
+              tickLine={{ stroke: '#E0E0E0' }}
+              tickFormatter={formatCurrency}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend content={<CustomLegend />} />
+            <ReferenceLine y={0} stroke="#E0E0E0" strokeWidth={2} />
+            
+            <Line
+              type="monotone"
+              dataKey="bestCase"
+              name="Best Case"
+              stroke="#4F46E5"
+              strokeWidth={2}
+              dot={{ fill: '#4F46E5', r: 4 }}
+              activeDot={{ r: 6 }}
+            />
+            <Line
+              type="monotone"
+              dataKey="optimalCase"
+              name="Optimal Case"
+              stroke="#F59E0B"
+              strokeWidth={2}
+              dot={{ fill: '#F59E0B', r: 4 }}
+              activeDot={{ r: 6 }}
+            />
+            <Line
+              type="monotone"
+              dataKey="worstCase"
+              name="Worst Case"
+              stroke="#10B981"
+              strokeWidth={2}
+              dot={{ fill: '#10B981', r: 4 }}
+              activeDot={{ r: 6 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </>
   );
 };
 

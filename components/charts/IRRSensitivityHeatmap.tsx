@@ -1,13 +1,49 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid, ScatterChart, Scatter, Cell } from 'recharts';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
 
 interface IRRSensitivityProps {
   data: Array<{ x: number; y: number; value: number }>;
   title: string;
   maxValue: number;
+  onExport: () => void;
 }
 
-const IRRSensitivityHeatmap: React.FC<IRRSensitivityProps> = ({ data, title, maxValue }) => {
+const IRRSensitivityHeatmap: React.FC<IRRSensitivityProps> = ({ data, title, maxValue, onExport }) => {
   // Generate color based on value
   const getColor = (value: number) => {
     const normalizedValue = value / maxValue;
@@ -31,7 +67,18 @@ const IRRSensitivityHeatmap: React.FC<IRRSensitivityProps> = ({ data, title, max
 
   return (
     <div className="w-full">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">{title}</h3>
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onExport}
+          className="flex gap-2 items-center"
+        >
+          <Download className="w-4 h-4" />
+          <span className="hidden sm:inline">SVG</span>
+        </Button>
+      </div>
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart

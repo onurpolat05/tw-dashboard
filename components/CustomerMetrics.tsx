@@ -1,8 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import TotalCustomersSection from './tabs-content/traction-sections/TotalCustomersSection';
 import SubscriptionDistribution from './SubscriptionDistribution';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Add white background
+    clonedSvg.style.backgroundColor = 'white';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
+
 interface CustomerMetricsData {
   month: string;
   total_users: number;
@@ -81,6 +117,10 @@ const CustomerMetrics: React.FC = () => {
     simple: true
   });
 
+  // Refs for chart containers
+  const userChartRef = useRef<HTMLDivElement>(null);
+  const revenueChartRef = useRef<HTMLDivElement>(null);
+
   // Toggle filters
   const toggleUserFilter = (key: keyof typeof userFilters) => {
     setUserFilters(prev => ({ ...prev, [key]: !prev[key] }));
@@ -88,6 +128,19 @@ const CustomerMetrics: React.FC = () => {
 
   const togglePackageFilter = (key: keyof typeof packageFilters) => {
     setPackageFilters(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  // Export handlers
+  const handleExportUserChart = () => {
+    if (userChartRef.current) {
+      exportToSVG(userChartRef.current, 'user-distribution-chart');
+    }
+  };
+
+  const handleExportRevenueChart = () => {
+    if (revenueChartRef.current) {
+      exportToSVG(revenueChartRef.current, 'package-revenue-chart');
+    }
   };
 
   return (
@@ -101,22 +154,29 @@ const CustomerMetrics: React.FC = () => {
 
           <TotalCustomersSection />
 
+          {/* Subscription Distribution */}
+          <SubscriptionDistribution />
 
-
-
-                {/* Subscription Distribution */}
-                <SubscriptionDistribution />
           {/* Charts Row */}
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 md:gap-6 lg:gap-8">
             {/* Monthly User Distribution */}
             <Card className="p-4 md:p-6">
               <CardHeader className="px-0 pt-0">
-                <div className="flex flex-col gap-2">
+                <div className="flex justify-between items-center">
                   <CardTitle className="text-lg md:text-xl">Monthly User Distribution</CardTitle>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleExportUserChart}
+                    className="flex gap-2 items-center"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span className="hidden sm:inline">SVG</span>
+                  </Button>
                 </div>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="h-[240px] md:h-[300px]">
+                <div ref={userChartRef} className="h-[240px] md:h-[300px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={formattedData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
@@ -199,12 +259,21 @@ const CustomerMetrics: React.FC = () => {
             {/* Monthly Package Revenue */}
             <Card className="p-4 md:p-6">
               <CardHeader className="px-0 pt-0">
-                <div className="flex flex-col gap-2">
+                <div className="flex justify-between items-center">
                   <CardTitle className="text-lg md:text-xl">Monthly Package Revenue</CardTitle>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleExportRevenueChart}
+                    className="flex gap-2 items-center"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span className="hidden sm:inline">SVG</span>
+                  </Button>
                 </div>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="h-[240px] md:h-[300px]">
+                <div ref={revenueChartRef} className="h-[240px] md:h-[300px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={formattedData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E0E0E0" />
