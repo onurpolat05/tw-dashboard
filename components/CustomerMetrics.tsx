@@ -19,7 +19,7 @@ const exportToSVG = (element: HTMLDivElement, fileName: string) => {
     const clonedSvg = svgElement.cloneNode(true) as SVGElement;
     
     // Add white background
-    clonedSvg.style.backgroundColor = 'white';
+    clonedSvg.style.backgroundColor = 'transparent';
     
     // Get SVG string
     const svgString = new XMLSerializer().serializeToString(clonedSvg);

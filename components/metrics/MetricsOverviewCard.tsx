@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import MetricCard from './MetricCard';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+
+// Utility function to export chart as SVG
+const exportToSVG = (element: HTMLDivElement, fileName: string) => {
+  try {
+    const svgElement = element.querySelector('svg');
+    if (!svgElement) {
+      console.error('SVG element not found');
+      return;
+    }
+
+    // Clone the SVG to avoid modifying the original
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
+    
+    // Remove any existing background color to keep it transparent
+    clonedSvg.style.backgroundColor = 'transparent';
+    
+    // Get SVG string
+    const svgString = new XMLSerializer().serializeToString(clonedSvg);
+    
+    // Create blob and download
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.svg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error generating SVG:', error);
+  }
+};
 
 const customerData = [
   { year: '2025', count: 1405 },
@@ -57,6 +92,14 @@ const metricsData = {
 };
 
 const MetricsOverviewCard = () => {
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const handleExportSVG = () => {
+    if (chartRef.current) {
+      exportToSVG(chartRef.current, 'customer-count-chart');
+    }
+  };
+
   return (
     <Card className="bg-white shadow-sm">
       <CardHeader className="border-b">
@@ -73,11 +116,22 @@ const MetricsOverviewCard = () => {
 
           {/* Customer Count Chart */}
           <Card className="overflow-hidden bg-gradient-to-br from-cyan-50 to-white border border-cyan-100 transition-all hover:shadow-md">
-            <CardHeader className="p-3 text-center border-b border-cyan-100/30">
-              <CardTitle className="text-lg font-semibold text-cyan-900">Customer Count Chart</CardTitle>
+            <CardHeader className="p-3 border-b border-cyan-100/30">
+              <div className="flex justify-between items-center">
+                <CardTitle className="text-lg font-semibold text-cyan-900">Customer Count Chart</CardTitle>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExportSVG}
+                  className="flex gap-2 items-center"
+                >
+                  <Download className="w-4 h-4" />
+                  <span className="hidden sm:inline">SVG</span>
+                </Button>
+              </div>
             </CardHeader>
             <CardContent className="p-4">
-              <div className="h-[250px] w-full">
+              <div ref={chartRef} className="h-[250px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart 
                     data={customerData} 
