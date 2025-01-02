@@ -47,16 +47,16 @@ const HRStructureChart = () => {
   ];
 
   return (
-    <div className="w-full overflow-x-auto bg-gradient-to-br from-gray-50 to-white rounded-lg">
+    <div className="w-full overflow-x-auto bg-gradient-to-br from-purple-50/20 to-white rounded-lg">
       <div className="min-w-[800px] p-8">
         {/* Founding Team */}
         <div className="flex flex-col items-center">
-          <div className="px-10 py-5 bg-gradient-to-br from-indigo-50 to-white rounded-xl border-2 border-indigo-200 shadow-sm hover:shadow-md transition-shadow">
-            <span className="text-indigo-900 font-semibold text-lg">
+          <div className="px-10 py-5 bg-purple-600 rounded-xl border-2 border-purple-500 shadow-sm hover:shadow-md transition-shadow">
+            <span className="text-white font-semibold text-lg">
               Founding Team
             </span>
           </div>
-          <div className="w-[3px] h-20 bg-gradient-to-b from-indigo-200 to-purple-200"></div>
+          <div className="w-[3px] h-20 bg-gradient-to-b from-purple-600 to-purple-500"></div>
         </div>
 
         {/* Departments Container */}
@@ -66,29 +66,29 @@ const HRStructureChart = () => {
             {departments.map((dept, index) => (
               <div key={index} className="flex flex-col items-center relative">
                 {/* Vertical Line */}
-                <div className="w-[3px] h-12 bg-gradient-to-b from-purple-200 to-purple-100"></div>
+                <div className="w-[3px] h-12 bg-gradient-to-b from-purple-500 to-purple-400"></div>
 
                 {/* Horizontal Line - Only between vertical lines */}
                 {index > 0 && index < departments.length - 1 && (
                   <>
                     {/* Left horizontal line */}
-                    <div className="absolute top-0 right-1/2 w-[calc(50%+1rem)] h-[3px] bg-gradient-to-r from-indigo-200 to-purple-200"></div>
+                    <div className="absolute top-0 right-1/2 w-[calc(50%+1rem)] h-[3px] bg-purple-500"></div>
                     {/* Right horizontal line */}
-                    <div className="absolute top-0 left-1/2 w-[calc(50%+1rem)] h-[3px] bg-gradient-to-r from-purple-200 to-indigo-200"></div>
+                    <div className="absolute top-0 left-1/2 w-[calc(50%+1rem)] h-[3px] bg-purple-500"></div>
                   </>
                 )}
                 {/* First department - only right line */}
                 {index === 0 && (
-                  <div className="absolute top-0 left-1/2 w-[calc(50%+1rem)] h-[3px] bg-gradient-to-r from-purple-200 to-indigo-200"></div>
+                  <div className="absolute top-0 left-1/2 w-[calc(50%+1rem)] h-[3px] bg-purple-500"></div>
                 )}
                 {/* Last department - only left line */}
                 {index === departments.length - 1 && (
-                  <div className="absolute top-0 right-1/2 w-[calc(50%+1rem)] h-[3px] bg-gradient-to-r from-indigo-200 to-purple-200"></div>
+                  <div className="absolute top-0 right-1/2 w-[calc(50%+1rem)] h-[3px] bg-purple-500"></div>
                 )}
 
                 {/* Department Card */}
-                <div className="w-full px-6 py-4 bg-gradient-to-br from-purple-50 to-white rounded-xl border-2 border-purple-200 shadow-sm hover:shadow-md transition-shadow mb-8">
-                  <span className="text-purple-900 font-semibold text-base block text-center">
+                <div className="w-full px-6 py-4 bg-purple-400 rounded-xl border-2 border-purple-300 shadow-sm hover:shadow-md transition-shadow mb-8">
+                  <span className="text-white font-semibold text-base block text-center">
                     {dept.name}
                   </span>
                 </div>
@@ -98,9 +98,9 @@ const HRStructureChart = () => {
                   {dept.members.map((member, mIndex) => (
                     <div
                       key={mIndex}
-                      className="group px-4 py-3 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:border-purple-200 hover:bg-purple-50/30"
+                      className="group px-4 py-3 bg-purple-100/80 rounded-lg border border-purple-200 shadow-sm hover:shadow-md transition-all duration-200 hover:bg-purple-100"
                     >
-                      <span className="text-gray-700 text-sm block text-center group-hover:text-purple-700 transition-colors">
+                      <span className="text-purple-900 text-sm block text-center">
                         {member.role}
                         {member.count && member.count > 1
                           ? ` (${member.count})`
