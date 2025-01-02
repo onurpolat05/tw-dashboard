@@ -9,7 +9,6 @@ import RevenueMetricCards from "@/components/metrics/RevenueMetricCards";
 import ExpenseCategoriesChart from "@/components/charts/ExpenseCategoriesChart";
 import RevenueGrowthChart from "@/components/charts/RevenueGrowthChart";
 import BurnRateComposedChart from "@/components/charts/BurnRateComposedChart";
-import FinancialMetricsChart from "@/components/charts/FinancialMetricsChart";
 import ExpenseDistributionPieCharts from "@/components/charts/ExpenseDistributionPieCharts";
 import CustomerMetricsChart from "@/components/charts/CustomerMetricsChart";
 import CustomerBehaviorChart from "@/components/charts/CustomerBehaviorChart";
@@ -26,31 +25,19 @@ const FinancialModelTab = () => {
         {/* Top Content Grid */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* Left Side - Metrics Cards */}
-          <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">Key Metrics Overview</h3>
-            <MetricsOverviewCard />
-          </Card>
+          <MetricsOverviewCard />
 
           {/* Right Side - MRR and Customer Growth Chart */}
-          <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">MRR & Customer Growth</h3>
-            <MrrCustomerGrowthChart />
-          </Card>
+          <MrrCustomerGrowthChart />
         </div>
 
         {/* Bottom Content Grid */}
         <div className="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-2">
           {/* Bottom Left Component */}
-          <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">Financial Performance</h3>
-            <OverviewBottomLeftCard />
-          </Card>
+          <OverviewBottomLeftCard />
 
           {/* Bottom Right Component */}
-          <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">Growth Metrics</h3>
-            <OverviewBottomRightCard />
-          </Card>
+          <OverviewBottomRightCard />
         </div>
       </Card>
 
@@ -65,10 +52,7 @@ const FinancialModelTab = () => {
 
         {/* Customer Metrics and Business Model Distribution in same row */}
         <div className="grid grid-cols-1 gap-6 mt-4 lg:grid-cols-2">
-          <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">Customer Metrics</h3>
-            <CustomerMetricsChart />
-          </Card>
+        <CustomerMetricsChart />
 
           <Card className="p-4">
             <h3 className="mb-4 text-lg font-semibold">Business Model Distribution</h3>
