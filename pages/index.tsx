@@ -33,31 +33,31 @@ const HomePage = () => {
         </div>
 
         <div className="grid gap-8 mx-auto max-w-4xl md:grid-cols-2">
-          {/* Current Status Card */}
-          <Link href="/mrr-dashboard" className="block h-full">
+          {/* Value Proposition Card */}
+          <Link href="/value-proposition" className="block h-full">
             <Card className="p-6 h-[200px] bg-gradient-to-br from-purple-50 to-white border-purple-100 transition-all duration-300 cursor-pointer hover:shadow-lg group flex flex-col justify-between">
               <div className="space-y-4">
                 <h2 className="flex justify-between items-center text-2xl font-semibold text-gray-900">
-                  Current Status
+                  Value Proposition
                   <ArrowRight className="w-5 h-5 text-purple-600 transition-transform transform group-hover:translate-x-1" />
                 </h2>
                 <p className="text-gray-600">
-                  View current MRR analytics and performance metrics
+                  Explore our unique value proposition and core offerings
                 </p>
               </div>
             </Card>
           </Link>
 
-          {/* Future Status Card */}
-          <Link href="/future-status" className="block h-full">
+          {/* Financial Projections Card */}
+          <Link href="/financial-projections" className="block h-full">
             <Card className="p-6 h-[200px] bg-gradient-to-br from-fuchsia-50 to-white border-fuchsia-100 transition-all duration-300 cursor-pointer hover:shadow-lg group flex flex-col justify-between">
               <div className="space-y-4">
                 <h2 className="flex justify-between items-center text-2xl font-semibold text-gray-900">
-                  Future Status
+                  Financial Projections
                   <ArrowRight className="w-5 h-5 text-fuchsia-600 transition-transform transform group-hover:translate-x-1" />
                 </h2>
                 <p className="text-gray-600">
-                  Explore pre-seed valuation and future projections
+                  Analyze financial metrics and business performance
                 </p>
               </div>
             </Card>

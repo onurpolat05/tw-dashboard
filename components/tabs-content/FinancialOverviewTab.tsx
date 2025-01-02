@@ -13,7 +13,7 @@ import FinancialMetricsChart from '@/components/charts/FinancialMetricsChart';
 import ExpenseDistributionPieCharts from '@/components/charts/ExpenseDistributionPieCharts';
 import { Card } from '@/components/ui/card';
 
-const TradewizzOverviewTab = () => {
+const FinancialOverviewTab = () => {
   return (
     <div className="space-y-8">
       {/* Top Content Grid */}
@@ -85,4 +85,4 @@ const TradewizzOverviewTab = () => {
   );
 };
 
-export default TradewizzOverviewTab; 
+export default FinancialOverviewTab; 
