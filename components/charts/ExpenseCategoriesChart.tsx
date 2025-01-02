@@ -94,25 +94,11 @@ const CustomLegend: React.FC<any> = ({ payload }) => {
 const ExpenseCategoriesChart: React.FC = () => {
   const chartRef = useRef<HTMLDivElement>(null);
 
-  const handleExportSVG = () => {
-    if (chartRef.current) {
-      exportToSVG(chartRef.current, 'expense-categories-chart');
-    }
-  };
 
   return (
     <div className="h-[550px] w-full p-4">
       <div className="flex justify-between items-center mb-8">
         <h3 className="text-2xl font-semibold text-gray-900">Top 5 Expense Categories (Average)</h3>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handleExportSVG}
-          className="flex gap-2 items-center"
-        >
-          <Download className="w-4 h-4" />
-          <span className="hidden sm:inline">SVG</span>
-        </Button>
       </div>
       <div ref={chartRef} className="h-[450px]">
         <ResponsiveContainer width="100%" height="100%">

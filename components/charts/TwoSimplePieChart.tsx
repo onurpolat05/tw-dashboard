@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import React from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 interface DataItem {
   name: string;
@@ -11,8 +11,6 @@ interface TwoSimplePieChartProps {
   colors: string[];
   title: string;
 }
-
-const RADIAN = Math.PI / 180;
 
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -33,40 +31,49 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   );
 };
 
-class TwoSimplePieChart extends PureComponent<TwoSimplePieChartProps> {
-  render() {
-    const { data, colors, title } = this.props;
+const RADIAN = Math.PI / 180;
 
-    return (
-      <div className="space-y-3">
-        <h4 className="text-xl font-semibold text-center text-gray-900">{title}</h4>
-        <div className="h-[220px] bg-gradient-to-br from-indigo-50 to-white rounded-lg p-4">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={renderCustomizedLabel}
-                outerRadius={90}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {data.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
-                    fill={colors[index % colors.length]}
-                    className="transition-opacity focus:outline-none hover:opacity-80"
-                  />
-                ))}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
+const TwoSimplePieChart = ({ data, colors, title }: TwoSimplePieChartProps) => {
+  return (
+    <div className="p-2 bg-white rounded-lg">
+      <div className="flex justify-center mb-2">
+        <h3 className="text-2xl font-semibold text-gray-900">{title}</h3>
       </div>
-    );
-  }
-}
+      <div className="h-[180px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell 
+                  key={`cell-${index}`} 
+                  fill={colors[index % colors.length]}
+                  className="transition-opacity hover:opacity-80"
+                />
+              ))}
+            </Pie>
+            <Tooltip 
+              formatter={(value: number) => `${(value).toFixed(0)}%`}
+              contentStyle={{
+                backgroundColor: 'white',
+                border: '1px solid #E0E0E0',
+                borderRadius: '4px',
+                fontSize: '12px'
+              }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
 
 export default TwoSimplePieChart; 

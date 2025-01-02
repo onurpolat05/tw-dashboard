@@ -75,20 +75,6 @@ const StackedRevenueChart = () => {
 
   return (
     <Card className="p-4">
-      <CardHeader className="px-0 pt-0">
-        <div className="flex justify-between items-center">
-          <CardTitle className="text-lg md:text-xl">Revenue Sources Trend</CardTitle>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleExportSVG}
-            className="flex gap-2 items-center"
-          >
-            <Download className="w-4 h-4" />
-            <span className="hidden sm:inline">SVG</span>
-          </Button>
-        </div>
-      </CardHeader>
       <CardContent className="p-0">
         <div ref={chartRef} className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">

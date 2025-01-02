@@ -12,6 +12,7 @@ import {
 } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
+import { Card } from '../ui/card';
 
 // Utility function to export chart as SVG
 const exportToSVG = (element: HTMLDivElement, fileName: string) => {
@@ -71,7 +72,7 @@ const CustomerBehaviorChart = () => {
   };
 
   return (
-    <>
+    <Card className="p-6">
       <div className="flex justify-end mb-4">
         <Button
           variant="outline"
@@ -141,7 +142,7 @@ const CustomerBehaviorChart = () => {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-    </>
+    </Card>
   );
 };
 

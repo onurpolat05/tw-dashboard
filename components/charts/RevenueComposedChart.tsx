@@ -134,7 +134,12 @@ const RevenueComposedChart = () => {
               tick={{ fontSize: 12 }}
               tickLine={false}
               axisLine={{ stroke: '#E5E7EB' }}
-              tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+              tickFormatter={(value) => {
+                if (value >= 1000) {
+                  return `$${(value / 1000).toLocaleString()}K`;
+                }
+                return `$${value}`;
+              }}
             />
             <Tooltip 
               contentStyle={{ 
@@ -143,20 +148,32 @@ const RevenueComposedChart = () => {
                 borderRadius: '0.375rem',
                 fontSize: '0.875rem'
               }}
+              formatter={(value: any, name: string) => {
+                if (name === "Total Revenue") {
+                  const formattedValue = value >= 1000000 
+                    ? `$${(value / 1000000).toLocaleString(undefined, { maximumFractionDigits: 1 })}M`
+                    : `$${(value / 1000).toLocaleString(undefined, { maximumFractionDigits: 1 })}K`;
+                  return [formattedValue, name];
+                }
+                return [`${value}%`, name];
+              }}
             />
             <Legend 
-              verticalAlign="top"
+              verticalAlign="bottom"
               height={36}
               iconSize={8}
               iconType="circle"
-              wrapperStyle={{ fontSize: '0.875rem' }}
+              wrapperStyle={{ 
+                fontSize: '0.875rem',
+                paddingTop: '20px'
+              }}
             />
             
             {/* Percentage Bars */}
             <Bar 
               yAxisId="left" 
               dataKey="subscriptionPercentage" 
-              name="Subscription %" 
+              name="Subscription" 
               fill="#8B5CF6"
               radius={[4, 4, 0, 0]}
               maxBarSize={48}
@@ -164,7 +181,7 @@ const RevenueComposedChart = () => {
             <Bar 
               yAxisId="left" 
               dataKey="warehousePercentage" 
-              name="Warehouse %" 
+              name="Warehouse" 
               fill="#EC4899"
               radius={[4, 4, 0, 0]}
               maxBarSize={48}
@@ -172,7 +189,7 @@ const RevenueComposedChart = () => {
             <Bar 
               yAxisId="left" 
               dataKey="shopPercentage" 
-              name="TW Shop %" 
+              name="TW Shop" 
               fill="#10B981"
               radius={[4, 4, 0, 0]}
               maxBarSize={48}

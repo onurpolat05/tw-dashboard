@@ -29,11 +29,12 @@ const FinancialProjectionsPage = () => {
             <div className="relative">
               <div className="overflow-x-auto pb-2 sm:overflow-x-visible">
                 <TabsList className="inline-flex min-w-full bg-white border shadow-sm sm:w-auto">
-                  <TabsTrigger value="financial-overview" className="whitespace-nowrap">Financial Overview</TabsTrigger>
+                  <TabsTrigger value="financial-overview" className="whitespace-nowrap">Overview</TabsTrigger>
+                  <TabsTrigger value="financial-model" className="whitespace-nowrap">Financial Model</TabsTrigger>
                   <TabsTrigger value="mvp-test" className="whitespace-nowrap">MVP Test</TabsTrigger>
                   <TabsTrigger value="market" className="whitespace-nowrap">Market Analysis</TabsTrigger>
                   <TabsTrigger value="valuation" className="whitespace-nowrap">Valuation</TabsTrigger>
-                  <TabsTrigger value="financial-model" className="whitespace-nowrap">Financial Model</TabsTrigger>
+                  
                 </TabsList>
               </div>
               {/* Scroll indicators */}
