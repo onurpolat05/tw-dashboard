@@ -10,6 +10,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
@@ -26,8 +27,63 @@ const exportToSVG = (element: HTMLDivElement, fileName: string) => {
     // Clone the SVG to avoid modifying the original
     const clonedSvg = svgElement.cloneNode(true) as SVGElement;
     
-    // Add white background
+    // Set transparent background
     clonedSvg.style.backgroundColor = 'transparent';
+    clonedSvg.setAttribute('style', 'background-color: transparent');
+
+    // Get the legend element
+    const legendElement = element.querySelector('.recharts-default-legend');
+    if (legendElement) {
+      // Create a new group element for the legend
+      const legendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      legendGroup.setAttribute('class', 'recharts-legend-wrapper');
+      
+      // Get the SVG dimensions
+      const chartWidth = parseFloat(clonedSvg.getAttribute('width') || '0');
+      const chartHeight = parseFloat(clonedSvg.getAttribute('height') || '0');
+      
+      // Calculate total legend width
+      const totalLegendWidth = 200; // Single item with 200px width
+      
+      // Calculate starting x position to center the legend
+      const startX = (chartWidth - totalLegendWidth) / 2;
+      
+      // Convert the legend HTML to SVG elements
+      const legendItems = legendElement.querySelectorAll('.recharts-legend-item');
+      let xOffset = startX;
+      
+      const colors = fileName.includes('revenue') ? ['#8B5CF6'] : ['#10B981']; // Colors based on chart type
+      const names = fileName.includes('revenue') ? ['Revenue Growth'] : ['R&D Sales Ratio'];
+      
+      legendItems.forEach((item: Element, index: number) => {
+        // Create group for each legend item
+        const itemGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        itemGroup.setAttribute('transform', `translate(${xOffset}, ${chartHeight - 40})`);
+        
+        // Add line for the item
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', '0');
+        line.setAttribute('y1', '5');
+        line.setAttribute('x2', '20');
+        line.setAttribute('y2', '5');
+        line.setAttribute('stroke', colors[index]);
+        line.setAttribute('stroke-width', '2');
+        itemGroup.appendChild(line);
+        
+        // Add text
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '30');
+        text.setAttribute('y', '10');
+        text.setAttribute('fill', '#666');
+        text.textContent = names[index];
+        itemGroup.appendChild(text);
+        
+        legendGroup.appendChild(itemGroup);
+        xOffset += 200;
+      });
+      
+      clonedSvg.appendChild(legendGroup);
+    }
     
     // Get SVG string
     const svgString = new XMLSerializer().serializeToString(clonedSvg);
@@ -87,12 +143,12 @@ const ChartCard = ({ title, children, onExport }: { title: string; children: Rea
 );
 
 const commonChartProps = {
-  margin: { top: 20, right: 30, left: 20, bottom: 20 },
+  margin: { top: 20, right: 30, left: 20, bottom: 45 },
   data,
 };
 
 const commonAxisProps = {
-  tick: { fontSize: 12, fill: '#666' },
+  tick: { fontSize: 14, fill: '#666' },
   axisLine: { stroke: '#E0E0E0' },
 };
 
@@ -146,9 +202,11 @@ const FinancialMetricsChart = () => {
                 formatter={(value: any) => [`${value}%`, 'Revenue Growth']}
                 {...tooltipStyle}
               />
+              <Legend />
               <Area
                 type="monotone"
                 dataKey="revenueGrowth"
+                name="Revenue Growth"
                 stroke="#8B5CF6"
                 fill="#8B5CF6"
                 fillOpacity={0.2}
@@ -172,9 +230,11 @@ const FinancialMetricsChart = () => {
                 formatter={(value: any) => [`${value}%`, 'R&D Sales Ratio']}
                 {...tooltipStyle}
               />
+              <Legend />
               <Area
                 type="monotone"
                 dataKey="rdSales"
+                name="R&D Sales Ratio"
                 stroke="#10B981"
                 fill="#10B981"
                 fillOpacity={0.2}

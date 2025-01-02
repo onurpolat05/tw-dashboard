@@ -18,14 +18,15 @@ const exportToSVG = (element: HTMLDivElement, fileName: string) => {
     // Clone the SVG to avoid modifying the original
     const clonedSvg = svgElement.cloneNode(true) as SVGElement;
     
-    // Add white background
+    // Set transparent background
     clonedSvg.style.backgroundColor = 'transparent';
+    clonedSvg.setAttribute('style', 'background-color: transparent');
     
     // Get SVG string
     const svgString = new XMLSerializer().serializeToString(clonedSvg);
     
     // Create blob and download
-    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;

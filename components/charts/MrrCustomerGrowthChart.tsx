@@ -7,7 +7,7 @@ import { Download } from 'lucide-react';
 // Utility function to export chart as SVG
 const exportToSVG = (element: HTMLDivElement, fileName: string) => {
   try {
-    const svgElement = element.querySelector('svg');
+    const svgElement = element.querySelector('.recharts-wrapper svg');
     if (!svgElement) {
       console.error('SVG element not found');
       return;
@@ -16,14 +16,77 @@ const exportToSVG = (element: HTMLDivElement, fileName: string) => {
     // Clone the SVG to avoid modifying the original
     const clonedSvg = svgElement.cloneNode(true) as SVGElement;
     
-    // Add white background
+    // Set transparent background
     clonedSvg.style.backgroundColor = 'transparent';
+    clonedSvg.setAttribute('style', 'background-color: transparent');
+
+    // Get the legend element
+    const legendElement = element.querySelector('.recharts-default-legend');
+    if (legendElement) {
+      // Create a new group element for the legend
+      const legendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      legendGroup.setAttribute('class', 'recharts-legend-wrapper');
+      
+      // Get the SVG dimensions
+      const chartWidth = parseFloat(clonedSvg.getAttribute('width') || '0');
+      const chartHeight = parseFloat(clonedSvg.getAttribute('height') || '0');
+      
+      // Calculate total legend width (2 items * 150px spacing)
+      const totalLegendWidth = 300; // 2 items with 150px spacing
+      
+      // Calculate starting x position to center the legend
+      const startX = (chartWidth - totalLegendWidth) / 2;
+      
+      // Convert the legend HTML to SVG elements
+      const legendItems = legendElement.querySelectorAll('.recharts-legend-item');
+      let xOffset = startX;
+      
+      legendItems.forEach((item: Element, index: number) => {
+        // Create group for each legend item
+        const itemGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        itemGroup.setAttribute('transform', `translate(${xOffset}, ${chartHeight - 30})`);
+        
+        // Add legend symbol (rect or line based on the series type)
+        if (index === 0) { // Line for MRR
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', '0');
+          line.setAttribute('y1', '5');
+          line.setAttribute('x2', '20');
+          line.setAttribute('y2', '5');
+          line.setAttribute('stroke', '#8B5CF6');
+          line.setAttribute('stroke-width', '2');
+          itemGroup.appendChild(line);
+        } else { // Rectangle for Customer Count
+          const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          rect.setAttribute('x', '0');
+          rect.setAttribute('y', '0');
+          rect.setAttribute('width', '20');
+          rect.setAttribute('height', '10');
+          rect.setAttribute('fill', '#D946EF');
+          rect.setAttribute('fill-opacity', '0.8');
+          itemGroup.appendChild(rect);
+        }
+        
+        // Add text
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '30');
+        text.setAttribute('y', '10');
+        text.setAttribute('fill', '#666');
+        text.textContent = index === 0 ? 'MRR Customer' : 'Total Customers';
+        itemGroup.appendChild(text);
+        
+        legendGroup.appendChild(itemGroup);
+        xOffset += 150; // Adjust spacing between legend items
+      });
+      
+      clonedSvg.appendChild(legendGroup);
+    }
     
     // Get SVG string
     const svgString = new XMLSerializer().serializeToString(clonedSvg);
     
     // Create blob and download
-    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -88,13 +151,13 @@ const MrrCustomerGrowthChart = () => {
                 angle={-45}
                 textAnchor="end"
                 height={60}
-                tick={{ fontSize: 10, fill: '#666' }}
+                tick={{ fontSize: 14, fill: '#666' }}
                 tickMargin={20}
                 axisLine={{ stroke: '#E0E0E0' }}
               />
               <YAxis
                 yAxisId="left"
-                tick={{ fontSize: 10, fill: '#666' }}
+                tick={{ fontSize: 14, fill: '#666' }}
                 tickFormatter={(value) => `$${value.toLocaleString()}`}
                 axisLine={{ stroke: '#E0E0E0' }}
                 label={{
@@ -107,7 +170,7 @@ const MrrCustomerGrowthChart = () => {
               <YAxis
                 yAxisId="right"
                 orientation="right"
-                tick={{ fontSize: 10, fill: '#666' }}
+                tick={{ fontSize: 14, fill: '#666' }}
                 tickFormatter={(value) => value.toLocaleString()}
                 axisLine={{ stroke: '#E0E0E0' }}
                 label={{
@@ -124,7 +187,7 @@ const MrrCustomerGrowthChart = () => {
                 ]}
                 labelFormatter={(label) => `Period: ${label}`}
                 contentStyle={{
-                  fontSize: 11,
+                  fontSize: 14,
                   backgroundColor: 'rgba(255, 255, 255, 0.96)',
                   border: '1px solid #E0E0E0',
                   borderRadius: '4px',
