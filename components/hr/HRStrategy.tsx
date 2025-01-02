@@ -22,11 +22,11 @@ const HRStrategy = () => {
   ];
 
   const employeeStats = [
-    { label: "Full-Time Employee", value: "16", icon: Users },
+    { label: "Full-Time Employee", value: "13", icon: Users },
     { label: "Part-Time Employee", value: "1", icon: Users2 },
     { label: "Freelancer", value: "2", icon: Briefcase },
     { label: "Founding Team", value: "4", icon: Target },
-    { label: "Total", value: "23", icon: Building2 },
+    { label: "Total", value: "20", icon: Building2 },
   ];
 
   const growthMetrics = [
