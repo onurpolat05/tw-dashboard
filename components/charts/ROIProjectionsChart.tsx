@@ -11,96 +11,8 @@ import {
   TooltipProps,
   Area,
 } from 'recharts';
-import { Button } from '@/components/ui/button';
-import { Download } from 'lucide-react';
 
-// Utility function to export chart as SVG
-const exportToSVG = (element: HTMLDivElement, fileName: string) => {
-  try {
-    const svgElement = element.querySelector('svg');
-    if (!svgElement) {
-      console.error('SVG element not found');
-      return;
-    }
 
-    // Clone the SVG to avoid modifying the original
-    const clonedSvg = svgElement.cloneNode(true) as SVGElement;
-    
-    // Set transparent background
-    clonedSvg.style.backgroundColor = 'transparent';
-    clonedSvg.setAttribute('style', 'background-color: transparent');
-
-    // Get the legend element
-    const legendElement = element.querySelector('.recharts-default-legend');
-    if (legendElement) {
-      // Create a new group element for the legend
-      const legendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      legendGroup.setAttribute('class', 'recharts-legend-wrapper');
-      
-      // Get the SVG dimensions
-      const chartWidth = parseFloat(clonedSvg.getAttribute('width') || '0');
-      const chartHeight = parseFloat(clonedSvg.getAttribute('height') || '0');
-      
-      // Calculate total legend width (3 items * 150px spacing)
-      const totalLegendWidth = 450; // 3 items with 150px spacing
-      
-      // Calculate starting x position to center the legend
-      const startX = (chartWidth - totalLegendWidth) / 2;
-      
-      // Convert the legend HTML to SVG elements
-      const legendItems = legendElement.querySelectorAll('.recharts-legend-item');
-      let xOffset = startX;
-      
-      const colors = ['#8B5CF6', '#EF4444', '#10B981']; // Best Case, Worst Case, Optimal Case colors
-      const names = ['Best Case', 'Worst Case', 'Optimal Case'];
-      
-      legendItems.forEach((item: Element, index: number) => {
-        // Create group for each legend item
-        const itemGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        itemGroup.setAttribute('transform', `translate(${xOffset}, ${chartHeight - 30})`);
-        
-        // Add line for all cases
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('x1', '0');
-        line.setAttribute('y1', '5');
-        line.setAttribute('x2', '20');
-        line.setAttribute('y2', '5');
-        line.setAttribute('stroke', colors[index]);
-        line.setAttribute('stroke-width', '2');
-        itemGroup.appendChild(line);
-        
-        // Add text
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('x', '30');
-        text.setAttribute('y', '10');
-        text.setAttribute('fill', '#666');
-        text.textContent = names[index];
-        itemGroup.appendChild(text);
-        
-        legendGroup.appendChild(itemGroup);
-        xOffset += 150; // Adjust spacing between legend items
-      });
-      
-      clonedSvg.appendChild(legendGroup);
-    }
-    
-    // Get SVG string
-    const svgString = new XMLSerializer().serializeToString(clonedSvg);
-    
-    // Create blob and download
-    const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${fileName}.svg`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error('Error generating SVG:', error);
-  }
-};
 
 interface CustomTooltipProps extends TooltipProps<number, string> {
   active?: boolean;
@@ -165,13 +77,7 @@ const chartData = bestCaseROIData.map((item, index) => ({
 }));
 
 const ROIProjectionsChart = () => {
-  const chartRef = useRef<HTMLDivElement>(null);
 
-  const handleExportSVG = () => {
-    if (chartRef.current) {
-      exportToSVG(chartRef.current, 'roi-projections-chart');
-    }
-  };
 
   const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
@@ -200,18 +106,8 @@ const ROIProjectionsChart = () => {
 
   return (
     <>
-      <div className="flex justify-end mb-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handleExportSVG}
-          className="flex gap-2 items-center"
-        >
-          <Download className="w-4 h-4" />
-          <span className="hidden sm:inline">SVG</span>
-        </Button>
-      </div>
-      <div ref={chartRef} className="h-[500px] w-full">
+    <h2 className="mb-4 text-2xl font-semibold">ROI Projections </h2>
+      <div className="h-[500px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={chartData}

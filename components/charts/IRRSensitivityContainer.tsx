@@ -83,56 +83,31 @@ const worstCaseValues = [
 ];
 
 const IRRSensitivityContainer = () => {
-  const bestCaseRef = useRef<HTMLDivElement>(null);
-  const optimalCaseRef = useRef<HTMLDivElement>(null);
-  const worstCaseRef = useRef<HTMLDivElement>(null);
-
-  const handleExportBestCase = () => {
-    if (bestCaseRef.current) {
-      exportToSVG(bestCaseRef.current, 'irr-sensitivity-best-case');
-    }
-  };
-
-  const handleExportOptimalCase = () => {
-    if (optimalCaseRef.current) {
-      exportToSVG(optimalCaseRef.current, 'irr-sensitivity-optimal-case');
-    }
-  };
-
-  const handleExportWorstCase = () => {
-    if (worstCaseRef.current) {
-      exportToSVG(worstCaseRef.current, 'irr-sensitivity-worst-case');
-    }
-  };
-
   const bestCaseData = generateHeatmapData(bestCaseValues);
   const optimalCaseData = generateHeatmapData(optimalCaseValues);
   const worstCaseData = generateHeatmapData(worstCaseValues);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div ref={bestCaseRef} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
         <IRRSensitivityHeatmap
           data={bestCaseData}
           title="Best Case - IRR Sensitivity (%)"
           maxValue={65}
-          onExport={handleExportBestCase}
         />
       </div>
-      <div ref={optimalCaseRef} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+      <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
         <IRRSensitivityHeatmap
           data={optimalCaseData}
           title="Optimal Case - IRR Sensitivity (%)"
           maxValue={57}
-          onExport={handleExportOptimalCase}
         />
       </div>
-      <div ref={worstCaseRef} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+      <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
         <IRRSensitivityHeatmap
           data={worstCaseData}
           title="Worst Case - IRR Sensitivity (%)"
           maxValue={46}
-          onExport={handleExportWorstCase}
         />
       </div>
     </div>
