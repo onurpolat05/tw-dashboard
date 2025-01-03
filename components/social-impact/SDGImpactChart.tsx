@@ -3,12 +3,13 @@ import { Card } from "@/components/ui/card";
 import {
   PieChart,
   Globe,
-  Users,
+  GraduationCap,
   TrendingUp,
-  Building2,
-  Sprout,
-  Boxes,
+  DollarSign,
+  Leaf,
+  Bot,
   ShieldCheck,
+  Gauge,
 } from "lucide-react";
 
 const impactStats = [
@@ -16,17 +17,17 @@ const impactStats = [
     category: "Economic Impact",
     stats: [
       {
-        title: "Market Growth",
-        value: "85%",
-        description: "Annual growth in ethical trade",
-        icon: TrendingUp,
+        title: "Projected SOM",
+        value: "$27.25M",
+        description: "Sustainable business model for impact",
+        icon: DollarSign,
         color: "blue",
       },
       {
-        title: "SME Empowerment",
-        value: "47M+",
-        description: "Small businesses digitalized",
-        icon: Building2,
+        title: "Producer Income Growth",
+        value: "2x",
+        description: "Help producers double their income",
+        icon: TrendingUp,
         color: "indigo",
       },
     ],
@@ -36,15 +37,15 @@ const impactStats = [
     stats: [
       {
         title: "CO₂ Reduction",
-        value: "12.5M",
-        description: "Tons saved through local trade",
-        icon: Sprout,
+        value: "25%",
+        description: "Target reduction in logistics emissions",
+        icon: Leaf,
         color: "green",
       },
       {
-        title: "Sustainable Sellers",
-        value: "68%",
-        description: "Using eco-friendly practices",
+        title: "Sustainable Product Listings",
+        value: "30%",
+        description: "Target for sustainable products on platform",
         icon: ShieldCheck,
         color: "emerald",
       },
@@ -54,16 +55,16 @@ const impactStats = [
     category: "Social Impact",
     stats: [
       {
-        title: "Job Creation",
-        value: "850K+",
-        description: "New employment opportunities",
-        icon: Users,
+        title: "Producer Training Programs",
+        value: "100+",
+        description: "E-commerce and digital literacy training",
+        icon: GraduationCap,
         color: "purple",
       },
       {
-        title: "Local Communities",
-        value: "15K+",
-        description: "Directly benefiting from platform",
+        title: "Traditional Product Sales",
+        value: "25%",
+        description: "Target increase in traditional product sales",
         icon: Globe,
         color: "violet",
       },
@@ -73,18 +74,18 @@ const impactStats = [
     category: "Innovation Impact",
     stats: [
       {
-        title: "AI Efficiency",
-        value: "73%",
-        description: "Improved resource allocation",
-        icon: Boxes,
+        title: "AI Vertical Agents",
+        value: "6",
+        description: "AI agents for e-commerce automation",
+        icon: Bot,
         color: "amber",
       },
       {
-        title: "Digital Adoption",
-        value: "92%",
-        description: "Platform utilization rate",
-        icon: TrendingUp,
-        color: "orange",
+        title: "Agent Utilization",
+        value: "90%",
+        description: "Goal for AI agent utilization rate by users",
+        icon: Gauge,
+        color: "amber",
       },
     ],
   },
@@ -98,7 +99,7 @@ const SDGImpactChart = () => {
           <PieChart className="w-6 h-6 text-blue-600" />
         </div>
         <h2 className="text-2xl font-semibold text-gray-900">
-          Global Impact Metrics
+          Global Impact Goals
         </h2>
       </div>
 

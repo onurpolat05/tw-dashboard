@@ -26,7 +26,7 @@ const SocialImpactTab = () => {
       ],
       globalImpact:
         "Small and medium-sized enterprises represent about 90% of businesses and more than 50% of employment worldwide.",
-      color: "blue",
+      color: "navy" as const,
     },
     {
       number: 9,
@@ -40,7 +40,7 @@ const SocialImpactTab = () => {
       ],
       globalImpact:
         "Manufacturing value added as a proportion of GDP increased from 14.9% in 2000 to 16.4% in 2021.",
-      color: "orange",
+      color: "purple" as const,
     },
     {
       number: 12,
@@ -54,7 +54,7 @@ const SocialImpactTab = () => {
       ],
       globalImpact:
         "Should the global population reach 9.6 billion by 2050, the equivalent of almost three planets could be required to provide the natural resources needed to sustain current lifestyles.",
-      color: "amber",
+      color: "turquoise" as const,
     },
     {
       number: 17,
@@ -68,22 +68,25 @@ const SocialImpactTab = () => {
       ],
       globalImpact:
         "As of 2022, over 65% of companies worldwide reported engaging in partnerships to advance the Sustainable Development Goals.",
-      color: "green",
+      color: "yellow" as const,
     },
   ];
 
   return (
     <div className="space-y-8">
       {/* Hero Section */}
-      <Card className="p-6 bg-gradient-to-br from-blue-50 to-white">
-        <div className="flex flex-col items-center text-center mb-6">
-          <div className="p-2 bg-blue-50 rounded-lg mb-4">
-            <Globe2 className="w-8 h-8 text-blue-600" />
+      <Card className="p-8 overflow-hidden relative">
+        {/* Subtle Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-indigo-50/40 to-blue-50/30" />
+
+        <div className="relative flex flex-col items-center text-center">
+          <div className="p-3 bg-white/80 rounded-2xl shadow-sm mb-6 ring-1 ring-purple-100">
+            <Globe2 className="w-8 h-8 text-[rgb(115,103,239)]" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Driving Positive Change
           </h1>
-          <p className="text-gray-600 max-w-2xl">
+          <p className="text-gray-600 max-w-2xl text-lg">
             We're committed to making a positive difference in our communities
             through sustainable practices and social initiatives, aligned with
             the UN's Sustainable Development Goals.
@@ -94,8 +97,8 @@ const SocialImpactTab = () => {
       {/* SDG Section */}
       <section className="space-y-6">
         <div className="flex items-center gap-2 mb-6">
-          <div className="p-2 bg-blue-50 rounded-lg">
-            <BarChart3 className="w-6 h-6 text-blue-600" />
+          <div className="p-2 bg-[rgba(115,103,239,0.1)] rounded-lg">
+            <BarChart3 className="w-6 h-6 text-[rgb(115,103,239)]" />
           </div>
           <h2 className="text-2xl font-semibold text-gray-900">
             Our Contribution to SDGs
