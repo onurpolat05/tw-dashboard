@@ -25,7 +25,7 @@ const FinancialProjectionsPage = () => {
           </div>
 
           {/* Main Content */}
-          <Tabs defaultValue="mvp-test" className="space-y-6">
+          <Tabs defaultValue="financial-overview" className="space-y-6">
             <div className="relative">
               <div className="overflow-x-auto pb-2 sm:overflow-x-visible">
                 <TabsList className="inline-flex min-w-full bg-white border shadow-sm sm:w-auto">
@@ -41,6 +41,9 @@ const FinancialProjectionsPage = () => {
               <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none sm:hidden" />
               <div className="absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none sm:hidden" />
             </div>
+            <TabsContent value="financial-overview">
+              <FinancialOverviewTab />
+            </TabsContent>
 
             {/* Tab Contents */}
             <TabsContent value="mvp-test">
@@ -49,9 +52,7 @@ const FinancialProjectionsPage = () => {
               </div>
             </TabsContent>
 
-            <TabsContent value="financial-overview">
-              <FinancialOverviewTab />
-            </TabsContent>
+           
 
             <TabsContent value="market">
               <MarketTab />

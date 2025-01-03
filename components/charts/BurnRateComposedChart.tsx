@@ -249,7 +249,7 @@ const BurnRateComposedChart = () => {
     <Card className="p-4 h-full">
       <CardHeader className="px-0 pt-0">
         <div className="flex justify-between items-center">
-          <CardTitle className="text-lg md:text-xl">Burn Rate Analysis with Financial Metrics</CardTitle>
+          <CardTitle className="text-lg md:text-xl">Burn Rate Graph </CardTitle>
           <Button
             variant="outline"
             size="sm"

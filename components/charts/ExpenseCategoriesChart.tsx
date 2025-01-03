@@ -98,7 +98,7 @@ const ExpenseCategoriesChart: React.FC = () => {
   return (
     <div className="h-[550px] w-full p-4">
       <div className="flex justify-between items-center mb-8">
-        <h3 className="text-2xl font-semibold text-gray-900">Top 5 Expense Categories (Average)</h3>
+        <h3 className="text-2xl font-semibold text-gray-900">Expenses</h3>
       </div>
       <div ref={chartRef} className="h-[450px]">
         <ResponsiveContainer width="100%" height="100%">

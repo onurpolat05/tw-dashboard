@@ -72,7 +72,7 @@ const ExpenseDistributionPieCharts = () => {
   return (
     <Card className="p-4 h-full">
       <CardHeader className="px-0 pt-0 mb-6">
-        <CardTitle className="text-lg md:text-xl">Expense Distribution by Year</CardTitle>
+        <CardTitle className="text-lg md:text-xl">Expense Distrubution</CardTitle>
       </CardHeader>
       <div className="flex flex-col space-y-8">
         <div className="grid grid-cols-2 gap-8">

@@ -46,7 +46,7 @@ const FinancialModelTab = () => {
         <h2 className="mb-4 text-xl font-semibold">Customer Analysis</h2>
 
         <Card className="p-4 mb-6">
-          <h3 className="mb-4 text-lg font-semibold">Customer Behavior Trends</h3>
+          <h3 className="mb-4 text-lg font-semibold">Customer Metrics Analysis (LTV ~ACR)</h3>
           <CustomerBehaviorChart />
         </Card>
 
@@ -55,7 +55,7 @@ const FinancialModelTab = () => {
         <CustomerMetricsChart />
 
           <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">Business Model Distribution</h3>
+            <h3 className="mb-4 text-lg font-semibold">Customer Segmentation</h3>
             <CustomerSegmentationCharts />
           </Card>
         </div>
@@ -70,7 +70,7 @@ const FinancialModelTab = () => {
 
           {/* Right Card */}
           <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">Revenue Growth & Distribution</h3>
+            <h3 className="mb-4 text-lg font-semibold">Revenue Growth Chart</h3>
             <div className="mt-4 md:mt-6">
               <RevenueComposedChart />
             </div>
@@ -78,7 +78,7 @@ const FinancialModelTab = () => {
           </Card>
 
           <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">Revenue Growth Trends</h3>
+            <h3 className="mb-4 text-lg font-semibold">Revenue Growth</h3>
             <div className="h-[550px]">
               <RevenueGrowthChart />
             </div>
@@ -99,7 +99,6 @@ const FinancialModelTab = () => {
           {/* Right Card - 2/5 width - Expense Distribution */}
           <div className="md:col-span-1 lg:col-span-2">
             <Card className="p-4">
-              <h3 className="mb-4 text-lg font-semibold">Expense Categories</h3>
               <ExpenseCategoriesChart />
             </Card>
           </div>
@@ -111,7 +110,7 @@ const FinancialModelTab = () => {
           <ExpenseDistributionPieCharts />
 
           <Card className="p-4">
-            <h3 className="mb-4 text-lg font-semibold">R&D Investment Analysis</h3>
+            <h3 className="mb-4 text-lg font-semibold">R&D as of Sales </h3>
             <div className="h-[550px]">
               <RDSalesChart />
             </div>

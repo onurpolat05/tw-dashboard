@@ -30,7 +30,7 @@ const data = [
 const CustomerMetricsChart = () => {
   return (
     <Card className="p-6">
-      <h2 className="mb-6 text-xl font-semibold">Customer Metrics</h2>
+      <h2 className="mb-6 text-xl font-semibold">Customer Flow</h2>
       <div className="h-[500px]">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
