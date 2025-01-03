@@ -75,15 +75,18 @@ const SocialImpactTab = () => {
   return (
     <div className="space-y-8">
       {/* Hero Section */}
-      <Card className="p-6 bg-gradient-to-br from-[rgba(25,37,91,0.1)] to-white">
-        <div className="flex flex-col items-center text-center mb-6">
-          <div className="p-2 bg-[rgba(25,37,91,0.1)] rounded-lg mb-4">
-            <Globe2 className="w-8 h-8 text-[rgb(25,37,91)]" />
+      <Card className="p-8 overflow-hidden relative">
+        {/* Subtle Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-indigo-50/40 to-blue-50/30" />
+
+        <div className="relative flex flex-col items-center text-center">
+          <div className="p-3 bg-white/80 rounded-2xl shadow-sm mb-6 ring-1 ring-purple-100">
+            <Globe2 className="w-8 h-8 text-[rgb(115,103,239)]" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Driving Positive Change
           </h1>
-          <p className="text-gray-600 max-w-2xl">
+          <p className="text-gray-600 max-w-2xl text-lg">
             We're committed to making a positive difference in our communities
             through sustainable practices and social initiatives, aligned with
             the UN's Sustainable Development Goals.
@@ -94,8 +97,8 @@ const SocialImpactTab = () => {
       {/* SDG Section */}
       <section className="space-y-6">
         <div className="flex items-center gap-2 mb-6">
-          <div className="p-2 bg-[rgba(25,37,91,0.1)] rounded-lg">
-            <BarChart3 className="w-6 h-6 text-[rgb(25,37,91)]" />
+          <div className="p-2 bg-[rgba(115,103,239,0.1)] rounded-lg">
+            <BarChart3 className="w-6 h-6 text-[rgb(115,103,239)]" />
           </div>
           <h2 className="text-2xl font-semibold text-gray-900">
             Our Contribution to SDGs
